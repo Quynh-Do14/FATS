@@ -1,0 +1,272 @@
+.auth-screen {
+  background: #e6f0f5;
+}
+
+.auth-screen .content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.auth-screen h2 {
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 45px;
+  letter-spacing: 0%;
+}
+.auth-screen h3 {
+  font-family: SVN-Gilroy;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: justify;
+}
+.auth-screen .divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-screen .line {
+  flex: 1;
+  height: 1px;
+  background-color: #999;
+}
+
+.auth-screen .divider-text {
+  font-weight: 500;
+  color: #666666;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.auth-screen .signup-text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #101010;
+}
+
+.auth-screen .gradient-link {
+  margin-left: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(to right, #6cc28a, #3793e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.auth-screen .gradient-link:hover {
+  text-decoration: underline;
+}
+
+.auth-screen .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Custom Checkbox */
+.auth-screen .custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-left: 28px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+}
+
+.auth-screen .custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.auth-screen .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  background: linear-gradient(135deg, #6cc28a, #3793e0);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-screen .checkmark::after {
+  content: '✓';
+  font-size: 14px;
+  color: white;
+  display: none;
+}
+
+.auth-screen .custom-checkbox input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.auth-screen .forgot-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: right;
+
+  background: linear-gradient(to right, #6cc28a, #3793e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.auth-screen .forgot-link:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 1801px) {
+}
+
+@media only screen and (min-width: 1600px) {
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+}
+
+@media only screen and (max-width: 1400px) {
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (min-width: 993px) {
+  .auth-screen .content {
+    width: 600px;
+    max-width: 600px;
+    margin: auto;
+    padding: 80px 0;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .auth-screen {
+    padding: 60px 30px;
+  }
+  .auth-screen .content {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .auth-screen {
+    padding: 60px 30px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .auth-screen {
+    padding: 50px 20px;
+  }
+}
+
+.authenticate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e0f7fa, #fff3e0);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.authenticate .loading-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.authenticate .spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #4285f4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.authenticate .loading-text {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.5;
+  overflow: hidden;
+  animation: wave 2s infinite ease-in-out;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(4px);
+  }
+}
+/* Hiệu ứng gợn sóng */
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(4px);
+  }
+}

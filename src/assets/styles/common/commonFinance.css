@@ -1,0 +1,205 @@
+/* OverviewComponent */
+.box-common.overview {
+  position: relative;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.box-common.overview img {
+  position: absolute;
+  right: 0;
+  z-index: 9;
+  animation: robot 6s both ease-out infinite;
+}
+
+@keyframes robot {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 100px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+.box-common.overview .target .label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+
+.box-common.overview .target .value {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+
+.box-common.overview .content {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+  background: linear-gradient(252.31deg, #006699 9.19%, #99cc99 90.81%);
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid #ffffff;
+  animation: gradientAnimation 8s ease infinite;
+  background-size: 400% 400%;
+}
+
+.box-common.overview .content .label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+
+  color: #ffffff;
+}
+.box-common.overview .content .value {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #ffffff;
+}
+
+.box-common {
+  background: var(--Black-5, #1010100d);
+  border-radius: 15px;
+  height: 100%;
+  padding: 20px;
+
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.box-common .title-box {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+.box-common .is-done {
+  background: #003333;
+  border-radius: 50px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.box-common .is-not-done {
+  background: #eb001bcc;
+  border-radius: 50px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.box-common.overview .target .label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+
+.box-common.overview .target .value {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+
+.box-common.overview .info {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 10;
+  padding: 20px;
+  border-radius: 20px;
+  height: 180px;
+  border: 2px solid #ffffff;
+}
+.box-common.overview .info.green-bg {
+  background: linear-gradient(135deg, #006633 0%, #44e896 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+.box-common.overview .info.red-bg {
+  background: linear-gradient(135deg, #eb001bcc 0%, #e9a390 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+.box-common.overview .info .title {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #fff;
+}
+
+.box-common.overview .info .sum {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #ffffff;
+}
+
+.box-common.overview .info .more {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.box-common.overview .info .more p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #fff;
+}
+
+/* OverviewComponent */
+@media only screen and (max-width: 576px) {
+  .bar-chart {
+    height: 400px;
+    width: 600px;
+  }
+}

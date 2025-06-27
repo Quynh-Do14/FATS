@@ -1,0 +1,12 @@
+.policy-container {
+  /* background-color: #0f202872; */
+  /* background: linear-gradient(-45deg, #0f2028, #192931, #364d58, #44687b); */
+}
+
+.policy-container .content {
+  /* border-radius: 8px; */
+  /* border: 1px solid #d7d7d785; */
+  /* box-shadow: 5px 5px 10px -10px #7c0fd1; */
+  padding: 40px 0;
+  /* background: #fff; */
+}

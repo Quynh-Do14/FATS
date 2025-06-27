@@ -1,0 +1,145 @@
+.bubble {
+  position: absolute;
+  bottom: 150px;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffffb5;
+  border-radius: 50%;
+  animation: rise 10s infinite ease-in-out;
+  animation-duration: calc(3s + (5 * random()));
+  z-index: 9;
+}
+
+.bubble:nth-child(1) {
+  left: 20%;
+  width: 60px;
+  height: 60px;
+  animation-duration: 4s;
+}
+
+.bubble:nth-child(2) {
+  left: 40%;
+  width: 35px;
+  height: 35px;
+  animation-duration: 6s;
+}
+
+.bubble:nth-child(3) {
+  left: 60%;
+  width: 50px;
+  height: 50px;
+  animation-duration: 7s;
+}
+
+.bubble:nth-child(4) {
+  left: 80%;
+  width: 35px;
+  height: 35px;
+  animation-duration: 3s;
+}
+
+.bubble:nth-child(5) {
+  left: 50%;
+  width: 65px;
+  height: 65px;
+  animation-duration: 5s;
+}
+
+.bubble:nth-child(6) {
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-duration: 3.5s;
+}
+
+.bubble:nth-child(7) {
+  left: 85%;
+  width: 35px;
+  height: 35px;
+  animation-duration: 7s;
+}
+
+.bubble:nth-child(8) {
+  left: 55%;
+  width: 65px;
+  height: 65px;
+  animation-duration: 2.5s;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-600px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #ededed;
+}
+
+.typing-indicator .dot {
+  width: 8px;
+  height: 8px;
+  background-color: #003333;
+  border-radius: 50%;
+  animation: typing 1.5s infinite;
+}
+
+.typing-indicator .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.title-component {
+  border: 1px solid #006699;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.title-component .title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0%;
+  text-align: center;
+  padding: 4px 10px;
+  text-transform: capitalize;
+}
+.title-component .title.black {
+  color: #101010;
+}
+.title-component .title.white {
+  color: #ffffff;
+}
+.title-component .image {
+  margin: 0 !important;
+  width: 36px;
+  height: auto;
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+  background: linear-gradient(252.31deg, #99cc99 9.19%, #99cccc 90.81%);
+}

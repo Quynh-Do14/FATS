@@ -1,0 +1,101 @@
+.banner-common {
+}
+
+.banner-common .layout {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  position: relative;
+}
+
+.banner-common .overlay {
+  background: #00000061;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+}
+.banner-common .layout h1 {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: capitalize;
+  color: #fff;
+  z-index: 10;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02) rotate(2deg);
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .banner-common .layout {
+    padding: 160px 300px 80px;
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+  .banner-common .layout {
+    padding: 160px 200px 80px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .banner-common .layout {
+    padding: 160px 150px 80px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .banner-common .layout {
+    padding: 160px 100px 80px;
+  }
+  .homepage-container .banner .layout {
+    height: 460px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .banner-common .layout {
+    padding: 160px 60px 80px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .banner-common .right-content {
+    display: none;
+  }
+  .homepage-container .banner .layout {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .banner-common .layout {
+    padding: 160px 30px 80px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .banner-common .layout h1 {
+    font-size: 40px;
+  }
+  .banner-common .layout .neon-text {
+    font-size: 12px;
+  }
+  .banner-common .layout {
+    padding: 130px 20px 50px;
+  }
+}

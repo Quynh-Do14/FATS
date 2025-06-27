@@ -1,0 +1,245 @@
+.goal-container {
+  background: linear-gradient(
+    222.64deg,
+    rgba(153, 204, 153, 0.4) 1.44%,
+    #e6f0f5 64.57%
+  );
+
+  width: 100%;
+  position: relative;
+}
+
+.goal-container .overview {
+  position: relative;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.goal-container .overview img {
+  position: absolute;
+  right: 0;
+  z-index: 9;
+  animation: robot 6s both ease-out infinite;
+}
+
+@keyframes robot {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 100px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+.goal-container .overview .target .label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+
+.goal-container .overview .target .value {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+
+.goal-container .overview .content {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+  background: linear-gradient(252.31deg, #006699 9.19%, #99cc99 90.81%);
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid #ffffff;
+  animation: gradientAnimation 8s ease infinite;
+  background-size: 400% 400%;
+}
+
+.goal-container .overview .content .label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+
+  color: #ffffff;
+}
+.goal-container .overview .content .value {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #ffffff;
+}
+
+.goal-container .info {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 10;
+  padding: 20px;
+  border-radius: 20px;
+  height: 180px;
+  border: 2px solid #ffffff;
+}
+.goal-container .info.green-bg {
+  background: linear-gradient(135deg, #006633 0%, #44e896 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+.goal-container .info.red-bg {
+  background: linear-gradient(135deg, #eb001bcc 0%, #e9a390 100%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+.goal-container .info .title {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #fff;
+}
+
+.goal-container .info .sum {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #ffffff;
+}
+
+.goal-container .info .more {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.goal-container .info .more p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #fff;
+}
+
+.goal-container .static table {
+  width: 100%;
+  text-align: left;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0%;
+}
+.goal-container .static table tr {
+  font-size: 16px;
+}
+
+.goal-container .static table tr th {
+  white-space: nowrap;
+}
+
+.goal-container .static table tr td {
+  font-size: 14px;
+  line-height: 20px;
+}
+.goal-container .static table tr td .cate {
+  width: 60px;
+  padding: 6px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #99cc99;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 576px) {
+  .goal-container .info .sum {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .goal-container .info .more p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.goal-container .box-common {
+  background: var(--Black-5, #1010100d);
+  border-radius: 15px;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.goal-container .box-common .title-box {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 35px;
+  letter-spacing: 0%;
+  color: #101010;
+}
+.goal-container .box-common .is-done {
+  background: #003333;
+  border-radius: 50px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.goal-container .box-common .is-not-done {
+  background: #eb001bcc;
+  border-radius: 50px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.goal-container .bar-chart {
+  z-index: 10;
+  position: relative;
+
+  /* border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  box-shadow: 5px 5px 10px -10px #7c0fd1;
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite; */
+}

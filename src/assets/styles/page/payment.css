@@ -1,0 +1,291 @@
+.payemnt-page {
+  background: #e6f0f5;
+}
+
+.payemnt-page .content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.payemnt-page h2 {
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 45px;
+  letter-spacing: 0%;
+}
+.payemnt-page h3 {
+  font-family: SVN-Gilroy;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: justify;
+}
+.payemnt-page .divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.payemnt-page .line {
+  flex: 1;
+  height: 1px;
+  background-color: #999;
+}
+
+.payemnt-page .divider-text {
+  font-weight: 500;
+  color: #666666;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+.payemnt-page .method {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+.payemnt-page .signup-text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: left;
+  color: #101010;
+}
+
+.payemnt-page .gradient-link {
+  margin-left: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(to right, #6cc28a, #3793e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: SVN-Gilroy;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.payemnt-page .gradient-link:hover {
+  text-decoration: underline;
+}
+
+.payemnt-page .remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Custom Checkbox */
+.payemnt-page .custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-left: 28px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+}
+
+.payemnt-page .custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.payemnt-page .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  background: linear-gradient(135deg, #6cc28a, #3793e0);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payemnt-page .checkmark::after {
+  content: '✓';
+  font-size: 14px;
+  color: white;
+  display: none;
+}
+
+.payemnt-page .custom-checkbox input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.payemnt-page .forgot-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: right;
+
+  background: linear-gradient(to right, #6cc28a, #3793e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.payemnt-page .forgot-link:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 1801px) {
+}
+
+@media only screen and (min-width: 1600px) {
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+}
+
+@media only screen and (max-width: 1400px) {
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (min-width: 993px) {
+  .payemnt-page {
+    padding: 60px 30px;
+  }
+  .payemnt-page .content,
+  .payment-status-container {
+    width: 700px;
+    max-width: 700px;
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .payemnt-page {
+    padding: 60px 30px;
+  }
+  .payemnt-page .content,
+  .payment-status-container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .payemnt-page {
+    padding: 60px 30px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .payemnt-page {
+    padding: 50px 20px;
+  }
+}
+
+.payment-status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.payment-status-container .payment-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: white;
+  width: 600px;
+}
+
+.payment-status-container .status-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+.payment-status-container.success .payment-status h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #008f6d;
+}
+
+.payment-status-container.failure .payment-status h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #fe5a5d;
+}
+
+.payment-status-container.loading .payment-status h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #2e2e2e;
+}
+
+.payment-status-container.success .payment-status h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  text-align: center;
+  color: #008f6d;
+}
+.payment-status-container.failure .payment-status h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  text-align: center;
+  color: #fe5a5d;
+}
+
+.payment-status-container.loading .payment-status h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  text-align: center;
+  color: #2e2e2e;
+}
+
+.payment-status-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+}
+
+.payment-status-container .action-btn {
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.payment-status-container .success-btn {
+  background-color: #008f6d;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+
+.payment-status-container .failure-btn {
+  background-color: #fe5a5d;
+  color: white;
+  border-radius: 8px;
+  padding: 12px 20px;
+}

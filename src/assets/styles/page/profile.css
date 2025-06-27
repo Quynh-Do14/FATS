@@ -1,0 +1,133 @@
+.profile-page {
+  background: #e6f0f5;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+}
+.profile-page .container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.profile-page .content {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 0 0 8px 8px;
+}
+.profile-page .tabs {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 4px;
+  user-select: none;
+}
+.profile-page .tabs .option {
+  cursor: pointer;
+}
+.profile-page .tabs .option.active {
+  background: #fff;
+  border-radius: 8px 8px 0 0;
+  padding: 12px 0px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #47cef7;
+  width: 120px;
+}
+.profile-page .tabs .option.no-active {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #787878;
+  width: 120px;
+  padding-bottom: 4px;
+}
+.profile-page .tabs .option.active p {
+  background: #fff;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-page .tabs .option.no-active p {
+  border-radius: 8px;
+  background: #ffffff;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-page h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  color: #787878;
+}
+
+.profile-page .chatbot {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 20px;
+  min-height: 156px;
+  height: 100%;
+  background: #003333;
+  border-radius: 15px;
+  padding: 20px;
+}
+.profile-page .chatbot .bot-name {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 500px;
+  min-width: 200px;
+  width: 100%;
+}
+.profile-page .chatbot img {
+  border-radius: 50%;
+}
+.profile-page .chatbot p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0%;
+  text-align: left;
+  color: #ffffff;
+}
+.profile-page .chatbot img {
+  animation: chatZoom infinite 2s linear;
+}
+
+@media only screen and (min-width: 993px) {
+  .profile-page {
+    padding: 60px 30px;
+  }
+  .profile-page .container {
+    width: 700px;
+    max-width: 700px;
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .profile-page {
+    padding: 60px 30px;
+  }
+  .profile-page .container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .profile-page {
+    padding: 60px 30px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .profile-page {
+    padding: 50px 20px;
+  }
+}
