@@ -12,9 +12,9 @@ import DialogConfirmCommon from '@/infrastructure/common/components/modal/dialog
 import { ActionCommon } from '@/infrastructure/common/components/action/action-common';
 import categoryBlogService from '@/infrastructure/repositories/category/categoryBlog.service';
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
-import ManageLayout from '../page';
 import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
 import { InputSearchCommon } from '@/infrastructure/common/components/input/input-search-common';
+import ManageLayout from '@/infrastructure/common/Layouts/Manage-Layout';
 
 let timeout: any
 const ListCategoryManagement = () => {

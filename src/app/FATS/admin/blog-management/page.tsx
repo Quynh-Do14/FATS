@@ -116,7 +116,7 @@ const ListBlogManagement = () => {
     // Xóa bài
 
     return (
-        <AdminLayout
+        <ManageLayout
             title={'Danh sách tin tức'}
             breadcrumb={'Tin tức'}
             redirect={ROUTE_PATH.BLOG_MANAGEMENT}
@@ -232,7 +232,7 @@ const ListBlogManagement = () => {
                 </div>
             </div>
             <FullPageLoading isLoading={loading} />
-        </AdminLayout >
+        </ManageLayout >
     )
 }
 
