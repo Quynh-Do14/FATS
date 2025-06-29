@@ -1,3 +1,4 @@
+import '@/app/chart-config';
 import { Doughnut } from 'react-chartjs-2';
 type Props = {
     selectedTab: "spend" | "income"

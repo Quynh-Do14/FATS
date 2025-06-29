@@ -1,9 +1,9 @@
 import { Upload } from 'antd'
 import { useEffect, useRef, useState } from 'react'
 import { PlusOutlined } from '@ant-design/icons'
-import "../../../../assets/styles/components/input.css"
+import styles from '@/assets/styles/components/input.module.css'
+import Image from 'next/image'
 import { UploadListType } from 'antd/es/upload/interface'
-import { getBase64 } from '../../../helper/helper'
 
 type Props = {
   label: string
@@ -14,6 +14,11 @@ type Props = {
   shape: 'circle' | 'card'
 }
 
+const getBase64 = (img: any, callback: any) => {
+  const reader = new FileReader()
+  reader.addEventListener('load', () => callback(reader.result))
+  reader.readAsDataURL(img)
+}
 function UploadAvatar(props: Props) {
   const { label, dataAttribute, setData, attribute, listType, shape } = props
   const [value, setValue] = useState<string>('')
@@ -36,7 +41,7 @@ function UploadAvatar(props: Props) {
     }
   }, [value, dataAttribute])
   return (
-    <div className="upload-common">
+    <div className={styles.upload_common}>
       <Upload
         name='avatar'
         listType={listType}
@@ -48,10 +53,10 @@ function UploadAvatar(props: Props) {
         accept="image/png, image/jpeg"
       >
         {value ? (
-          <img
+          <Image
             src={value}
             alt='avatar'
-            className={`${shape}`}
+            className={styles[shape]}
             width={100}
             height={100}
           />

@@ -1,8 +1,8 @@
+'use client'
 import React, { useState } from 'react'
 import "@/assets/styles/page/login.css"
 import LayoutClient from '@/infrastructure/common/Layouts/Client-Layout'
 import InputTextCommon from '@/infrastructure/common/components/input/input-text'
-import InputPasswordCommon from '@/infrastructure/common/components/input/input-password'
 import authService from '@/infrastructure/repositories/auth/service/auth.service'
 import { WarningMessage } from '@/infrastructure/common/components/toast/notificationToast'
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading'

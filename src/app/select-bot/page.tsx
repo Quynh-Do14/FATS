@@ -1,15 +1,16 @@
+'use client'
 import { useState } from 'react';
-import "../../assets/styles/page/chat.css"
-import LayoutClient from '../../infrastructure/common/Layouts/Client-Layout';
-import BubbleCommon from '../../infrastructure/common/components/controls/Bubble';
-import Constants from '../../core/common/constants';
+import "@/assets/styles/page/chat.css"
+import LayoutClient from '@/infrastructure/common/Layouts/Client-Layout';
+import BubbleCommon from '@/infrastructure/common/components/controls/Bubble';
+import Constants from '@/core/common/constants';
 import { Col, Row } from 'antd';
-import authService from '../../infrastructure/repositories/auth/service/auth.service';
-import { FullPageLoading } from '../../infrastructure/common/components/controls/loading';
-import { ROUTE_PATH } from '../../core/common/appRouter';
+import authService from '@/infrastructure/repositories/auth/service/auth.service';
+import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
+import { ROUTE_PATH } from '@/core/common/appRouter';
 import { useRecoilValue } from 'recoil';
-import { ProfileState } from '../../core/atoms/profile/profileState';
-import { ButtonDesign } from '../../infrastructure/common/components/button/buttonDesign';
+import { ProfileState } from '@/core/atoms/profile/profileState';
+import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
 import { useRouter } from 'next/navigation';
 
 const SelectBotPage = () => {

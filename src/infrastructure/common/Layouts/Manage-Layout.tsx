@@ -2,18 +2,21 @@ import { Col, Dropdown, Layout, Menu, Row, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 import "@/assets/styles/components/MainLayout.css";
-import profile from "@/assets/images/avatar.png";
+import profile from "@/assets/images/no-avatar.png";
 import { ROUTE_PATH } from '@/core/common/appRouter';
 import authService from '../../repositories/auth/service/auth.service';
 import { useRouter } from 'next/navigation'
 import { useRecoilState } from 'recoil';
 import DialogConfirmCommon from '../components/modal/dialogConfirm';
 import Constants from '@/core/common/constants';
-import { BreadcrumbCommon } from './Breadcumb';
-import logo from '@/assets/images/logo.jpg';
+import logo from '@/assets/images/logo.png';
 import { isTokenStoraged } from '../../utils/storage';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import categoryBlogService from '@/infrastructure/repositories/category/categoryBlog.service';
+import { ProfileState } from '@/core/atoms/profile/profileState';
+import { CategoryBlogState } from '@/core/atoms/category/categoryState';
+import BreadcrumbCommon from './Breadcumb';
 
 const { Header, Content, Sider } = Layout;
 
@@ -23,9 +26,9 @@ const ManageLayout = ({ ...props }: any) => {
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const [loading, setLoading] = useState<boolean>(false);
-    // const [, setDataPosition] = useRecoilState(PositionState);
     const [dataProfile, setDataProfile] = useState<any>({});
-    // const [, setProfileState] = useRecoilState(ProfileState);
+    const [, setProfileState] = useRecoilState(ProfileState);
+    const [, setCategoryBlogState] = useRecoilState(CategoryBlogState);
 
     const pathname = usePathname();
     const router = useRouter();;
@@ -53,32 +56,53 @@ const ManageLayout = ({ ...props }: any) => {
         }
     }
 
-    // const getProfileUser = async () => {
-    //     if (token) {
-    //         try {
-    //             await authService.profile(
-    //                 () => { }
-    //             ).then((response) => {
-    //                 if (response) {
-    //                     setDataProfile(response)
-    //                     // setProfileState(
-    //                     //     {
-    //                     //         user: response,
-    //                     //     }
-    //                     // )
-    //                 }
-    //             })
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     }
-    // }
+    const getProfileUser = async () => {
+        if (token) {
+            try {
+                await authService.profile(
+                    () => { }
+                ).then((response) => {
+                    if (response) {
+                        setDataProfile(response)
+                        setProfileState(
+                            {
+                                user: response,
+                            }
+                        )
+                    }
+                })
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
 
-    // useEffect(() => {
-    //     if (token) {
-    //         getProfileUser().then(() => { });
-    //     }
-    // }, [token]);
+    useEffect(() => {
+        if (token) {
+            getProfileUser().then(() => { });
+        }
+    }, [token]);
+
+    const onGetListCategoryBlogAsync = async () => {
+        try {
+            await categoryBlogService.GetCategory(
+                {},
+                () => { }
+            ).then((response) => {
+                setCategoryBlogState(
+                    {
+                        data: response.content,
+                    }
+                )
+            })
+        }
+        catch (error) {
+            console.error(error)
+        }
+    }
+    useEffect(() => {
+        onGetListCategoryBlogAsync().then(() => { });
+    }, []);
 
     const listAction = () => {
         return (
@@ -127,7 +151,7 @@ const ManageLayout = ({ ...props }: any) => {
                                 <Dropdown overlay={listAction} trigger={['click']}>
                                     <a onClick={(e) => e.preventDefault()}>
                                         <Space>
-                                            <img className='avatar cursor-pointer' width={50} height={50} src={dataProfile.avatar ? dataProfile.avatar : profile} alt='' />
+                                            <img className='avatar cursor-pointer rounded-full' width={50} height={50} src={dataProfile.avatar ? dataProfile.avatar : profile.src} alt='' />
                                         </Space>
                                     </a>
                                 </Dropdown>
@@ -142,7 +166,7 @@ const ManageLayout = ({ ...props }: any) => {
                                 return (
                                     <Menu.Item
                                         className={`${pathname.includes(it.link) ? "menu-title active" : "menu-title"}`}
-                                        key={index} icon={<it.icon />}>
+                                        key={index} icon={<i className={it.icon} aria-hidden="true"></i>}>
                                         <Link href={it.link}>
                                             {it.label}
                                         </Link>

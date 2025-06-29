@@ -1,33 +1,33 @@
+"use client"
 import { Breadcrumb } from 'antd';
-import React from 'react'
-import "@/assets/styles/components/breadcumb.css"
 import { CaretRightOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/navigation';
-
+import styles from '@/assets/styles/admin/breadcumb.module.css'
+import { ROUTE_PATH } from '@/core/common/appRouter';
 type Props = {
     title: string,
     breadcrumb: string,
-    redirect: string
+    redirect: string,
+    isAdmin?: boolean,
 }
-export const BreadcrumbCommon = (props: Props) => {
-    const { title, breadcrumb, redirect } = props;
+const BreadcrumbCommon = (props: Props) => {
+    const { title, breadcrumb, redirect, isAdmin = false } = props;
     const router = useRouter();
     const onNavigate = () => {
         router.push(redirect);
-    }
+    };
     return (
         <div>
-            <div className='breadcumb-container py-3 flex justify-between align-center'>
+            <div className={styles.breadcumb_container}>
                 <div>
-                    <div className='page-name mb-4'>{title} </div>
-                    <Breadcrumb separator={<CaretRightOutlined />} className='flex align-center'>
-                        <Breadcrumb.Item
-                            onClick={onNavigate}
-                            className='breadcumb cursor-pointer'>{breadcrumb}</Breadcrumb.Item>
-                        <Breadcrumb.Item className='breadcumb-title'>{title}</Breadcrumb.Item>
+                    <Breadcrumb className='flex items-center' separator={<CaretRightOutlined className={`${isAdmin ? styles.font_style_admin : styles.font_style}`} />}>
+                        <Breadcrumb.Item className={`${isAdmin ? styles.font_style_admin : styles.font_style}`} onClick={() => router.push(ROUTE_PATH.HOME_PAGE)}>Trang chủ</Breadcrumb.Item>
+                        <Breadcrumb.Item className={`${isAdmin ? styles.font_style_admin : styles.font_style}`} onClick={onNavigate}>{breadcrumb}</Breadcrumb.Item>
+                        <Breadcrumb.Item className={`${isAdmin ? styles.font_style_admin : styles.font_style}`}>{title}</Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
+export default BreadcrumbCommon

@@ -755,9 +755,9 @@ const GoalSpendingPage = () => {
     useEffect(() => {
         // Lấy JWT từ localStorage hoặc sessionStorage
         const token = accessToken ? accessToken : null;
-        const baseUrl = process.env.REACT_APP_BASE_URL;
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-        const wsBaseUrl = process.env.REACT_APP_BASE_URL?.replace('/hdkt', '');
+        const wsBaseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace('/hdkt', '');
         const socket = new SockJS(`${wsBaseUrl}/ws?token=${token}`);
 
         const stompClient = new Client({
@@ -1030,9 +1030,9 @@ const GoalSpendingPage = () => {
                             />
                         </Col>
                         <Col xs={24} sm={24} md={14} lg={16} className="overflow-auto">
-                            {/* <BarChartStatic
+                            <BarChartStatic
                                 statisticsByTime={statisticsByTime}
-                            /> */}
+                            />
                         </Col>
                         <Col sm={24} md={14} lg={16}>
                             <StaticComponent
@@ -1054,11 +1054,11 @@ const GoalSpendingPage = () => {
                             />
                         </Col>
                         <Col xs={24} sm={24} md={10} lg={8}>
-                            {/* <PieChart
+                            <PieChart
                                 selectedTab={selectedTab}
                                 spendData={spendData}
                                 incomeData={incomeData}
-                            /> */}
+                            />
                         </Col>
                     </Row>
                 </div>

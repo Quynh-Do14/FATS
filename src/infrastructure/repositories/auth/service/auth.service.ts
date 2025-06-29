@@ -2,7 +2,8 @@ import Cookies from "js-cookie";
 import { Endpoint } from "../../../../core/common/apiLink";
 import { FailMessage, SuccessMessage } from "../../../common/components/toast/notificationToast";
 import { RequestService } from "../../../utils/response";
-import { clearToken, saveToken } from "../../../utils/storage";
+import { clearSesionStorage, clearToken, saveToken } from "../../../utils/storage";
+import { ROUTE_PATH } from "@/core/common/appRouter";
 
 const TOKEN_COOKIE_OPTIONS = {
     path: '/',
@@ -41,20 +42,22 @@ class AuthService {
             setLoading(false);
         }
     }
-    async logout(setLoading: (loading: boolean) => void) {
-        setLoading(true)
-        try {
-            clearToken()
-            SuccessMessage("Đăng xuất thành công", "")
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setLoading(false)
-            // window.location.reload()
-            // window.location.href(config.routes.web.home)
-        };
-    };
 
+    async logout(setLoading: (loading: boolean) => void) {
+        setLoading(true);
+        try {
+            clearToken();
+            clearSesionStorage();
+            SuccessMessage("Đăng xuất thành công", "");
+            setTimeout(() => {
+                window.location.href = ROUTE_PATH.HOME_PAGE;
+            }, 500);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     async profile(setLoading: (loading: boolean) => void) {
         setLoading(true)

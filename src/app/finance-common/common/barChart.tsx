@@ -1,3 +1,4 @@
+import '@/app/chart-config';
 import { Bar } from 'react-chartjs-2'
 type Props = {
     statisticsByTime: any

@@ -1,0 +1,61 @@
+.management_container {
+    background: #f0f3f8;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.management_container .content {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 3px 5px #0000000b;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 12px;
+    padding: 12px 20px;
+}
+
+.management_container .content .search_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.management_container .content .table_container {
+    flex: 1;
+    overflow: auto;
+}
+
+.management_container .content .btn_container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.management_container .content .form_container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 4px;
+}
+
+.management_container .legend_title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    text-align: left;
+    color: #6b7280;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: #fff;
+    padding: 0 10px;
+}
+
+.management_container .border_add {
+    border: 1px solid #e3e3e3;
+    padding: 30px 20px;
+}

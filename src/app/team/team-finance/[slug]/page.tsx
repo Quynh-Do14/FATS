@@ -2,10 +2,14 @@
 import React, { useEffect, useState } from "react";
 import {
     Chart as ChartJS,
-    ArcElement,
+    LineElement,
+    PointElement,
+    CategoryScale,
+    LinearScale,
+    Title,
     Tooltip,
     Legend,
-} from "chart.js";
+} from 'chart.js';
 import "@/assets/styles/page/goal.css"
 import ChatButton from "../../../chat/buttonChat";
 import LayoutClient from "@/infrastructure/common/Layouts/Client-Layout";
@@ -28,8 +32,16 @@ import BarChartStatic from "@/app/finance-common/common/barChart";
 import OverviewComponent from "@/app/finance-common/common/overview";
 import StaticComponent from "@/app/finance-common/common/static";
 import PieChart from "@/app/finance-common/common/pieChart";
- 
-ChartJS.register(ArcElement, Tooltip, Legend);
+
+ChartJS.register(
+    LineElement,
+    PointElement,
+    CategoryScale,
+    LinearScale,
+    Title,
+    Tooltip,
+    Legend
+);
 
 const TeamFinancePage = () => {
     const accessToken = getTokenStoraged();
@@ -328,9 +340,9 @@ const TeamFinancePage = () => {
     useEffect(() => {
         // Lấy JWT từ localStorage hoặc sessionStorage
         const token = accessToken ? accessToken : null;
-        const baseUrl = process.env.REACT_APP_BASE_URL;
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-        const wsBaseUrl = process.env.REACT_APP_BASE_URL?.replace('/hdkt', '');
+        const wsBaseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace('/hdkt', '');
         const socket = new SockJS(`${wsBaseUrl}/ws?token=${token}`);
 
         const stompClient = new Client({

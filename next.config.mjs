@@ -9,6 +9,11 @@ const nextConfig = {
         pathname: '/api/v1/files/preview/**'
       },
       {
+        protocol: 'https',
+        hostname: 'fats.vn',
+        pathname: '/api/v1/hdkt/files/preview/**'
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',

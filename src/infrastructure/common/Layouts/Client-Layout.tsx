@@ -11,6 +11,8 @@ import { useRecoilState } from "recoil";
 import { ProfileState } from "@/core/atoms/profile/profileState";
 import budgetService from "../../repositories/budget/budget.service";
 import { BudgetState } from "@/core/atoms/budget/budgetState";
+import { CategoryBlogState } from "@/core/atoms/category/categoryState";
+import categoryBlogService from '@/infrastructure/repositories/category/categoryBlog.service';
 
 const LayoutClient = ({ ...props }: any) => {
     const [isLoginClick, setIsLoginClick] = useState<boolean>(false);
@@ -28,6 +30,7 @@ const LayoutClient = ({ ...props }: any) => {
     const [dataProfile, setDataProfile] = useState<any>({});
     const [, setProfileState] = useRecoilState(ProfileState);
     const [, setBudgetState] = useRecoilState(BudgetState);
+    const [, setCategoryBlogState] = useRecoilState(CategoryBlogState);
 
     useEffect(() => {
         const fetchToken = async () => {
@@ -90,6 +93,28 @@ const LayoutClient = ({ ...props }: any) => {
         getProfileUser().then(() => { })
         onGetBudgetAsync().then(() => { });
     }, [token, isLoadingToken])
+
+    const onGetListCategoryBlogAsync = async () => {
+        try {
+            await categoryBlogService.GetCategory(
+                {},
+                () => { }
+            ).then((response) => {
+                setCategoryBlogState(
+                    {
+                        data: response.content,
+                    }
+                )
+            })
+        }
+        catch (error) {
+            console.error(error)
+        }
+    }
+    useEffect(() => {
+        onGetListCategoryBlogAsync().then(() => { });
+    }, []);
+
 
     const handleScroll = useCallback(() => {
         if (scrollRef.current) {

@@ -1,4 +1,5 @@
 const PREFIX = "";
+const ADMIN_PREFIX = "/FATS/admin";
 
 export const ROUTE_PATH = {
 
@@ -14,7 +15,6 @@ export const ROUTE_PATH = {
     PERSONAL_FINANCE_PAGE: `${PREFIX}/goal-spending/personal-finance/:id`,
     TEAM_FINANCE_PAGE: `${PREFIX}/team-finance/:id`,
 
-    REPORT_PAGE: `${PREFIX}/report`,
     HISTORY_TRANSITION: `${PREFIX}/history-transition`,
     GOAL_SPENDING_PAGE: `${PREFIX}/personal-goal`,
     TEAM_PAGE: `${PREFIX}/team`,
@@ -29,32 +29,24 @@ export const ROUTE_PATH = {
 
     CONTACT: `${PREFIX}/contact`,
 
-    USE_PRIVATE_POLICY: `${PREFIX}/user-private-policy`,
-    REFUND_POLICY: `${PREFIX}/refund-policy`,
-    PAYMENT_POLICY: `${PREFIX}/payment-policy`,
-    SERVICE_STANDARD: `${PREFIX}/service-standard`,
-    TERM_OF_SERVICE: `${PREFIX}/term-of-service`,
+    USE_PRIVATE_POLICY: `${PREFIX}/policy/user-private-policy`,
+    REFUND_POLICY: `${PREFIX}/policy/refund-policy`,
+    PAYMENT_POLICY: `${PREFIX}/policy/payment-policy`,
+    SERVICE_STANDARD: `${PREFIX}/policy/service-standard`,
+    TERM_OF_SERVICE: `${PREFIX}/policy/term-of-service`,
 
     ///Management
-    MANAGE_LAYOUT: `${PREFIX}/manage-layout`,
+    MANAGE_LAYOUT: `${ADMIN_PREFIX}`,
 
-    CATEGORY_MANAGEMENT: `${PREFIX}/category`,
-    ADD_CATEGORY_MANAGEMENT: `${PREFIX}/category/add`,
-    VIEW_CATEGORY_MANAGEMENT: `${PREFIX}/category/view/:id`,
+    CATEGORY_MANAGEMENT: `${ADMIN_PREFIX}/category`,
+    ADD_CATEGORY_MANAGEMENT: `${ADMIN_PREFIX}/category/add`,
 
-    COURSE_MANAGEMENT: `${PREFIX}/course`,
-    ADD_COURSE_MANAGEMENT: `${PREFIX}/course/add`,
-    VIEW_COURSE_MANAGEMENT: `${PREFIX}/course/view/:id`,
+    BLOG_CATEGORY_MANAGEMENT: `${ADMIN_PREFIX}/blog-category-management`,
+    ADD_BLOG_CATEGORY_MANAGEMENT: `${ADMIN_PREFIX}/blog-category-management/add`,
 
-    TEACHER_MANAGEMENT: `${PREFIX}/teacher`,
-    ADD_TEACHER_MANAGEMENT: `${PREFIX}/teacher/add`,
-    VIEW_TEACHER_MANAGEMENT: `${PREFIX}/teacher/view/:id`,
+    BLOG_MANAGEMENT: `${ADMIN_PREFIX}/blog-management`,
+    ADD_BLOG_MANAGEMENT: `${ADMIN_PREFIX}/blog-management/add`,
 
-    LESSON_MANAGEMENT: `${PREFIX}/lesson`,
-    ADD_LESSON_MANAGEMENT: `${PREFIX}/lesson/add`,
-    VIEW_LESSON_MANAGEMENT: `${PREFIX}/lesson/view/:id`,
-
-    BANNER_MANAGEMENT: `${PREFIX}/banner`,
-    ADD_BANNER_MANAGEMENT: `${PREFIX}/banner/add`,
-    VIEW_BANNER_MANAGEMENT: `${PREFIX}/banner/view/:id`,
+    BANNER_MANAGEMENT: `${ADMIN_PREFIX}/banner`,
+    ADD_BANNER_MANAGEMENT: `${ADMIN_PREFIX}/banner/add`,
 }

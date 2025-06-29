@@ -10,7 +10,12 @@ export default class Constants {
         static List = [
             {
                 label: "Quản lý danh mục",
-                link: ROUTE_PATH.HOME_PAGE,
+                link: ROUTE_PATH.BLOG_CATEGORY_MANAGEMENT,
+                icon: "fa fa-users"
+            },
+            {
+                label: "Quản lý bài viết",
+                link: ROUTE_PATH.BLOG_MANAGEMENT,
                 icon: "fa fa-users"
             },
 
@@ -27,7 +32,7 @@ export default class Constants {
             {
                 label: "Tài chính",
                 link: ROUTE_PATH.GOAL_SPENDING_PAGE,
-                private: false,
+                private: true,
                 icon: "fa fa-money",
             },
             {
@@ -216,9 +221,9 @@ export default class Constants {
     }
     static ProfileTab = class {
         static List = [
-            { label: "Hồ sơ", value: 1 },
+            { label: "Ngân sách", value: 1 },
             { label: "Botchat", value: 2 },
-            { label: "Ngân sách", value: 3 },
+            { label: "Hồ sơ", value: 3 },
         ]
     }
 };

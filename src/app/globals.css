@@ -272,3 +272,53 @@
   letter-spacing: 0%;
   text-align: center;
 }
+
+span.ant-upload {
+  width: 100%;
+}
+
+.ant-input-number-handler-wrap {
+  z-index: 13;
+}
+
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select {
+  width: 100%;
+}
+
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select {
+  background-color: white;
+  border: 3px solid #9c9;
+  display: flex;
+  justify-content: center;
+}
+
+.ant-upload-wrapper.ant-upload-picture-circle-wrapper
+  .ant-upload.ant-upload-select {
+  background-color: white;
+  border: 3px solid #9c9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select {
+  background-color: white;
+  border: 3px solid #9c9;
+  display: flex;
+  justify-content: center;
+  width: 100% !important;
+  height: 120px !important;
+}
+
+.ant-upload-wrapper.ant-upload-picture-card-wrapper.custom
+  .ant-upload.ant-upload-select {
+  background-color: white;
+  border: 2px solid #9c9;
+  display: flex;
+  justify-content: center;
+  width: 200px !important;
+  height: 200px !important;
+}

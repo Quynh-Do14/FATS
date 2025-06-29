@@ -1,3 +1,4 @@
+'use client'
 import { Col, Modal, Row } from 'antd';
 import InputTextCommon from '../components/input/input-text';
 import { useEffect, useState } from 'react';

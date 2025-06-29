@@ -148,4 +148,24 @@ export class Endpoint {
             static Income = "/incomes/team/all"
         }
     }
+
+    static CategoryBlog = class {
+        static Get = "/categories/public/all"
+        static GetById = "/categories/public"
+        static Add = "/categories/admin/create"
+        static Update = "/categories/admin/update"
+        static Delete = "/categories/admin/delete"
+    }
+
+    static Blog = class {
+        static GetAll = "/blogs/public/all"
+        static GetById = "/blogs/public/related"
+
+        static GetAdmin = "/blogs/public/all"
+        static GetAdminById = "/blogs/admin"
+        static AddAdmin = "/blogs/admin/create"
+        static UpdateAdmin = "/blogs/admin/update"
+        static DeleteAdmin = "/blogs/admin/delete"
+        static GetRelation = "/blogs/public/related"
+    }
 }

@@ -1,0 +1,551 @@
+.input_common {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.input_common .title {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 9;
+  background: #fff;
+  transition: all 0.3s ease;
+  /* margin-bottom: 8px; */
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.input_common.focused .title {
+  top: -18px;
+  left: 20px;
+  padding: 0 3px;
+}
+
+.input_common.focused .title .label {
+  color: #0b80f3;
+}
+
+.input_common .title_content .is_required,
+.input_common .title .is_required,
+.select_common .title .is_required {
+  color: #ff1422;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.15px;
+  margin-left: 4px;
+}
+
+.input_common .title_content .label,
+.input_common .title .label,
+.select_common .title .label {
+  color: #545e7d66;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: left;
+}
+
+input.ant-input-number-input {
+  border-radius: 6px !important;
+  height: 44px;
+  width: 100%;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+}
+
+input.ant-input.ant-input-outlined,
+.ant-input-number,
+.ant-picker.ant-picker-middle.input_date_common,
+.ant-input-affix-wrapper,
+.ant-select-multiple {
+  border-radius: 8px !important;
+  height: 44px;
+  width: 100%;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+  border: 1px solid #cbd0dc;
+}
+
+input.ant-input-number-input {
+  border-radius: 6px !important;
+  height: 44px;
+  width: 100%;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  position: relative;
+}
+
+.upload_common {
+  position: relative;
+}
+
+.upload_common .circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.upload_common .card {
+  width: 100%;
+  height: 100%;
+}
+
+.upload_common .btn-primary {
+  border-color: #ff3f3f !important;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #ff3f3f !important;
+  border-color: #ff3f3f !important;
+}
+
+.upload_common .main_image {
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 260px;
+  width: 100%;
+  min-height: 10vh;
+  max-height: 40vh;
+  overflow: hidden;
+  border: 1px solid #d3d3d3;
+  cursor: pointer;
+  position: relative;
+  border-radius: 8px;
+}
+
+.upload_common .main_image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.upload_common .main_image .close_btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 12;
+}
+
+.upload_common .main_image .close_btn i {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #cb4c51;
+}
+
+.input_common_picker .title {
+  margin-bottom: 8px;
+}
+
+.input_common_picker .title .label {
+  color: #454d66;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  text-align: left;
+}
+
+.file_upload {
+  display: block;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.file_upload .file_select {
+  display: flex;
+  border: 2px solid #dce4ec;
+  color: #34495e;
+  cursor: pointer;
+  height: 60px;
+  line-height: 60px;
+  text-align: left;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+}
+
+.file_upload .file_select .file_select_button {
+  background: #dce4ec;
+  padding: 0 10px;
+  display: inline-block;
+  /* height: 60px; */
+  /* line-height: 60px; */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.file_upload .file_select .file_select_name {
+  line-height: 60px;
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.file_upload .file_select:hover {
+  border-color: #34495e;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.file_upload .file_select:hover .file_select_button {
+  background: #34495e;
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.file_upload.active .file_select {
+  border-color: #3fa46a;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.file_upload.active .file_select .file_select_button {
+  background: #3fa46a;
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.file_upload .file_select input[type='file'] {
+  z-index: 100;
+  cursor: pointer;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.file_upload .file_select.file-select-disabled {
+  opacity: 0.65;
+}
+
+.file_upload .file_select.file-select-disabled:hover {
+  cursor: default;
+  display: block;
+  border: 2px solid #dce4ec;
+  color: #34495e;
+  cursor: pointer;
+  height: 60px;
+  line-height: 60px;
+  margin-top: 5px;
+  text-align: left;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+.file_upload .file_select.file-select-disabled:hover .file_select_button {
+  background: #dce4ec;
+  color: #666666;
+  padding: 0 10px;
+  display: inline-block;
+  height: 60px;
+  line-height: 60px;
+}
+
+.file_upload .file_select.file-select-disabled:hover .file_select_name {
+  line-height: 60px;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.upload_product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.upload_product label.value {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  text-align: center;
+  border: 1px solid #4f4d4d;
+  z-index: 10;
+  background: #0d9e6d;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.upload_product label.no_value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  background: #0d9e6d;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.upload_product img {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+.upload_product input[type='file'] {
+  display: none;
+}
+
+.upload_file {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.upload_file label.no_value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  background: #0d9e6d;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.upload_file .file_name {
+  font-weight: 600;
+  display: block;
+  color: #333;
+  font-size: 14px;
+}
+.upload_file img {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+.upload_file input[type='file'] {
+  display: none;
+}
+
+.input_array_custom_common {
+  display: flex;
+  justify-content: center;
+}
+
+.input_number_quo .label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  margin-top: 12px;
+  color: #333;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.input_number_quo input,
+.input_number_quo textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db; /* light gray */
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+.input_number_quo textarea {
+  height: 120px;
+}
+.input_number_quo input:focus,
+.input_number_quo textarea:focus {
+  border-color: #4f46e5; /* indigo */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  outline: none;
+}
+
+.input_number_quo input.input_error,
+.input_number_quo textarea.input_error {
+  border-color: #f87171 !important; /* red-400 */
+  background-color: #fef2f2;
+}
+
+.input_number_quo input.input_error:focus,
+.input_number_quo textarea.input_error:focus {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.3);
+}
+
+.input_common .list_item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+div .ant-select-selector {
+  height: 42px;
+}
+
+.input_common .list_item span.item {
+  font-size: 14px;
+  font-weight: 600;
+  color: #005bb5;
+}
+.input_common .list_item span.cancel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #cb4c51;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.input_common .ant-select-selector {
+  border-radius: 8px !important;
+  height: 50px !important;
+  border: 1px solid #cbd0dc;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input_common .ant-select-selector:focus {
+  border-color: #0b80f3 !important;
+  box-shadow: 0 0 0 2px rgba(11, 128, 243, 0.2);
+}
+
+.input_common.input-error .ant-select-selector {
+  border-color: #f87171 !important;
+  background-color: #fef2f2;
+}
+
+.input_common .ant-select-selection-item {
+  background: #f0f0f0;
+  border-radius: 8px;
+  margin: 2px;
+  padding: 2px 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.input_common .ant-select-selection-item-remove {
+  color: #ff4d4f;
+  margin-left: 4px;
+}
+
+.input_common .ant-select-selector {
+  border-radius: 10px !important;
+  min-height: 50px !important;
+  border: 1px solid #d9d9d9 !important;
+  padding: 4px 8px;
+}
+
+.input_common.input-error .ant-select-selector {
+  border-color: #ff4d4f !important;
+  background-color: #fff1f0 !important;
+}
+
+.input_common .ant-select-focused .ant-select-selector {
+  border-color: #40a9ff !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* Thẻ custom tag */
+.custom_tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  margin: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.remove_icon {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #666;
+  font-weight: bold;
+}
+
+.remove_icon:hover {
+  color: #f5222d;
+}
+
+/* Các màu pastel */
+.tag_color1 {
+  background-color: #e6f7ff;
+  color: #0050b3;
+}
+
+.tag_color2 {
+  background-color: #f9f0ff;
+  color: #531dab;
+}
+
+.tag_color3 {
+  background-color: #fffbe6;
+  color: #ad6800;
+}
+
+.tag_color4 {
+  background-color: #f6ffed;
+  color: #237804;
+}
+
+.tag_color5 {
+  background-color: #fff0f6;
+  color: #c41d7f;
+}
+
+.tag_color6 {
+  background-color: #e6fffb;
+  color: #08979c;
+}
+
+.tag_color7 {
+  background-color: #f0f5ff;
+  color: #2f54eb;
+}
+
+.tag_color8 {
+  background-color: #fef0f0;
+  color: #cf1322;
+}
+
+/* === Bỏ viền và box-shadow khi focus trên Select === */
+.input_common .ant-select-focused .ant-select-selector {
+  border-color: transparent !important; /* Loại bỏ đường viền */
+  box-shadow: none !important; /* Loại bỏ hiệu ứng bóng */
+}
+
+/* === Tùy chọn: Loại bỏ outline toàn cục cho các input khác nếu cần === */
+.ant-select-selection-item:focus,
+.ant-select-selection-item:focus-visible,
+.ant-select-selection-item:active,
+.ant-select-selection-item:focus-within,
+.ant-select-selection-item div:focus,
+.ant-select-selection-item span:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* === Đảm bảo không có viền hoặc bóng trong trạng thái disabled === */
+.input_common .ant-select-disabled .ant-select-selector {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}

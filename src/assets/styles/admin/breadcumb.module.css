@@ -1,0 +1,18 @@
+.breadcumb_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.breadcumb_container .font_style_admin {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.breadcumb_container .font_style {
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
