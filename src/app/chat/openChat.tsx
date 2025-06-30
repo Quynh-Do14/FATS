@@ -38,7 +38,7 @@ const OpenChatBot = (props: Props) => {
         setLoading
     } = props;
 
-    const profileState = useRecoilValue(ProfileState).user;
+    const profileState = useRecoilValue(ProfileState).data;
     const router = useRouter();
 
     const botInfo = Constants.BotChatList.List.find((item) => item.value === profileState?.character?.id)

@@ -31,7 +31,7 @@ const TeamPage = () => {
     const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
     const [isOpenModalLeave, setIsOpenModalLeave] = useState<boolean>(false);
 
-    const profileState = useRecoilValue(ProfileState).user
+    const profileState = useRecoilValue(ProfileState).data
     const setDataRequest = (data: any) => {
         Object.assign(dataRequest, { ...data });
         _setDataRequest({ ...dataRequest })

@@ -5,7 +5,7 @@ import alert from "../../../../assets/images/alert.png"
 import { ROUTE_PATH } from '../../../../core/common/appRouter'
 import { BudgetState } from '../../../../core/atoms/budget/budgetState'
 const AlertBudget = () => {
-    const profileState = useRecoilValue(ProfileState).user;
+    const profileState = useRecoilValue(ProfileState).data;
     const budgetState = useRecoilValue(BudgetState).data;
     return (
         <div className='alert-common'

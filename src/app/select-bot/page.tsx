@@ -17,7 +17,7 @@ const SelectBotPage = () => {
     const [selectedOption, setSelectedOption] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
-    const profileState = useRecoilValue(ProfileState).user
+    const profileState = useRecoilValue(ProfileState).data
     const handleOptionClick = (option: any) => {
         setSelectedOption(option);
     };

@@ -98,7 +98,7 @@ const ProfilePage = () => {
                 ).then((response) => {
                     setDetailProfile(response);
                     setDetailState({
-                        user: response
+                        data: response
                     })
                 });
             }

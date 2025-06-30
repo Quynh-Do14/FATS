@@ -22,7 +22,7 @@ const PaymentPage = () => {
     const [remember, setRemember] = useState<boolean>(true);
     const [packageList, setPackageList] = useState<any[]>([]);
     const storage = isTokenStoraged();
-    const profileState = useRecoilValue(ProfileState).user;
+    const profileState = useRecoilValue(ProfileState).data;
     const [_data, _setData] = useState<any>({});
     const dataRequest = _data;
 

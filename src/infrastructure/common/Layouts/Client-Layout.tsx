@@ -58,7 +58,7 @@ const LayoutClient = ({ ...props }: any) => {
                         setDataProfile(response)
                         setProfileState(
                             {
-                                user: response,
+                                data: response,
                             }
                         )
                     }

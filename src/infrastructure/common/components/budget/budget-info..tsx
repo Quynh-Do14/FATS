@@ -6,7 +6,7 @@ import { ROUTE_PATH } from '../../../../core/common/appRouter';
 import staticService from '../../../repositories/static/static.service';
 import { useEffect, useState } from 'react';
 const BudgetInfo = () => {
-    const profileState = useRecoilValue(ProfileState).user;
+    const profileState = useRecoilValue(ProfileState).data;
     const budget = useRecoilValue(BudgetState).data;
     const [staticSpend, setStaticSpend] = useState<any>({});
 
