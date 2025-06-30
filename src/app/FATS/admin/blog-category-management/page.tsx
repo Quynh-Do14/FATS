@@ -15,6 +15,7 @@ import { FullPageLoading } from '@/infrastructure/common/components/controls/loa
 import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
 import { InputSearchCommon } from '@/infrastructure/common/components/input/input-search-common';
 import ManageLayout from '@/infrastructure/common/Layouts/Manage-Layout';
+import AdminLayout from '@/infrastructure/common/Layouts/admin/MainLayout';
 
 let timeout: any
 const ListCategoryManagement = () => {
@@ -97,7 +98,7 @@ const ListCategoryManagement = () => {
         }
     }
     return (
-        <ManageLayout
+        <AdminLayout
             title={'Danh sách danh mục bài viết'}
             breadcrumb={'Danh mục'}
             redirect={ROUTE_PATH.BLOG_CATEGORY_MANAGEMENT}
@@ -186,7 +187,7 @@ const ListCategoryManagement = () => {
                 </div>
             </div>
             <FullPageLoading isLoading={loading} />
-        </ManageLayout >
+        </AdminLayout >
     )
 }
 

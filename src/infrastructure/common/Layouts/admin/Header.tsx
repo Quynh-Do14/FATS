@@ -1,44 +1,30 @@
 import styles from "@/assets/styles/admin/layout.module.css";
-import BreadcrumbCommon from "../Breadcumb";
-import { Dropdown, Menu, Space } from "antd";
-import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { isTokenStoraged } from "@/infrastructure/utils/storage";
-import { useRecoilState } from "recoil";
-import { ProfileState } from "@/core/atoms/profile/profileState";
-import { CategoryBlogState } from "@/core/atoms/category/categoryState";
-import { ROUTE_PATH } from "@/core/common/appRouter";
-import authService from "@/infrastructure/repositories/auth/service/auth.service";
-import categoryBlogService from "@/infrastructure/repositories/category/categoryBlog.service";
-import { configImageURL } from "@/infrastructure/helper/helper";
-import avatar from "@/assets/images/no-avatar.png";
 
+import avatar from "@/assets/images/no-avatar.png"
+import Image from "next/image";
+import BreadcrumbCommon from "../Breadcumb";
+import { useState } from "react";
+import authService from "@/infrastructure/repositories/auth/service/auth.service";
+import { useRouter } from "next/navigation";
+import { ROUTE_PATH } from "@/core/common/appRouter";
+import { Col, Dropdown, Menu, Row, Space } from "antd";
+import DialogConfirmCommon from "../../components/modal/dialogConfirm";
+import { useRecoilValue } from "recoil";
+import { ProfileState } from "@/core/atoms/profile/profileState";
+import { configImageURL } from "@/infrastructure/helper/helper";
 type Props = {
-    title: string,
-    breadcrumb: string,
-    redirect: string,
-    onToggleSidebar: () => void,
+    breadcrumb: string
+    title: string
+    redirect: string
+    onToggleSidebar: () => void
 }
 export default function Header(props: Props) {
-    const { title, breadcrumb, redirect, onToggleSidebar } = props
-    const [dataProfile, setDataProfile] = useState<any>({});
-    const [, setProfileState] = useRecoilState(ProfileState);
-    const [, setCategoryBlogState] = useRecoilState(CategoryBlogState);
-    const [loading, setLoading] = useState<boolean>(false);
+
+    const { breadcrumb, title, redirect, onToggleSidebar } = props
     const [isOpenModalLogout, setIsOpenModalLogout] = useState<boolean>(false);
-    const [collapsed, setCollapsed] = useState<boolean>(false);
-
-    const pathname = usePathname();
+    const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
-    const token = isTokenStoraged();
-
-    const openModalLogout = () => {
-        setIsOpenModalLogout(true);
-    };
-
-    const closeModalLogout = () => {
-        setIsOpenModalLogout(false);
-    };
+    const dataProfile = useRecoilValue(ProfileState).data;
 
     const onLogOut = async () => {
         setIsOpenModalLogout(false);
@@ -54,53 +40,14 @@ export default function Header(props: Props) {
         }
     }
 
-    const getProfileUser = async () => {
-        if (token) {
-            try {
-                await authService.profile(
-                    () => { }
-                ).then((response) => {
-                    if (response) {
-                        setDataProfile(response)
-                        setProfileState(
-                            {
-                                user: response,
-                            }
-                        )
-                    }
-                })
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }
+    const openModalLogout = () => {
+        setIsOpenModalLogout(true);
+    };
 
-    useEffect(() => {
-        if (token) {
-            getProfileUser().then(() => { });
-        }
-    }, [token]);
+    const closeModalLogout = () => {
+        setIsOpenModalLogout(false);
+    };
 
-    const onGetListCategoryBlogAsync = async () => {
-        try {
-            await categoryBlogService.GetCategory(
-                {},
-                () => { }
-            ).then((response) => {
-                setCategoryBlogState(
-                    {
-                        data: response.content,
-                    }
-                )
-            })
-        }
-        catch (error) {
-            console.error(error)
-        }
-    }
-    useEffect(() => {
-        onGetListCategoryBlogAsync().then(() => { });
-    }, []);
     const listAction = () => {
         return (
             <Menu className='action-admin'>
@@ -117,27 +64,53 @@ export default function Header(props: Props) {
             </Menu>
         )
     };
-
     return (
-        <header className={styles.header}>
-            {/* <button onClick={onToggleSidebar} className={styles.toggleBtn}>☰</button> */}
-            <BreadcrumbCommon
-                breadcrumb={breadcrumb}
-                title={title}
-                redirect={redirect}
-            />
-            <div className={styles.headerRight}>
-                <Dropdown overlay={listAction} trigger={['click']}>
-                    <a onClick={(e) => e.preventDefault()}>
-                        <Space>
-                            <div className=" ">
-                                <img src={dataProfile?.avatarCode ? configImageURL(dataProfile?.avatarCode) : avatar.src} className="rounded-full w-10 h-10" width={50} height={50} alt='' />
-                            </div>
+        <>
+            <header className={styles.header}>
+                <div className={styles.headerLeft}>
+                    <button onClick={onToggleSidebar} className={styles.toggleBtn}>
+                        <i className="fa fa-bars" aria-hidden="true"></i>
+                    </button>
+                    <BreadcrumbCommon breadcrumb={breadcrumb} title={title} redirect={redirect} />
+                </div>
 
-                        </Space>
-                    </a>
-                </Dropdown>
-            </div>
-        </header>
+                <div className={styles.headerRight}>
+                    <Row align={"middle"} gutter={[16, 16]}>
+                        <Col className='flex flex-col justify-center align-bottom'>
+                            <div className={styles.user_name}>
+                                {dataProfile?.name}
+                            </div>
+                            <div className={styles.role}>
+                                {dataProfile.email}
+                            </div>
+                        </Col>
+                        <Col>
+                            <Dropdown overlay={listAction} trigger={['click']}>
+                                <a onClick={(e) => e.preventDefault()}>
+                                    <Space>
+                                        <div className={styles.avatar_user}>
+                                            <div className={`${styles.grad} ${styles.spin}`}></div>
+                                            <Image src={dataProfile?.avatarCode ? configImageURL(dataProfile?.avatarCode) : avatar} alt='' width={40} height={40} className={styles.avatar_img} />
+                                        </div>
+
+                                    </Space>
+                                </a>
+                            </Dropdown>
+                        </Col>
+                    </Row>
+
+                </div>
+
+            </header >
+            <DialogConfirmCommon
+                message={"Bạn có muốn đăng xuất khỏi hệ thống"}
+                titleCancel={"Bỏ qua"}
+                titleOk={"Đăng xuất"}
+                visible={isOpenModalLogout}
+                handleCancel={closeModalLogout}
+                handleOk={onLogOut}
+                title={"Xác nhận"}
+            />
+        </>
     );
 }

@@ -19,6 +19,7 @@ import { FullPageLoading } from '@/infrastructure/common/components/controls/loa
 import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
 import ManageLayout from '@/infrastructure/common/Layouts/Manage-Layout';
 import InputSelectCategoryCommon from '@/infrastructure/common/components/input/select-category-common';
+import AdminLayout from '@/infrastructure/common/Layouts/admin/MainLayout';
 
 type Props = {
     params: { slug: string };
@@ -113,7 +114,7 @@ const SlugBlogManagement = ({ params }: Props) => {
     };
 
     return (
-        <ManageLayout
+        <AdminLayout
             title={'Chi tiết tin tức'}
             breadcrumb={'Tin tức'}
             redirect={ROUTE_PATH.BLOG_MANAGEMENT}
@@ -217,7 +218,7 @@ const SlugBlogManagement = ({ params }: Props) => {
                 </div>
             </div>
             <FullPageLoading isLoading={loading} />
-        </ManageLayout>
+        </AdminLayout>
     )
 }
 

@@ -1,12 +1,13 @@
-import { SearchOutlined } from '@ant-design/icons';
-import { Input } from 'antd';
-import "../../../../assets/styles/components/input.css"
+import { SearchOutlined } from "@ant-design/icons";
+import "../../../../assets/styles/components/input.css";
+
 type Props = {
-    placeholder: string,
-    value: string
-    onChange: any,
-    disabled: boolean,
-}
+    placeholder: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled: boolean;
+};
+
 export const InputSearchCommon = (props: Props) => {
     const {
         placeholder,
@@ -14,17 +15,20 @@ export const InputSearchCommon = (props: Props) => {
         onChange,
         disabled,
     } = props;
+
     return (
-        <div className='input-common'>
-            <Input
-                className='w-100'
-                size={"middle"}
-                value={value ? value : ""}
-                onChange={onChange}
-                disabled={disabled}
+        <div className="search-container">
+            <input
+                type="text"
+                className="search-input"
                 placeholder={placeholder}
-                prefix={<SearchOutlined className='icon-search text-[16px] text-[#1e293bb3] font-semibold ' />}
+                onChange={onChange}
+                value={value}
+                disabled={disabled}
             />
+            <span className="search-icon">
+                <SearchOutlined />
+            </span>
         </div>
-    )
-}
+    );
+};

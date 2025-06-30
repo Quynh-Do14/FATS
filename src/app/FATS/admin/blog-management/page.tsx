@@ -116,7 +116,7 @@ const ListBlogManagement = () => {
     // Xóa bài
 
     return (
-        <ManageLayout
+        <AdminLayout
             title={'Danh sách tin tức'}
             breadcrumb={'Tin tức'}
             redirect={ROUTE_PATH.BLOG_MANAGEMENT}
@@ -125,7 +125,7 @@ const ListBlogManagement = () => {
                 <div className={styles.content}>
                     <div className={styles.search_container}>
                         <InputSearchCommon
-                            placeholder={'Tìm kiếm'}
+                            placeholder={'Nhập từ khóa để tìm kiếm'}
                             value={searchText}
                             onChange={onChangeSearchText}
                             disabled={false}
@@ -142,6 +142,7 @@ const ListBlogManagement = () => {
                             dataSource={listResponse}
                             pagination={false}
                             className='table-common'
+                            bordered={true}
                         >
                             <Column
                                 title={"STT"}
@@ -232,7 +233,7 @@ const ListBlogManagement = () => {
                 </div>
             </div>
             <FullPageLoading isLoading={loading} />
-        </ManageLayout >
+        </AdminLayout >
     )
 }
 

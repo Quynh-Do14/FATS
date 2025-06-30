@@ -5,7 +5,7 @@ export const ProfileState = atom({
     default: {
         // isLoading: false,
         // uri: '',
-        user: <any>{},
+        data: <any>{},
 
     }, // default value (aka initial value)
 });

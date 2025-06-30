@@ -243,7 +243,8 @@
   border: #f61a1a solid 1px !important;
 }
 .input-text-common select:focus,
-.input-text-common input:focus .input-text-common textarea:focus {
+.input-text-common input:focus,
+.input-text-common textarea:focus {
   outline: none;
   border: none;
   box-shadow: none;
@@ -298,7 +299,6 @@
   border-bottom: 1px solid #ffffff59;
   box-shadow: none;
 }
-
 
 .upload-avatar-container {
   display: flex;
@@ -361,4 +361,40 @@
 
 .hidden-input {
   display: none;
+}
+
+.search-container {
+  padding: 16px 0;
+  width: 300px;
+  position: relative;
+  font-family: sans-serif;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #10101042;
+  padding-right: 30px;
+  font-size: 14px;
+  color: #222;
+}
+
+.search-input:focus {
+  outline: none;
+  border-bottom: 1px solid #555;
+}
+.search-input::placeholder {
+  color: #10101042;
+  font-style: italic;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #333;
+  pointer-events: none;
 }

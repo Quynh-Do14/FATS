@@ -3,78 +3,91 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 interface RoleResponse {
-    roles: string;
+    role: string;
 }
 
 const ROLE_ACCESS_PATHS: Record<string, string[]> = {
-    admin: ['/FATS/admin', '/FATS/admin/:path*'],
-    // article: ['/techbyte/admin', '/techbyte/admin/blog-management', '/techbyte/admin/blog-management/:path*', '/techbyte/admin/blog-management/add'],
-    // seller: ['/techbyte/admin', '/techbyte/admin/shop-management', '/techbyte/admin/shop-management/:path*', '/techbyte/admin/shop-management/add'],
+    ADMIN: ['/FATS/admin', '/FATS/admin/:path*'],
 };
 
+const AUTH_REQUIRED_PATHS = ['/profile', '/personal-goal', '/team'];
+
 export async function middleware(req: NextRequest) {
-    // const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
-    // const rawToken = req.cookies.get('token')?.value;
-    // const token = rawToken ? JSON.parse(rawToken) : null;
-    // const accessToken = token?.accessToken;
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    const accessToken = req.cookies.get('accessToken')?.value;
+    const url = req.nextUrl.clone();
+    const pathname = url.pathname;
 
-    // const url = req.nextUrl.clone();
+    // 1. Nếu vào /login hoặc /register
+    if (['/login', '/register'].includes(pathname)) {
+        if (accessToken) {
+            url.pathname = '/';
+            return NextResponse.redirect(url);
+        }
+        return NextResponse.next();
+    }
 
-    // // **1. Kiểm tra nếu truy cập trang Login**
-    // if (['/login', '/register'].includes(url.pathname)) {
-    //     if (accessToken) {
-    //         // Nếu đã đăng nhập, chuyển hướng sang trang chính
-    //         url.pathname = '/';
-    //         return NextResponse.redirect(url);
-    //     }
-    //     // Nếu chưa đăng nhập, cho phép tiếp tục truy cập trang login
-    //     return NextResponse.next();
-    // }
+    // 2. Nếu truy cập các path yêu cầu đăng nhập (không phân quyền)
+    const requiresAuth = AUTH_REQUIRED_PATHS.some((path) =>
+        pathname.startsWith(path)
+    );
 
-    // // **2. Kiểm tra nếu không có accessToken**
-    // if (!accessToken) {
-    //     url.pathname = '/login'; // Chuyển hướng đến trang đăng nhập
-    //     return NextResponse.redirect(url);
-    // }
+    if (requiresAuth && !accessToken) {
+        url.pathname = '/login';
+        return NextResponse.redirect(url);
+    }
 
-    // try {
-    //     const response = await fetch(`${baseURL}${Endpoint.Auth.Profile}`, {
-    //         headers: {
-    //             Authorization: `Bearer ${accessToken}`,
-    //         },
-    //     });
+    // 3. Nếu truy cập các route cần phân quyền (ví dụ admin)
+    const isAdminRoute = pathname.startsWith('/FATS/admin');
 
-    //     if (!response.ok) {
-    //         throw new Error('Failed to fetch role');
-    //     }
+    if (isAdminRoute) {
+        if (!accessToken) {
+            url.pathname = '/login';
+            return NextResponse.redirect(url);
+        }
 
-    //     const data: RoleResponse = await response.json();
-    //     const role = data.roles;
+        try {
+            const response = await fetch(`${baseURL}${Endpoint.Auth.Profile}`, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
 
-    //     const allowedPaths = ROLE_ACCESS_PATHS[role] || [];
-    //     const isAllowed = allowedPaths.some((path) => {
-    //         const regex = new RegExp(`^${path.replace(':path*', '.*')}$`);
-    //         return regex.test(req.nextUrl.pathname);
-    //     });
+            if (!response.ok) throw new Error('Failed to fetch role');
 
-    //     if (!isAllowed) {
-    //         url.pathname = '/403';
-    //         return NextResponse.redirect(url);
-    //     }
+            const data: RoleResponse = await response.json();
+            const role = data.role;
 
-    //     return NextResponse.next();
-    // } catch (error) {
-    //     console.error('Error in middleware:', error);
-    //     url.pathname = '/403';
-    //     return NextResponse.redirect(url);
-    // }
+            const allowedPaths = ROLE_ACCESS_PATHS[role] || [];
+            const isAllowed = allowedPaths.some((path) => {
+                const regex = new RegExp(`^${path.replace(':path*', '.*')}$`);
+                return regex.test(pathname);
+            });
+
+            if (!isAllowed) {
+                url.pathname = '/403';
+                return NextResponse.redirect(url);
+            }
+
+            return NextResponse.next();
+        } catch (error) {
+            console.error('Middleware error:', error);
+            url.pathname = '/403';
+            return NextResponse.redirect(url);
+        }
+    }
+
+    // 4. Mặc định cho phép truy cập các đường dẫn khác
+    return NextResponse.next();
 }
 
-// export const config = {
-//     matcher: [
-//         '/FATS/admin',
-//         '/FATS/admin/:path*', // Áp dụng cho các route admin
-//         '/login',
-//         '/register',
-//     ],
-// };
+export const config = {
+    matcher: [
+        '/FATS/admin/:path*',
+        '/login',
+        '/register',
+        '/profile',
+        '/personal-goal',
+        '/team',
+    ],
+};

@@ -10,6 +10,7 @@ import categoryBlogService from '@/infrastructure/repositories/category/category
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
 import ManageLayout from '@/infrastructure/common/Layouts/Manage-Layout';
 import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
+import AdminLayout from '@/infrastructure/common/Layouts/admin/MainLayout';
 
 type Props = {
     params: { slug: string };
@@ -95,7 +96,7 @@ const SlugCategoryManagement = ({ params }: Props) => {
     };
 
     return (
-        <ManageLayout
+        <AdminLayout
             title={'Xem chi tiết danh mục'}
             breadcrumb={'Danh mục'}
             redirect={ROUTE_PATH.BLOG_CATEGORY_MANAGEMENT}
@@ -141,7 +142,7 @@ const SlugCategoryManagement = ({ params }: Props) => {
                 </div>
             </div>
             <FullPageLoading isLoading={loading} />
-        </ManageLayout>
+        </AdminLayout>
     )
 }
 

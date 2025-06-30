@@ -186,6 +186,12 @@
   border: 1px solid #003333;
 }
 
+.btn-design.white {
+  background: #fff;
+  border: 1px #99cc99 solid;
+  color: #003333;
+}
+
 .btn-design:hover {
   width: 100%;
   transform: scale(1.02);
@@ -206,10 +212,11 @@
   background: linear-gradient(252.31deg, #99cc99 9.19%, #99cccc 90.81%);
 }
 
+a.btn-send:hover {
+  color: #003333;
+}
 .btn-send.white {
   background: #fff;
   border: 1px #99cc99 solid;
-}
-a.btn-send:hover {
   color: #003333;
 }

@@ -17,6 +17,7 @@ import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDe
 import InputTextAreaCommon from '@/infrastructure/common/components/input/text-area-common';
 import TextEditorCommon from '@/infrastructure/common/components/input/text-editor-common';
 import InputSelectCategoryCommon from '@/infrastructure/common/components/input/select-category-common';
+import AdminLayout from '@/infrastructure/common/Layouts/admin/MainLayout';
 
 const AddBlogManagement = () => {
     const [validate, setValidate] = useState<any>({});
@@ -74,7 +75,7 @@ const AddBlogManagement = () => {
 
     };
     return (
-        <ManageLayout
+        <AdminLayout
             title={'Thêm tin tức'}
             breadcrumb={'Tin tức'}
             redirect={ROUTE_PATH.BLOG_MANAGEMENT}
@@ -176,7 +177,7 @@ const AddBlogManagement = () => {
                 </div>
             </div>
             <FullPageLoading isLoading={loading} />
-        </ManageLayout>
+        </AdminLayout>
     )
 }
 export default AddBlogManagement

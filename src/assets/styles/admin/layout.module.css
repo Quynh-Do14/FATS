@@ -1,15 +1,18 @@
+/* Wrapper tổng thể */
 .wrapper {
   display: flex;
-  min-height: 100vh;
-  background: #f9fafb;
-  transition: all 0.3s ease;
+  height: 100vh;
+  overflow: hidden;
+  background: #e6f0f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Sidebar trái */
 .sidebar {
   width: 260px;
-  background: linear-gradient(180deg, #9c9, #9cc);
-  color: white;
-  padding: 24px;
+  background: #003333;
+  color: #fff;
+  padding: 24px 20px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -17,19 +20,24 @@
   overflow-y: auto;
   z-index: 1000;
   transition: transform 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
 }
 
+/* Sidebar bị đóng */
 .closed {
   transform: translateX(-100%);
 }
 
+/* Logo */
 .logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #fff;
 }
 
+/* Menu trong sidebar */
 .menu {
   list-style: none;
   padding: 0;
@@ -37,45 +45,41 @@
 }
 
 .menu li {
-  margin-bottom: 12px;
+  margin: 10px 0;
 }
-
-.menuItem {
+.sidebar .menu .active a {
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 14px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  text-decoration: none;
+  transition: background 0.3s;
+  font-weight: 500;
+}
+
+.menu a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Nếu bạn dùng icon trong menu */
+.menu a i {
+  margin-right: 10px;
   font-size: 16px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  color: white;
-  transition: background 0.3s ease;
 }
 
-.menuItem:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.icon {
-  font-size: 20px;
-  display: flex;
-}
-
-.label {
-  flex: 1;
-}
-
-@media screen and (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-}
-
+/* Phần nội dung chính */
 .mainContent {
   margin-left: 260px;
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 100vh;
   transition: margin-left 0.3s ease;
 }
 
@@ -83,39 +87,107 @@
   margin-left: 0;
 }
 
+/* Header */
 .header {
-  background: linear-gradient(270deg, #9c9, #9cc);
-  padding: 16px 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 8px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 64px;
+  flex-shrink: 0;
+  z-index: 999;
+  border-bottom: 1px solid #10101042;
 }
 
+/* Left-side breadcrumb/logo trong header */
+.header .headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Avatar/ảnh người dùng */
+.header img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+/* Nút toggle sidebar */
 .toggleBtn {
   font-size: 20px;
   background: none;
   border: none;
   cursor: pointer;
-  margin-right: 16px;
+  margin-right: 12px;
+  color: #4b5563;
 }
 
+/* Phần nội dung scroll được */
 .pageContent {
-  padding: 24px;
-  background-color: #f1f5f9;
-  min-height: calc(100vh - 60px);
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 20px;
 }
 
-/* Responsive */
+/* Responsive mobile */
 @media screen and (max-width: 768px) {
   .sidebar {
     display: none;
   }
+
   .mainContent {
     margin-left: 0;
   }
+
   .header {
     flex-direction: column;
     align-items: flex-start;
+    height: auto;
+    padding: 10px 16px;
   }
+
+  .header .headerLeft {
+    margin-bottom: 10px;
+  }
+}
+
+.header .avatar_user img {
+  height: 48px;
+  width: 48px;
+  border: 2px solid #787878;
+  margin: 2px 0 0 2px;
+  z-index: 99;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.header .spin {
+  animation-duration: 1s;
+  animation-name: spin;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.header .grad {
+  height: inherit;
+  width: inherit;
+  background: linear-gradient(180deg, #003333 80%, #f47acd);
+  position: absolute;
+  border-radius: 50%;
+}
+
+.header .user_name {
+  color: #333333;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.header .role {
+  color: #333333;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: right;
 }

@@ -57,8 +57,8 @@
 
 .container-pagination .ant-pagination .ant-pagination-item-active {
     font-weight: 500;
-    background: #0d9e6d !important;
-    border-color: #0d9e6d;
+    background: #0f3d3e !important;
+    border-color: #0f3d3e;
     transition: .3s;
     -webkit-transition: .3s;
 }

@@ -78,21 +78,6 @@
   }
 }
 
-.table-common table {
-  background: #fff;
-  border: solid rgb(227 227 227) 1px;
-}
-
-.table-common .ant-table-thead {
-  background: #f7f7f7 !important;
-  position: sticky;
-  top: 0;
-  /* left: 0; */
-  /* right: 0; */
-  z-index: 9;
-  overflow: auto;
-  width: 100%;
-}
 
 /* scroll custom */
 ::-webkit-scrollbar {
