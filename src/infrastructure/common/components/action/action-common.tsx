@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tooltip } from 'antd';
+import "@/assets/styles/components/action.css"
 type Props = {
     onClickDetail: Function,
     onClickDelete: Function

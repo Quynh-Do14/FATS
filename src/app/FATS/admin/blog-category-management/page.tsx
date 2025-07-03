@@ -124,6 +124,7 @@ const ListCategoryManagement = () => {
                             dataSource={listCategory}
                             pagination={false}
                             className='table-common'
+                            bordered={true}
                         >
                             <Column
                                 title={"STT"}

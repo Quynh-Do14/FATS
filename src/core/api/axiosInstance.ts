@@ -23,14 +23,22 @@ const getAccessToken = () => Cookies.get('accessToken');
 const getRefreshToken = () => Cookies.get('refreshToken');
 
 const setTokens = (accessToken: string, refreshToken: string) => {
+    const expiresAt = new Date(Date.now() + 40 * 60 * 1000); // 40 phút tính bằng milliseconds
+
     Cookies.set('accessToken', accessToken, {
-        path: '/', secure: process.env.NODE_ENV === 'production', sameSite: 'Strict', expires: 7,
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
+        expires: expiresAt,
     });
+
     Cookies.set('refreshToken', refreshToken, {
-        path: '/', secure: process.env.NODE_ENV === 'production', sameSite: 'Strict', expires: 7,
+        path: '/',
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Strict',
+        expires: expiresAt,
     });
 };
-
 const clearTokens = () => {
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');

@@ -93,14 +93,18 @@
   }
 }
 
+.ant-table.ant-table-has-fix-right {
+  background-color: transparent !important;
+}
+
 .table-common table {
-  background: #c9dcce;
-  border: solid rgb(227 227 227) 1px;
-  border-radius: 15px;
+  background: #1010100d;
+  /* border: solid rgb(227 227 227) 1px; */
+  /* border-radius: 15px; */
 }
 
 .table-common .ant-table-thead {
-  background: #c9dcce !important;
+  background: #1010100d !important;
   position: sticky;
   top: 0;
   /* left: 0; */
@@ -110,14 +114,14 @@
   width: 100%;
 }
 .table-common th.ant-table-cell {
-  background: #c9dcce !important;
+  background: #1010100d !important;
 }
 .table-common
   td.ant-table-cell.ant-table-cell-fix-right.ant-table-cell-fix-right-first {
-  background: #c9dcce !important;
+  background: #1010100d !important;
 }
 .table-common td.ant-table-cell {
-  background: #c9dcce !important;
+  background: #1010100d !important;
 }
 
 /* scroll custom */
@@ -333,4 +337,3 @@ span.ant-upload {
   width: 200px !important;
   height: 200px !important;
 }
-

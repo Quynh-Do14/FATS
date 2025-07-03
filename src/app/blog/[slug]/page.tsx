@@ -23,10 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: blog.blog.title,
-        description: blog.blog?.description,
+        description: blog.blog?.shortDescription,
         openGraph: {
             title: blog.blog.title,
-            description: blog.blog?.description,
+            description: blog.blog?.shortDescription,
             images: configImageURL(blog.blog.imageCode),
         },
     };

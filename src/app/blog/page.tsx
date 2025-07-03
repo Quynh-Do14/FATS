@@ -12,6 +12,7 @@ import { useRecoilValue } from "recoil";
 import { CategoryBlogState } from "@/core/atoms/category/categoryState";
 import { ROUTE_PATH } from "@/core/common/appRouter";
 import Link from "next/link";
+import BlogListSkeleton from "./skeleton";
 
 const BlogPage = () => {
   const [mainBlogs, setMainBlog] = useState<Array<any>>([]);
@@ -62,54 +63,61 @@ const BlogPage = () => {
           title={"Tin tức"}
           sub={"Tin tức"}
           backgroundUrl={banner1.src}
-        />  
+        />
         <div className="padding-common">
           <div className="grid grid-cols-12 gap-6 md:gap-16">
-            <div className="col-span-12 md:col-span-9 flex flex-col gap-12 order-2 md:order-1 left">
+            <div className="col-span-12 md:col-span-9 flex flex-col gap-4 order-2 md:order-1 left">
               {
-                mainBlogs.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="flex md:flex-row-reverse flex-col mb-3 gap-4 md:gap-10 items-center">
-                      <div className="item-image">
-                        <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}>
-                          <div
-                            className="bg-img"
-                            style={{
-                              backgroundImage: `url(${configImageURL(item.imageCode)})`,
-                            }}
-                          ></div>
-                        </Link>
-                      </div>
-                      <div className="item-text md:text-right">
-                        <p className="author">
-                          <i className="fa fa-clock-o me-2" aria-hidden="true"></i>
-                          <span>{item.createdAt} </span>
-                          <i
-                            className="fa fa-user-o ms-4 me-2"
-                            aria-hidden="true"
-                          ></i>
-                          <span>{item.createdBy}</span>
-                        </p>
-                        <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title">
-                          {item.title}
-                        </Link>
-                        <p className="description">
-                          {item.shortDescription}
-                        </p>
-                        <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="see-move">
-                          Xem chi tiết
-                          <i
-                            className="fa fa-long-arrow-right ms-3"
-                            aria-hidden="true"
-                          ></i>
-                        </Link>
-                      </div>
-                    </div>
+                !loading && mainBlogs.length
+                  ?
+                  (
+                    mainBlogs.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="flex md:flex-row-reverse flex-col mb-3 gap-4 md:gap-10 items-center">
+                          <div className="item-image">
+                            <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}>
+                              <div
+                                className="bg-img"
+                                style={{
+                                  backgroundImage: `url(${configImageURL(item.imageCode)})`,
+                                }}
+                              ></div>
+                            </Link>
+                          </div>
+                          <div className="item-text md:text-right">
+                            <p className="author">
+                              <i className="fa fa-clock-o me-2" aria-hidden="true"></i>
+                              <span>{item.createdAt} </span>
+                              <i
+                                className="fa fa-user-o ms-4 me-2"
+                                aria-hidden="true"
+                              ></i>
+                              <span>{item.createdBy}</span>
+                            </p>
+                            <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title">
+                              {item.title}
+                            </Link>
+                            <p className="description">
+                              {item.shortDescription}
+                            </p>
+                            <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="see-move">
+                              Xem chi tiết
+                              <i
+                                className="fa fa-long-arrow-right ms-3"
+                                aria-hidden="true"
+                              ></i>
+                            </Link>
+                          </div>
+                        </div>
+                      )
+                    })
                   )
-                })
+                  :
+                  <BlogListSkeleton />
               }
+              <BlogListSkeleton />
 
               <PaginationCommon
                 total={100}

@@ -18,28 +18,30 @@ export async function middleware(req: NextRequest) {
     const url = req.nextUrl.clone();
     const pathname = url.pathname;
 
-    // 1. Nếu vào /login hoặc /register
+    // 1. Nếu đang ở trang login hoặc register
     if (['/login', '/register'].includes(pathname)) {
         if (accessToken) {
+            // Nếu đã đăng nhập → redirect về trang chủ
             url.pathname = '/';
             return NextResponse.redirect(url);
         }
         return NextResponse.next();
     }
 
-    // 2. Nếu truy cập các path yêu cầu đăng nhập (không phân quyền)
-    const requiresAuth = AUTH_REQUIRED_PATHS.some((path) =>
+    // 2. Nếu là trang yêu cầu đăng nhập (không cần phân quyền)
+    const isAuthRequired = AUTH_REQUIRED_PATHS.some((path) =>
         pathname.startsWith(path)
     );
-
-    if (requiresAuth && !accessToken) {
-        url.pathname = '/login';
-        return NextResponse.redirect(url);
+    if (isAuthRequired) {
+        if (!accessToken) {
+            url.pathname = '/login';
+            return NextResponse.redirect(url);
+        }
+        return NextResponse.next();
     }
 
-    // 3. Nếu truy cập các route cần phân quyền (ví dụ admin)
+    // 3. Nếu là route yêu cầu phân quyền (admin)
     const isAdminRoute = pathname.startsWith('/FATS/admin');
-
     if (isAdminRoute) {
         if (!accessToken) {
             url.pathname = '/login';
@@ -53,7 +55,16 @@ export async function middleware(req: NextRequest) {
                 },
             });
 
-            if (!response.ok) throw new Error('Failed to fetch role');
+            if (response.status === 401) {
+                // Token hết hạn
+                url.pathname = '/login';
+                return NextResponse.redirect(url);
+            }
+
+            if (!response.ok) {
+                // Các lỗi khác (500, 403, ...)
+                throw new Error(`Unexpected error: ${response.status}`);
+            }
 
             const data: RoleResponse = await response.json();
             const role = data.role;
@@ -70,14 +81,14 @@ export async function middleware(req: NextRequest) {
             }
 
             return NextResponse.next();
-        } catch (error) {
-            console.error('Middleware error:', error);
+        } catch (err) {
+            console.error('Middleware error:', err);
             url.pathname = '/403';
             return NextResponse.redirect(url);
         }
     }
 
-    // 4. Mặc định cho phép truy cập các đường dẫn khác
+    // 4. Mặc định cho phép truy cập
     return NextResponse.next();
 }
 
