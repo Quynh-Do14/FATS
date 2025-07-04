@@ -2,7 +2,7 @@ import React from 'react'
 
 const BlogItemSkeleton = () => {
     return (
-        <div className="flex md:flex-row-reverse flex-col mb-3 gap-4 md:gap-10 items-center animate-pulse">
+        <div className="flex md:flex-row-reverse flex-col mb-3 gap-4 md:gap-10 items-center">
             {/* Image Skeleton */}
             <div className="item-image w-full md:w-[280px] h-[180px] bg-gray-200 rounded-md" />
 
@@ -28,7 +28,7 @@ const BlogItemSkeleton = () => {
 
 const BlogListSkeleton = () => {
     return (
-        <div className="padding-common">
+        <div className="">
             {Array.from({ length: 6 }).map((_, index) => (
                 <BlogItemSkeleton key={index} />
             ))}

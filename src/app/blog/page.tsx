@@ -18,6 +18,7 @@ const BlogPage = () => {
   const [mainBlogs, setMainBlog] = useState<Array<any>>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
+  const [totalElement, setTotalElement] = useState<number>(0);
   const categoryBlogState = useRecoilValue(CategoryBlogState).data
   const onGetListAsync = async ({ name = "", page = currentPage }) => {
     const param = {
@@ -31,6 +32,7 @@ const BlogPage = () => {
         setLoading
       ).then((res) => {
         setMainBlog(res.content);
+        setTotalElement(res.totalElements);
       })
     }
     catch (error) {
@@ -117,11 +119,9 @@ const BlogPage = () => {
                   :
                   <BlogListSkeleton />
               }
-              <BlogListSkeleton />
-
               <PaginationCommon
-                total={100}
-                currentPage={2}
+                total={totalElement}
+                currentPage={currentPage}
                 onChangePage={() => { }}
                 pageSize={10}
                 onChangeSize={() => { }}
