@@ -105,7 +105,7 @@ const ModalCreateGoal = (props: Props) => {
                                         ?
                                         <Col span={24}>
                                             <InputNumberCommon
-                                                label={'Mức phân bổ'}
+                                                label={'Phần trăm phân bổ (%)'}
                                                 attribute={'allocation'}
                                                 isRequired={true}
                                                 setData={setData}

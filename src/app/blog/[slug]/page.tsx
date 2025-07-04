@@ -4,11 +4,12 @@ import BannerCommon from '@/infrastructure/common/components/banner/BannerCommon
 import banner1 from "@/assets/images/banner/banner1.png"
 import "@/assets/styles/page/blog.css";
 import { Endpoint } from '@/core/common/apiLink';
-import { configImageURL, convertSlug, splitTakeId } from '@/infrastructure/helper/helper';
+import { configImageURL, convertDateOnlyShow, convertSlug, splitTakeId } from '@/infrastructure/helper/helper';
 import { Metadata } from 'next';
 import { Col, Row } from 'antd';
 import Link from 'next/link';
 import { ROUTE_PATH } from '@/core/common/appRouter';
+import BreadcrumbCommon from '@/infrastructure/common/Layouts/Breadcumb';
 
 type Props = {
     params: { slug: string };
@@ -39,7 +40,6 @@ const BlogDetailPage = async ({ params }: Props) => {
     }).then((res) =>
         res.json()
     );
-    console.log("blog", blog);
     const blogDetail = blog.blog;
     const relatedBlogs: any[] = blog.relatedBlogs;
 
@@ -52,55 +52,68 @@ const BlogDetailPage = async ({ params }: Props) => {
                     backgroundUrl={configImageURL(blogDetail.imageCode)}
                 />
                 <div className="padding-common">
-                    <Row gutter={[40, 20]} wrap>
-                        {/* Bài viết chính hiển thị trước trên mobile */}
-                        <Col xs={24} md={16} className="order-1 md:order-2">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        {/* Bài viết chính */}
+                        <div className="md:col-span-8 order-1 md:order-1 flex flex-col gap-4">
+                            <BreadcrumbCommon
+                                breadcrumb={"Tin tức"}
+                                redirect={ROUTE_PATH.BLOG}
+                                title={blogDetail.title}
+                            />
+                            <h2 className="text-2xl font-bold text-gray-800">{blogDetail.title}</h2>
                             <article
-                                style={{ padding: '0 8px' }}
+                                className="prose max-w-none px-2 text-justify"
                                 dangerouslySetInnerHTML={{ __html: blogDetail.content }}
                             />
-                        </Col>
+                        </div>
 
-                        {/* Tin nổi bật chuyển xuống dưới trên mobile */}
-                        <Col xs={24} md={8} className="order-2 md:order-1">
-                            <div className="flex flex-col gap-12 left">
-                                <h2 className="category-name">Tin liên quan</h2>
-                                {relatedBlogs.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex flex-col mb-3 gap-4 md:gap-10 items-center md:items-end"
-                                    >
-                                        <div className="item-image w-full">
-                                            <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}>
-                                                <div
-                                                    className="bg-img"
-                                                    style={{
-                                                        backgroundImage: `url(${configImageURL(item.imageCode)})`,
-                                                    }}
-                                                />
-                                            </Link>
-                                        </div>
-                                        <div className="item-text text-left md:text-right w-full">
-                                            <p className="author">
-                                                <i className="fa fa-clock-o me-2" aria-hidden="true"></i>
-                                                <span>{item.createdAt} </span>
-                                                <i className="fa fa-user-o ms-4 me-2" aria-hidden="true"></i>
-                                                <span>{item.createdBy}</span>
-                                            </p>
-                                            <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title">
-                                                {item.title}
-                                            </Link>
-                                            <p className="description">{item.shortDescription}</p>
-                                            <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="see-move">
-                                                Xem chi tiết
-                                                <i className="fa fa-long-arrow-right ms-3" aria-hidden="true"></i>
-                                            </Link>
-                                        </div>
+                        {/* Tin liên quan */}
+                        <div className="md:col-span-4 order-2 md:order-2 flex flex-col gap-6">
+                            <h2 className="text-xl font-semibold text-gray-700 border-b pb-2">Tin liên quan</h2>
+                            {relatedBlogs.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="flex flex-col gap-3 border rounded-lg p-4 bg-white shadow-sm hover:shadow-md transition"
+                                >
+                                    <div className="aspect-video w-full rounded overflow-hidden">
+                                        <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}>
+                                            <div
+                                                className="w-full h-full bg-center bg-cover"
+                                                style={{
+                                                    backgroundImage: `url(${configImageURL(item.imageCode)})`,
+                                                }}
+                                            />
+                                        </Link>
                                     </div>
-                                ))}
-                            </div>
-                        </Col>
-                    </Row>
+
+                                    <div className="text-sm text-gray-600 flex items-center gap-3">
+                                        <i className="fa fa-clock-o" aria-hidden="true"></i>
+                                        <span>{convertDateOnlyShow(item.createdAt)}</span>
+                                        <i className="fa fa-user-o ms-3" aria-hidden="true"></i>
+                                        <span>{item.createdBy}</span>
+                                    </div>
+
+                                    <Link
+                                        href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}
+                                        className="text-lg font-semibold text-gray-800 hover:text-blue-600 transition"
+                                    >
+                                        {item.title}
+                                    </Link>
+
+                                    <p className="text-sm text-gray-500 line-clamp-2">{item.shortDescription}</p>
+
+                                    <Link
+                                        href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}
+                                        className="text-sm font-medium text-blue-600 inline-flex items-center hover:underline"
+                                    >
+                                        Xem chi tiết
+                                        <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
 
                 </div>
             </div>

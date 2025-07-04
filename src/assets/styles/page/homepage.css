@@ -246,7 +246,6 @@
   flex-direction: column;
   gap: 12px;
 }
-
 .homepage-container .spending .right-content h2 {
   text-align: left;
   font-size: 48px;
@@ -381,6 +380,7 @@
 .homepage-container .introduction .title.top {
   animation: topTo 1s 0.75s both ease-out 1;
 }
+.homepage-container .introduction .title h1,
 .homepage-container .introduction .title h2 {
   font-weight: 700;
   font-size: 48px;
@@ -835,12 +835,16 @@
 .homepage-container .post .slider .slider-content .see-move:hover {
   color: rgb(0, 140, 255) !important;
 }
-
-.homepage-container .finance .finance-text {
+.homepage-container .finance {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.homepage-container .finance .finance-content .finance .finance-content-text {
   padding: 10px;
 }
 
-.homepage-container .finance .title {
+.homepage-container .finance .finance-content .title {
   font-weight: 700;
   font-size: 24px;
   line-height: 34px;
@@ -848,14 +852,14 @@
   margin-bottom: 12px; /* thêm khoảng cách */
 }
 
-.homepage-container .finance .sub {
+.homepage-container .finance .finance-content .sub {
   font-weight: 500;
   font-size: 18px; /* giảm nhẹ cho dễ nhìn */
   line-height: 28px;
   color: #555; /* màu xám đậm dịu mắt */
 }
 
-.homepage-container .finance img {
+.homepage-container .finance .finance-content img {
   border-radius: 16px;
   max-height: 300px;
   width: 100%;
@@ -893,7 +897,6 @@
   transform: translateY(0);
   animation: fadeSlideUp 0.8s ease forwards;
 }
-
 
 @media only screen and (min-width: 1600px) {
   .homepage-container .introduction {

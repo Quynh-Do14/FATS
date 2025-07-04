@@ -143,7 +143,7 @@ const CustomerComponent = () => {
             </Slider>
             <div className="line"></div>
             <div className="title">
-                <h2>Khách hàng nói gì về fATS</h2>
+                <h2>Khách hàng nói gì về FATS</h2>
             </div>
             <Slider {...settings} className='slider'>
                 {

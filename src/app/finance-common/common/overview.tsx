@@ -67,7 +67,7 @@ const OverviewComponent = (props: Props) => {
                 <div className={`${dailyTotal >= 0 ? "green-bg" : "red-bg"} info`} >
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="title">Tổng chi tiêu hôm nay</p>
+                            <p className="title">Tổng thu/chi hôm nay</p>
                             <p className="sum">
                                 {dailyTotal >= 0 ? <i className="fa fa-caret-up mr-2" aria-hidden="true"></i> : <i className="fa fa-caret-down" aria-hidden="true"></i>}
                                 {dailyTotal ? <AnimatedNumber value={dailyTotal} /> : 0}₫

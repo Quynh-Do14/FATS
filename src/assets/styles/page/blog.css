@@ -41,7 +41,7 @@
 .blog .left .item-text .description {
   font-weight: 400;
   font-size: 16px;
-  line-height: 26px;
+  line-height: 20px;
   letter-spacing: 0%;
   color: var(--Gray, #666666);
 }
@@ -74,6 +74,10 @@
   position: absolute;
   right: 10px;
   top: 15px;
+}
+
+.blog .right .search-input input:focus {
+  outline: none;
 }
 
 .blog .right .category-name {

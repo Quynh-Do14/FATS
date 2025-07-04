@@ -4,6 +4,7 @@ import thumb1 from "@/assets/images/thumbnail/thumb1.png"
 import thumb2 from "@/assets/images/thumbnail/thumb2.png"
 import thumb3 from "@/assets/images/thumbnail/thumb3.png"
 import { Col, Row } from 'antd'
+import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent'
 
 const finance = [
     {
@@ -52,7 +53,11 @@ const AnimateOnScroll = ({ children }: any) => {
 const FinanceComponent = () => {
     return (
         <div className="finance">
-            <Row gutter={[20, 20]}>
+            <TitleComponent
+                title={'FATS AI – Tài chính cá nhân'}
+                color={'black'}
+            />
+            <Row gutter={[20, 20]} className='finance-content'>
                 {finance.map((item, index) => (
                     <Col span={24} key={index}>
                         <AnimateOnScroll>
@@ -60,8 +65,8 @@ const FinanceComponent = () => {
                                 {index % 2 === 0 ? (
                                     <>
                                         <Col xs={24} md={11}>
-                                            <div className='title'>{item.title}</div>
-                                            <div className='sub'>{item.sub}</div>
+                                            <h3 className='title'>{item.title}</h3>
+                                            <h4 className='sub'>{item.sub}</h4>
                                         </Col>
                                         <Col xs={24} md={11}>
                                             <img src={item.img.src} alt="" className='finance-img' />
@@ -73,8 +78,8 @@ const FinanceComponent = () => {
                                             <img src={item.img.src} alt="" className='finance-img' />
                                         </Col>
                                         <Col xs={24} md={11}>
-                                            <div className='title'>{item.title}</div>
-                                            <div className='sub'>{item.sub}</div>
+                                            <h3 className='title'>{item.title}</h3>
+                                            <h4 className='sub'>{item.sub}</h4>
                                         </Col>
                                     </>
                                 )}

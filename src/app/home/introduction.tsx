@@ -45,7 +45,7 @@ const IntroductionComponent = () => {
             />
             <div className="title top">
                 <div>
-                    <h2>FATS AI - Gia tăng giá trị tài chính</h2>
+                    <h1>FATS AI - Gia tăng giá trị tài chính</h1>
                 </div>
                 <p className="sub top">Đồng Hành Cùng Bạn Trên Hành Trình Tài Chính Bền Vững</p>
             </div>

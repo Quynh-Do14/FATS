@@ -13,17 +13,23 @@ import { CategoryBlogState } from "@/core/atoms/category/categoryState";
 import { ROUTE_PATH } from "@/core/common/appRouter";
 import Link from "next/link";
 import BlogListSkeleton from "./skeleton";
+import Constants from "@/core/common/constants";
 
+let timeout: any
 const BlogPage = () => {
   const [mainBlogs, setMainBlog] = useState<Array<any>>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [totalElement, setTotalElement] = useState<number>(0);
-  const categoryBlogState = useRecoilValue(CategoryBlogState).data
-  const onGetListAsync = async ({ name = "", page = currentPage }) => {
+  const [searchText, setSearchText] = useState<string>("");
+  const [pageSize, setPageSize] = useState<number>(10);
+
+  const categoryBlogState = useRecoilValue(CategoryBlogState).data;
+
+  const onGetListAsync = async ({ name = "", page = currentPage, size = pageSize }) => {
     const param = {
       page: page - 1,
-      size: 10,
+      size: size,
       keyword: name,
     }
     try {
@@ -32,7 +38,7 @@ const BlogPage = () => {
         setLoading
       ).then((res) => {
         setMainBlog(res.content);
-        setTotalElement(res.totalElements);
+        setTotalElement(res.page.totalElements);
       })
     }
     catch (error) {
@@ -40,18 +46,27 @@ const BlogPage = () => {
     }
   }
 
-  const onSearch = async (name = "", page = 1) => {
-    await onGetListAsync({ name: name, page: page });
+  const onSearch = async (name = "", page = 1, size = 10) => {
+    await onGetListAsync({ name: name, page: page, size: size });
   };
 
-  const onChangePrevPage = async () => {
-    setCurrentPage(currentPage - 1)
-    await onSearch("", currentPage - 1).then(_ => { });
+  const onChangeSearchText = (e: any) => {
+    setSearchText(e.target.value);
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      onSearch(e.target.value, currentPage, pageSize).then((_) => { });
+    }, Constants.DEBOUNCE_SEARCH);
   };
 
-  const onChangeNextPage = async () => {
-    setCurrentPage(currentPage + 1)
-    await onSearch("", currentPage + 1).then(_ => { });
+  const onChangePage = async (value: any) => {
+    setCurrentPage(value)
+    await onSearch(searchText, value, pageSize).then(_ => { });
+  };
+
+  const onPageSizeChanged = async (value: any) => {
+    setPageSize(value)
+    setCurrentPage(1)
+    await onSearch(searchText, 1, value).then(_ => { });
   };
 
   useEffect(() => {
@@ -70,14 +85,23 @@ const BlogPage = () => {
           <div className="grid grid-cols-12 gap-6 md:gap-16">
             <div className="col-span-12 md:col-span-9 flex flex-col gap-4 order-2 md:order-1 left">
               {
-                !loading && mainBlogs.length
-                  ?
-                  (
+                !loading ? (
+                  mainBlogs.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-16 text-center text-gray-600">
+                      <i className="fa fa-folder-open text-[#003333] mb-6"
+                        style={{ fontSize: "80px" }}
+                        aria-hidden="true"></i>
+                      <h2 className="text-xl font-semibold mb-2">Không có bài viết nào</h2>
+                    </div>
+                  ) : (
                     mainBlogs.map((item, index) => {
+                      const isEven = index % 2 === 0;
                       return (
                         <div
                           key={index}
-                          className="flex md:flex-row-reverse flex-col mb-3 gap-4 md:gap-10 items-center">
+                          className={`flex flex-col mb-3 gap-4 md:gap-10 items-center 
+              ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                        >
                           <div className="item-image">
                             <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}>
                               <div
@@ -101,7 +125,7 @@ const BlogPage = () => {
                             <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title">
                               {item.title}
                             </Link>
-                            <p className="description">
+                            <p className="description text-truncate-2">
                               {item.shortDescription}
                             </p>
                             <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="see-move">
@@ -113,18 +137,19 @@ const BlogPage = () => {
                             </Link>
                           </div>
                         </div>
-                      )
+                      );
                     })
                   )
-                  :
+                ) : (
                   <BlogListSkeleton />
+                )
               }
               <PaginationCommon
                 total={totalElement}
                 currentPage={currentPage}
-                onChangePage={() => { }}
+                onChangePage={onChangePage}
                 pageSize={10}
-                onChangeSize={() => { }}
+                onChangeSize={onPageSizeChanged}
                 disabled={false}
                 isClient={false}
               />
@@ -136,6 +161,8 @@ const BlogPage = () => {
                   name=""
                   id=""
                   placeholder="Nhập từ khóa..."
+                  onChange={onChangeSearchText}
+                  value={searchText}
                 />
                 <span>
                   <i className="fa fa-search" aria-hidden="true"></i>
