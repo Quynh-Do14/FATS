@@ -66,9 +66,9 @@ const LoginScreen = () => {
     }
 
     const onLoginWithGoogle = () => {
-        const callbackUrl = `${process.env.REACT_APP_REDIRECT_URL}`;
-        const authUrl = process.env.REACT_APP_PUBLIC_URL_AUTH_URI;
-        const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+        const callbackUrl = `${process.env.NEXT_PUBLIC_REDIRECT_URL}`;
+        const authUrl = process.env.NEXT_PUBLIC_PUBLIC_URL_AUTH_URI;
+        const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
         const targetUrl = `${authUrl}?redirect_uri=${encodeURIComponent(
             callbackUrl
