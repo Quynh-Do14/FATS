@@ -82,7 +82,7 @@ const SlugBlogManagement = ({ params }: Props) => {
             setDataRequest({
                 image: configImageURL(detail.imageCode),
                 title: detail.title,
-                sortDescription: detail.sortDescription,
+                shortDescription: detail.shortDescription,
                 content: detail.content,
                 categoryId: detail?.category?.id,
 
@@ -92,18 +92,30 @@ const SlugBlogManagement = ({ params }: Props) => {
 
     const onUpdateAsync = async () => {
         await setSubmittedTime(Date.now());
+        let data = {}
+        if (configImageURL(detail.imageId) !== dataRequest.image) {
+            data = {
+                title: dataRequest.title,
+                shortDescription: dataRequest.shortDescription,
+                content: dataRequest.content,
+                categoryId: dataRequest.categoryId,
+            }
+        }
+        else {
+            data = {
+                // image: configImageURL(detail.imageId) !== dataRequest.image ? dataRequest.image : null,
+                image: dataRequest.image,
+                title: dataRequest.title,
+                shortDescription: dataRequest.shortDescription,
+                content: dataRequest.content,
+                categoryId: dataRequest.categoryId,
+
+            }
+        }
         if (isValidData()) {
             await blogService.UpdateBlogAdmin(
                 params.slug,
-                {
-                    // image: configImageURL(detail.imageId) !== dataRequest.image ? dataRequest.image : null,
-                    image: dataRequest.image,
-                    title: dataRequest.title,
-                    sortDescription: dataRequest.sortDescription,
-                    content: dataRequest.content,
-                    categoryId: dataRequest.categoryId,
-
-                },
+                data,
                 onBack,
                 setLoading
             )
@@ -186,9 +198,9 @@ const SlugBlogManagement = ({ params }: Props) => {
                                     <Col span={24}>
                                         <InputTextAreaCommon
                                             label={"Mô tả ngắn"}
-                                            attribute={"sortDescription"}
+                                            attribute={"shortDescription"}
                                             isRequired={true}
-                                            dataAttribute={dataRequest.sortDescription}
+                                            dataAttribute={dataRequest.shortDescription}
                                             setData={setDataRequest}
                                             disabled={false}
                                             validate={validate}

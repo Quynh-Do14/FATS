@@ -23,14 +23,16 @@ const BlogPage = () => {
   const [totalElement, setTotalElement] = useState<number>(0);
   const [searchText, setSearchText] = useState<string>("");
   const [pageSize, setPageSize] = useState<number>(10);
+  const [categoryId, setCategoryId] = useState<string>("");
 
   const categoryBlogState = useRecoilValue(CategoryBlogState).data;
 
-  const onGetListAsync = async ({ name = "", page = currentPage, size = pageSize }) => {
+  const onGetListAsync = async ({ name = "", page = currentPage, size = pageSize, categoryId = "" }) => {
     const param = {
       page: page - 1,
       size: size,
       keyword: name,
+      categoryId: categoryId
     }
     try {
       await blogService.GetBlog(
@@ -46,27 +48,32 @@ const BlogPage = () => {
     }
   }
 
-  const onSearch = async (name = "", page = 1, size = 10) => {
-    await onGetListAsync({ name: name, page: page, size: size });
+  const onSearch = async (name = "", page = 1, size = 10, categoryId = "") => {
+    await onGetListAsync({ name: name, page: page, size: size, categoryId: categoryId });
   };
 
   const onChangeSearchText = (e: any) => {
     setSearchText(e.target.value);
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      onSearch(e.target.value, currentPage, pageSize).then((_) => { });
+      onSearch(e.target.value, currentPage, pageSize, categoryId).then((_) => { });
     }, Constants.DEBOUNCE_SEARCH);
   };
 
   const onChangePage = async (value: any) => {
     setCurrentPage(value)
-    await onSearch(searchText, value, pageSize).then(_ => { });
+    await onSearch(searchText, value, pageSize, categoryId).then(_ => { });
   };
 
   const onPageSizeChanged = async (value: any) => {
     setPageSize(value)
     setCurrentPage(1)
-    await onSearch(searchText, 1, value).then(_ => { });
+    await onSearch(searchText, 1, value, categoryId).then(_ => { });
+  };
+
+  const onSelectCategory = async (value: string) => {
+    setCategoryId(value)
+    await onSearch(searchText, 1, pageSize, value).then(_ => { });
   };
 
   useEffect(() => {
@@ -174,17 +181,24 @@ const BlogPage = () => {
                   <h2 className="category-name">Danh Mục Tin</h2>
                   <div className="category-content">
                     <ul>
-                      {
-                        categoryBlogState.map((item, index) => {
-                          return (
-                            <li key={index}>
-                              <a className="category-item" href="#">
-                                {item.name}
-                              </a>
-                            </li>
-                          )
-                        })
-                      }
+                      <li>
+                        <a
+                          className={`category-item cursor-pointer ${categoryId === '' ? 'active' : ''}`}
+                          onClick={() => onSelectCategory('')}
+                        >
+                          Tất cả
+                        </a>
+                      </li>
+                      {categoryBlogState.map((item, index) => (
+                        <li key={index}>
+                          <a
+                            className={`category-item cursor-pointer ${categoryId === item.id ? 'active' : ''}`}
+                            onClick={() => onSelectCategory(item.id)}
+                          >
+                            {item.name}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>

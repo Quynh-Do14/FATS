@@ -7,6 +7,7 @@ import "@/assets/styles/common/commonFinance.css"
 import RecoilProvider from "./ClientProviders";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { configImageURL } from "@/infrastructure/helper/helper";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: 'FATS',
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     images: [`${configImageURL("idai-main-thumbnail")}`]
   }
 }
+const GA_TRACKING_ID = "G-QW7W25VKJ3";
 
 export default function RootLayout({
   children,
@@ -35,6 +37,18 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}');
+        `}
+        </Script>
       </head>
       <body>
         <RecoilProvider>

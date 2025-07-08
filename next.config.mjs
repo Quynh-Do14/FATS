@@ -14,6 +14,11 @@ const nextConfig = {
         pathname: '/api/v1/hdkt/files/preview/**'
       },
       {
+        protocol: 'https',
+        hostname: 'api-v1.fats.vn',
+        pathname: '/hdkt/files/preview/**'
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',

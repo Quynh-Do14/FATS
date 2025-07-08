@@ -27,7 +27,6 @@ const AddBlogManagement = () => {
     const [_data, _setData] = useState<any>({});
     const dataRequest = _data;
     const router = useRouter();
-    console.log("categoryBlogState", categoryBlogState);
 
     const setDataRequest = (data: any) => {
         Object.assign(dataRequest, { ...data });
@@ -57,7 +56,7 @@ const AddBlogManagement = () => {
                 await blogService.AddBlogAdmin({
                     image: dataRequest.image,
                     title: dataRequest.title,
-                    sortDescription: dataRequest.sortDescription,
+                    shortDescription: dataRequest.shortDescription,
                     content: dataRequest.content,
                     categoryId: dataRequest.categoryId,
                 },
@@ -145,9 +144,9 @@ const AddBlogManagement = () => {
                                     <Col span={24}>
                                         <InputTextAreaCommon
                                             label={"Mô tả ngắn"}
-                                            attribute={"sortDescription"}
+                                            attribute={"shortDescription"}
                                             isRequired={true}
-                                            dataAttribute={dataRequest.sortDescription}
+                                            dataAttribute={dataRequest.shortDescription}
                                             setData={setDataRequest}
                                             disabled={false}
                                             validate={validate}
