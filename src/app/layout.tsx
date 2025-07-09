@@ -11,12 +11,12 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: 'FATS',
-  description: '',
+  description: 'Quản lý tài chính thông minh với AI',
   openGraph: {
     type: "website",
     title: 'FATS',
-    description: '',
-    images: [`${configImageURL("idai-main-thumbnail")}`]
+    description: 'Quản lý tài chính thông minh với AI',
+    images: [`${configImageURL("thumbnail-fats.png")}`]
   }
 }
 const GA_TRACKING_ID = "G-QW7W25VKJ3";

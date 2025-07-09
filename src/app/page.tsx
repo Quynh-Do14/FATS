@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
     title: 'FATS',
     description: 'Quản lý tài chính thông minh với AI',
-    images: [`${configImageURL("idai-main-thumbnail")}`]
+    images: [`${configImageURL("thumbnail-fats.png")}`]
   }
 }
 
