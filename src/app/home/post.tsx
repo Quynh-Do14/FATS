@@ -1,36 +1,39 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent';
-const post = [
-    {
-        "title": "Cách Ứng Dụng AI Trong Dự Báo Tài Chính & Ra Quyết Định Đầu Tư",
-        "date": "25 tháng 2, 2025",
-        "author": "Admin",
-        "description": "Công nghệ AI đang thay đổi cách doanh nghiệp dự báo tài chính như thế nào? Cùng tìm hiểu cách tận dụng AI để nâng cao hiệu quả.",
-        "image": "image1.jpg",
-        "link": "/chi-tiet/ung-dung-ai-du-bao-tai-chinh"
-    },
-    {
-        "title": "Công Nghệ Tự Động Hóa: Xu Hướng Giúp Doanh Nghiệp Tiết Kiệm & Tối Ưu Chi Phí",
-        "date": "25 tháng 2, 2025",
-        "author": "Admin",
-        "description": "Ứng dụng phần mềm kế toán tự động giúp giảm sát sai, tiết kiệm thời gian và cắt giảm chi phí vận hành như thế nào?",
-        "image": "image2.jpg",
-        "link": "/chi-tiet/cong-nghe-tu-dong-hoa"
-    },
-    {
-        "title": "Fintech & AI: Cách Công Nghệ Định Hình Tương Lai Ngành Tài Chính",
-        "date": "25 tháng 2, 2025",
-        "author": "Admin",
-        "description": "Fintech và AI đang thay đổi cách chúng ta quản lý tài chính và đầu tư như thế nào? Cập nhật những xu hướng công nghệ tài chính mới nhất.",
-        "image": "image3.jpg",
-        "link": "/chi-tiet/fintech-ai-nganh-tai-chinh"
-    }
-]
+import blogService from '@/infrastructure/repositories/blog/blog.service';
+import { configImageURL, convertSlug } from '@/infrastructure/helper/helper';
+import { ROUTE_PATH } from '@/core/common/appRouter';
+import Link from 'next/link';
+import Image from 'next/image';
+
 const PostComponent = () => {
+    const [mainBlogs, setMainBlog] = useState<Array<any>>([]);
+
+    const onGetListAsync = async () => {
+        const param = {
+            size: 6,
+        }
+        try {
+            await blogService.GetBlog(
+                param,
+                () => { }
+            ).then((res) => {
+                setMainBlog(res.content);
+            })
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        onGetListAsync().then(_ => { });
+    }, []);
+
     const settings = {
         dots: false,
         infinite: true,
@@ -76,41 +79,52 @@ const PostComponent = () => {
             </div>
             <Slider {...settings} className='slider'>
                 {
-                    post && post.length && post.concat(post).map((item, index) => {
+                    mainBlogs.map((item, index) => {
                         return (
                             <div className="slider-content" key={index}>
-                                <img src="https://ocafe.net/wp-content/uploads/2024/10/anh-nen-may-tinh-4k-1.jpg" alt="" />
+                                <Link
+                                    href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`}
+                                >
+                                    <div className="image-wrapper">
+                                        <Image
+                                            src={configImageURL(item.imageCode)}
+                                            alt={item.title}
+                                            width={300}
+                                            height={200}
+                                            style={{ objectFit: 'cover', borderRadius: '15px' }}
+                                        />
+                                    </div>
+                                </Link>
                                 <div>
-
                                     <p className="author">
                                         <i className="fa fa-clock-o me-2" aria-hidden="true"></i>
-                                        <span>{item.date}</span>
+                                        <span>{item.createdAt}</span>
                                         <i
                                             className="fa fa-user-o ms-4 me-2"
                                             aria-hidden="true"
                                         ></i>
-                                        <span>admin</span>
+                                        <span>{item.createdBy}</span>
                                     </p>
-                                    <a href="#" className="title">
+                                    <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title">
                                         {item.title}
-                                    </a>
+                                    </Link>
                                 </div>
-                                <p className="description">
-                                    {item.description}
+                                <p className="description text-truncate-2">
+                                    {item.shortDescription}
                                 </p>
-                                <a href="#" className="see-move">
+                                <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="see-move">
                                     Xem chi tiết
                                     <i
                                         className="fa fa-long-arrow-right ms-3"
                                         aria-hidden="true"
                                     ></i>
-                                </a>
+                                </Link>
                             </div>
                         )
                     })
                 }
-            </Slider>
-        </div>
+            </Slider >
+        </div >
     )
 }
 

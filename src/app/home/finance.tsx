@@ -5,6 +5,7 @@ import thumb2 from "@/assets/images/thumbnail/thumb2.png"
 import thumb3 from "@/assets/images/thumbnail/thumb3.png"
 import { Col, Row } from 'antd'
 import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent'
+import { configFileURL, configImageURL } from '@/infrastructure/helper/helper'
 
 const finance = [
     {
@@ -87,6 +88,21 @@ const FinanceComponent = () => {
                         </AnimateOnScroll>
                     </Col>
                 ))}
+                <Col span={24}>
+                    <AnimateOnScroll>
+                        <Row gutter={[0, 20]} align="middle" justify="space-between">
+                            <Col xs={24} md={11}>
+                                <video width="100%" height="auto" autoPlay muted loop playsInline controls>
+                                    <source src={configFileURL("manual.mp4")} type="video/mp4" />
+                                </video>
+                            </Col>
+                            <Col xs={24} md={11}>
+                                <h3 className="title">Chào mừng đến với FATS</h3>
+                                <h4 className="sub">Cùng khám phá cách quản lý tài chính thông minh</h4>
+                            </Col>
+                        </Row>
+                    </AnimateOnScroll>
+                </Col>
             </Row>
         </div>
     )

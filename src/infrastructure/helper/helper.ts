@@ -27,6 +27,13 @@ export const configImageURL = (img: string) => {
     return ""
 }
 
+export const configFileURL = (img: string) => {
+    if (img) {
+        return `${baseURL}/files/files/stream/${img}`
+    }
+    return ""
+}
+
 export const convertStringToBoolean = (value: string) => {
     const booleanValue = value === 'true'; // Chuyển chuỗi 'true' và 'false' về boolean
     return booleanValue

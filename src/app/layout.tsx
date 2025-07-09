@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "@/assets/styles/common/common.css"
 import "@/assets/styles/common/commonFinance.css"
-
 import RecoilProvider from "./ClientProviders";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { configImageURL } from "@/infrastructure/helper/helper";

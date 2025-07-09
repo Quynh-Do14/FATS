@@ -6,7 +6,8 @@ import TitleComponent from '@/infrastructure/common/components/controls/TitleCom
 import { useEffect, useState } from "react";
 import { isTokenStoraged } from "@/infrastructure/utils/storage";
 import { ROUTE_PATH } from "@/core/common/appRouter";
-import { useRouter } from "next/navigation";;
+import { useRouter } from "next/navigation";
+import { configFileURL, configImageURL } from "@/infrastructure/helper/helper"
 const IntroductionComponent = () => {
     const [token, setToken] = useState<boolean>(false);
     const [isLoadingToken, setIsLoadingToken] = useState<boolean>(false);
@@ -63,8 +64,11 @@ const IntroductionComponent = () => {
                     onClick={() => { }}
                 /> */}
             </div>
-            <img src={introduction.src} alt="" className="img top" />
-        </div>
+            {/* <img src={introduction.src} alt="" className="img top" /> */}
+            <video width="100%" height="auto" autoPlay muted loop playsInline controls>
+                <source src={configFileURL("heroVideo.mp4")} type="video/mp4" />
+            </video>
+        </div >
     )
 }
 

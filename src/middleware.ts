@@ -100,5 +100,7 @@ export const config = {
         '/profile',
         '/personal-goal',
         '/team',
+        '/select-bot',
+        '/history-transition'
     ],
 };
