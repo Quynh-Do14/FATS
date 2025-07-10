@@ -31,6 +31,7 @@ export const ROUTE_PATH = {
 
     USE_PRIVATE_POLICY: `${PREFIX}/policy/user-private-policy`,
     REFUND_POLICY: `${PREFIX}/policy/refund-policy`,
+    SERVICE_POLICY: `${PREFIX}/policy/service-policy`,
     PAYMENT_POLICY: `${PREFIX}/policy/payment-policy`,
     SERVICE_STANDARD: `${PREFIX}/policy/service-standard`,
     TERM_OF_SERVICE: `${PREFIX}/policy/term-of-service`,

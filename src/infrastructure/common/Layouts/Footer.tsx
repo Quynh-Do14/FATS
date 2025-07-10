@@ -50,6 +50,7 @@ const FooterClient = () => {
                     <ul className="flex flex-col gap-4">
                         <li><Link href={ROUTE_PATH.USE_PRIVATE_POLICY}>Chính sách về quyền riêng tư</Link></li>
                         <li><Link href={ROUTE_PATH.TERM_OF_SERVICE}>Thỏa thuận sử dụng dịch vụ</Link></li>
+                        <li><Link href={ROUTE_PATH.SERVICE_POLICY}>Phương thức cung ứng dịch vụ</Link></li>
                         <li><Link href={ROUTE_PATH.REFUND_POLICY}>Chính sách hoàn trả</Link></li>
                         <li><Link href={ROUTE_PATH.SERVICE_STANDARD}>Tiêu chuẩn dịch vụ</Link></li>
                         <li><Link href={ROUTE_PATH.PAYMENT_POLICY}>Chính sách thanh toán</Link></li>

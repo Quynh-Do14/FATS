@@ -59,7 +59,7 @@ const ServiceStandard = () => {
                             <ul className="list-disc ml-6 space-y-2">
                                 <li><strong>Hotline:</strong> (028) 987 654 - 0943803333</li>
                                 <li><strong>Email:</strong> <a href="mailto:lienhe@fats.vn" className="text-blue-600">lienhe@fats.vn</a></li>
-                                <li><strong>Website:</strong> <a href="https://hotrodoan.vn" className="text-blue-600">hotrodoan.vn</a></li>
+                                <li><strong>Website:</strong> <a href="https://fats.vn" className="text-blue-600">fats.vn</a></li>
                             </ul>
                             <p>
                                 <span className="font-semibold">Lưu ý:</span> Chúng tôi luôn lắng nghe phản hồi từ khách hàng để không ngừng nâng cao tiêu chuẩn dịch vụ, đáp ứng tốt nhất nhu cầu của khách hàng trong lĩnh vực công nghệ thông tin và an toàn thông tin.
