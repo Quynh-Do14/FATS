@@ -35,6 +35,7 @@ export const ROUTE_PATH = {
     PAYMENT_POLICY: `${PREFIX}/policy/payment-policy`,
     SERVICE_STANDARD: `${PREFIX}/policy/service-standard`,
     TERM_OF_SERVICE: `${PREFIX}/policy/term-of-service`,
+    TRANSACTION_POLICY: `${PREFIX}/policy/transaction-policy`,
 
     ///Management
     MANAGE_LAYOUT: `${ADMIN_PREFIX}`,

@@ -54,6 +54,7 @@ const FooterClient = () => {
                         <li><Link href={ROUTE_PATH.REFUND_POLICY}>Chính sách hoàn trả</Link></li>
                         <li><Link href={ROUTE_PATH.SERVICE_STANDARD}>Tiêu chuẩn dịch vụ</Link></li>
                         <li><Link href={ROUTE_PATH.PAYMENT_POLICY}>Chính sách thanh toán</Link></li>
+                        <li><Link href={ROUTE_PATH.TRANSACTION_POLICY}>Điều kiện giao dịch</Link></li>
                     </ul>
                 </Col>
                 <Col sm={24} md={12} lg={6}>
@@ -72,7 +73,7 @@ const FooterClient = () => {
                             <i className="fa fa-globe" aria-hidden="true"></i> www.fats.vn - MST: 0318807860
                         </p>
                         <p>
-                            GIẤY PHÉP KINH DOANH: số 0318807860 bởi Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh
+                            GIẤY PHÉP KINH DOANH: số 0318807860 cấp ngày 14 tháng 1 năm 2025 bởi Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh
                         </p>
                     </div>
                 </Col>
