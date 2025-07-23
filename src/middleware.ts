@@ -10,7 +10,7 @@ const ROLE_ACCESS_PATHS: Record<string, string[]> = {
     ADMIN: ['/FATS/admin', '/FATS/admin/:path*'],
 };
 
-const AUTH_REQUIRED_PATHS = ['/profile', '/personal-goal', '/team'];
+const AUTH_REQUIRED_PATHS = ['/login', '/register', '/profile', '/personal-goal', '/team'];
 
 export async function middleware(req: NextRequest) {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL;

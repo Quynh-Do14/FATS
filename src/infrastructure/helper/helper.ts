@@ -105,3 +105,9 @@ export const convertSlug = (str: string) => {
     }
     return ""
 };
+
+export const getEmbedUrl = (youtubeUrl: string) => {
+    const match = youtubeUrl.match(/(?:\?v=|\/embed\/|\.be\/)([\w\-]{11})/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+};
+

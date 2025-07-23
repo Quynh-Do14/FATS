@@ -42,14 +42,17 @@ const OverviewComponent = (props: Props) => {
                 <p className="title-box">{detailGoal.name} </p>
 
                 {
-                    detailGoal.currentAmount >= detailGoal.goalAmount
+                    detailGoal.achieved
                         ?
-                        <div className='is-done'>Hoàn thành</div>
+                        <div className='is-complete'>Đã hoàn thành</div>
                         :
-                        <div className='is-not-done'>Chưa hoàn thành</div>
+                        detailGoal.currentAmount >= detailGoal.goalAmount
+                            ?
+                            <div className='is-done'>Hoàn thành</div>
+
+                            :
+                            <div className='is-not-done'>Chưa hoàn thành</div>
                 }
-
-
             </div>
             <div className='target'>
                 <div className="label">Số tiền mục tiêu</div>

@@ -96,7 +96,7 @@ const PaymentPage = () => {
             <BannerCommon
                 title={'Thanh toán'}
                 sub={'Dịch vụ tài chính'}
-                backgroundUrl={banner4}
+                backgroundUrl={banner4.src}
             />
             <div className='payemnt-page'>
                 <div className='content'>

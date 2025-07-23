@@ -402,6 +402,31 @@
 .chatbot-info img {
   animation: chatZoom infinite 2s linear;
 }
+
+.chatbot-info .redirect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  width: fit-content;
+  height: 36px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.chatbot-info .redirect:hover {
+  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
+}
+
 @keyframes chatZoom {
   0% {
     transform: scale(1);

@@ -1,8 +1,8 @@
 .main-layout {
   display: flex;
   flex: 1;
-  height: 100vh;
-  flex-direction: row;
+  height: 100dvh;
+  flex-direction: column;
   font-family: 'Mulish', sans-serif;
   overflow: hidden;
   background: #fff;

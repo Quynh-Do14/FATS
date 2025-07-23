@@ -427,6 +427,10 @@
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 }
+.homepage-container .introduction iframe {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
 
 @keyframes topTo {
   0% {
@@ -881,7 +885,16 @@
   display: block;
   margin: 0 auto;
 }
-
+.homepage-container .finance .finance-content iframe {
+  border-radius: 16px;
+  max-height: 300px;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
 .homepage-container .finance img:hover,
 .homepage-container .finance video:hover {
   transform: scale(1.05);

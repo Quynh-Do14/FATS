@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 import { isTokenStoraged } from "@/infrastructure/utils/storage";
 import { ROUTE_PATH } from "@/core/common/appRouter";
 import { useRouter } from "next/navigation";
-import { configFileURL, configImageURL } from "@/infrastructure/helper/helper"
+import { configFileURL, configImageURL, getEmbedUrl } from "@/infrastructure/helper/helper"
 const IntroductionComponent = () => {
     const [token, setToken] = useState<boolean>(false);
     const [isLoadingToken, setIsLoadingToken] = useState<boolean>(false);
 
     const router = useRouter();
-
+    const url = "https://www.youtube.com/watch?v=zg5SUXqHQnA";
     useEffect(() => {
         const fetchToken = async () => {
             try {
@@ -38,6 +38,7 @@ const IntroductionComponent = () => {
             }
         }
     }
+
     return (
         <div className="introduction">
             <TitleComponent
@@ -65,9 +66,20 @@ const IntroductionComponent = () => {
                 /> */}
             </div>
             {/* <img src={introduction.src} alt="" className="img top" /> */}
-            <video width="100%" height="auto" autoPlay muted loop playsInline controls>
+            {/* <video width="100%" height="auto" autoPlay muted loop playsInline controls>
                 <source src={configFileURL("heroVideo.mp4")} type="video/mp4" />
-            </video>
+            </video> */}
+
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                <iframe
+                    src={getEmbedUrl(url)}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title="YouTube video"
+                />
+            </div>
         </div >
     )
 }

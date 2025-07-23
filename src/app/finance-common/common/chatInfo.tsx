@@ -80,6 +80,9 @@ const ChatBotInfo = (props: Props) => {
                         setLoading={setLoading}
                     />
                 </div>
+                <a href={"https://www.youtube.com/watch?v=VJK6wijgeaw"} target='_blank' className="redirect">
+                    Xem video hướng dẫn
+                </a>
             </div>
         )
     }

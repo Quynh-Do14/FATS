@@ -266,6 +266,7 @@
 
 .alert-common a {
   text-decoration: underline;
+  color: #fff;
 }
 .alert-common .level {
   display: flex;

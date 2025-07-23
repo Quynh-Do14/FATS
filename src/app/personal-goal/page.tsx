@@ -800,7 +800,7 @@ const GoalSpendingPage = () => {
                     </a>
                 </Menu.Item> */}
                 {
-                    item.startDate
+                    item.startDate && !item.achieved
                     &&
                     <Menu.Item className='info-admin' onClick={() => onOpenModalAchive(item.id)}>
                         <div className='info-admin-title px-1 py-2 flex items-center' >
@@ -951,9 +951,13 @@ const GoalSpendingPage = () => {
                                                                     && (
                                                                         goal.achieved
                                                                             ?
-                                                                            <div className='is-done'>Hoàn thành</div>
+                                                                            <div className='is-complete'>Đã hoàn thành</div>
                                                                             :
-                                                                            <div className='is-not-done'>Chưa đạt</div>
+                                                                            goal.currentAmount >= goal.goalAmount
+                                                                                ?
+                                                                                <div className='is-done'>Hoàn thành</div>
+                                                                                :
+                                                                                <div className='is-not-done'>Chưa đạt</div>
                                                                     )
                                                                 }
                                                             </div>

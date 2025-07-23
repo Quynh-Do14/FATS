@@ -5,7 +5,7 @@ import thumb2 from "@/assets/images/thumbnail/thumb2.png"
 import thumb3 from "@/assets/images/thumbnail/thumb3.png"
 import { Col, Row } from 'antd'
 import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent'
-import { configFileURL, configImageURL } from '@/infrastructure/helper/helper'
+import { configFileURL, configImageURL, getEmbedUrl } from '@/infrastructure/helper/helper'
 
 const finance = [
     {
@@ -52,6 +52,7 @@ const AnimateOnScroll = ({ children }: any) => {
 }
 
 const FinanceComponent = () => {
+    const url = "https://www.youtube.com/watch?v=VJK6wijgeaw";
     return (
         <div className="finance">
             <TitleComponent
@@ -92,9 +93,19 @@ const FinanceComponent = () => {
                     <AnimateOnScroll>
                         <Row gutter={[0, 20]} align="middle" justify="space-between">
                             <Col xs={24} md={11}>
-                                <video width="100%" height="auto" autoPlay muted loop playsInline controls>
+                                {/* <video width="100%" height="auto" autoPlay muted loop playsInline controls>
                                     <source src={configFileURL("manual.mp4")} type="video/mp4" />
-                                </video>
+                                </video> */}
+                                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                                    <iframe
+                                        src={getEmbedUrl(url)}
+                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                        frameBorder="0"
+                                        allow="autoplay; encrypted-media"
+                                        allowFullScreen
+                                        title="YouTube video"
+                                    />
+                                </div>
                             </Col>
                             <Col xs={24} md={11}>
                                 <h3 className="title">Chào mừng đến với FATS</h3>
