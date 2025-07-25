@@ -45,6 +45,48 @@ class HistoryService {
             setLoading(false);
         }
     };
+    async DeleteSpend(id: string, setLoading: (loading: boolean) => void) {
+        setLoading(true)
+        try {
+            return await RequestService
+                .delete(`${Endpoint.History.Personal.DeleteSpend}/${id}`)
+                .then(response => {
+                    if (response) {
+                        return response
+                    }
+                    setLoading(false)
+                    SuccessMessage("Xóa lịch sử thành công", "")
+                    return response;
+                });
+        } catch (error: any) {
+            FailMessage("Xóa lịch sử không thành công", error.response.data.message)
+
+            console.error(error)
+        } finally {
+            setLoading(false);
+        }
+    };
+    async DeleteIncome(id: string, setLoading: (loading: boolean) => void) {
+        setLoading(true)
+        try {
+            return await RequestService
+                .delete(`${Endpoint.History.Personal.DeleteIncome}/${id}`)
+                .then(response => {
+                    if (response) {
+                        return response
+                    }
+                    setLoading(false)
+                    SuccessMessage("Xóa lịch sử thành công", "")
+                    return response;
+                });
+        } catch (error: any) {
+            FailMessage("Xóa lịch sử không thành công", error.response.data.message)
+
+            console.error(error)
+        } finally {
+            setLoading(false);
+        }
+    };
 }
 
 const historyService = new HistoryService();

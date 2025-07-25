@@ -185,11 +185,11 @@ const HeaderClient = (props: Props) => {
                         Constants.MenuClient.List.map((item, index) => {
                             if (!item.private) {
                                 return (
-                                    <a
+                                    <Link
                                         href={item.link}
                                         key={index}
                                         className={`${conditionActive(item.link)}`}
-                                    >{item.label}</a>
+                                    >{item.label}</Link>
                                 )
                             }
                             else {

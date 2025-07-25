@@ -5,6 +5,8 @@ import "../../assets/styles/components/modal.css"
 import { CloseOutlined } from '@ant-design/icons';
 import UploadImageAvatar from '../../infrastructure/common/components/input/upload-img-avatar';
 import { ButtonDesign } from '../../infrastructure/common/components/button/buttonDesign';
+import InputSelectCommon from '@/infrastructure/common/components/input/select-common';
+import Constants from '@/core/common/constants';
 
 type Props = {
     handleOk: () => void,
@@ -67,6 +69,18 @@ const ModalCreateTeam = (props: Props) => {
                             validate={validate}
                             setValidate={setValidate}
                             submittedTime={submittedTime}
+                        />
+                        <InputSelectCommon
+                            label={'Loại nhóm'}
+                            attribute={'familyTeam'}
+                            isRequired={true}
+                            setData={setData}
+                            dataAttribute={data.familyTeam}
+                            disabled={false}
+                            validate={validate}
+                            setValidate={setValidate}
+                            submittedTime={submittedTime}
+                            listDataOfItem={Constants.FamilyTeam.List}
                         />
                     </Col>
                     <Col span={24}>

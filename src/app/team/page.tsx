@@ -95,6 +95,7 @@ const TeamPage = () => {
                     {
                         image: dataRequest.image,
                         name: dataRequest.name,
+                        familyTeam: dataRequest.familyTeam,
                     },
                     () => {
                         setIsOpenCreate(false);

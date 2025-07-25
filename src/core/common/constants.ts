@@ -225,4 +225,10 @@ export default class Constants {
             { label: "Hồ sơ", value: 3 },
         ]
     }
+    static FamilyTeam = class {
+        static List = [
+            { label: "Gia đình", value: "true" },
+            { label: "Quỹ nhóm", value: "false" },
+        ]
+    }
 };

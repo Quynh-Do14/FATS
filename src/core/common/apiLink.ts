@@ -142,6 +142,8 @@ export class Endpoint {
         static Personal = class {
             static Spend = "/spends/user/all"
             static Income = "/incomes/user/all"
+            static DeleteSpend = "/spends/user/delete"
+            static DeleteIncome = "/incomes/user/delete"
         }
         static Team = class {
             static Spend = "/spends/team/all"

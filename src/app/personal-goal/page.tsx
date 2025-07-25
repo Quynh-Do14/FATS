@@ -858,8 +858,8 @@ const GoalSpendingPage = () => {
                                 setMessages={setMessages}
                                 idGoal={String("")}
                                 loading={loadingBot}
-                                setLoading={setLoadingBot} />
-
+                                setLoading={setLoadingBot}
+                            />
                         </Col>
                         <Col xs={24} sm={24} md={14} lg={8} xxl={8}>
                             <BudgetInfo />

@@ -11,6 +11,7 @@ import authService from '../../repositories/auth/service/auth.service';
 import { ButtonDesign } from '../components/button/buttonDesign';
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 type Props = {
     isOpen: boolean,
@@ -157,7 +158,7 @@ const NavbarComponent = (props: Props) => {
                     {Constants.MenuClient.List.map((item, index) => {
                         if (!item.private) {
                             return (
-                                <a
+                                <Link
                                     href={item.link}
                                     key={index}
                                 >
@@ -167,7 +168,7 @@ const NavbarComponent = (props: Props) => {
                                         </span>
                                         <span>{item.label}</span>
                                     </li>
-                                </a>
+                                </Link>
                             )
                         }
                         else {
