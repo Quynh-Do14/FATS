@@ -58,8 +58,6 @@ const DrawerSelectCategory = (props: Props) => {
                 <Row gutter={[20, 20]}>
                     {
                         listIcon?.map((item, index) => {
-                            console.log("item", item);
-
                             return (
                                 <Col xs={8} sm={8} md={4} key={index}>
                                     <div className={`flex justify-center`}>

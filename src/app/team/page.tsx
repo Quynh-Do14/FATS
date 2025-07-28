@@ -84,6 +84,7 @@ const TeamPage = () => {
             });
         }
     }, [selectedTeam]);
+    console.log("dataRequest", dataRequest);
 
     const onCreateTeamAsync = async () => {
 
@@ -108,6 +109,7 @@ const TeamPage = () => {
                 await teamService.CreateTeam({
                     image: dataRequest.image,
                     name: dataRequest.name,
+                    familyTeam: dataRequest.familyTeam,
                 },
                     () => {
                         setIsOpenCreate(false);
@@ -280,7 +282,6 @@ const TeamPage = () => {
                                 </div>
                             </Menu.Item>
                     )
-
                 }
                 {
                     String(profileState.username) !== String(item.teamLeader?.username)
@@ -306,8 +307,7 @@ const TeamPage = () => {
                         </Menu.Item>
                     )
                 }
-
-            </Menu >
+            </Menu>
         )
     };
 

@@ -15,7 +15,7 @@ import { FullPageLoading } from "@/infrastructure/common/components/controls/loa
 import "@/assets/styles/page/team.css";
 import Loading from "./loading";
 
-const JoinTeam = ({ params }: { params: { id: string } }) => {
+const JoinTeam = ({ params }: { params: { slug: string } }) => {
     const [loading, setLoading] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [detailTeam, setDetailTeam] = useState<any>({});
@@ -25,7 +25,7 @@ const JoinTeam = ({ params }: { params: { id: string } }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const teamId = searchParams.get("teamId");
-    const id = params.id;
+    const id = params.slug;
 
     useEffect(() => {
         const fetchToken = async () => {
@@ -40,6 +40,8 @@ const JoinTeam = ({ params }: { params: { id: string } }) => {
         };
         fetchToken();
     }, []);
+    console.log("params", params);
+    console.log("teamId", teamId);
 
     const onJoinTeamAsync = async () => {
         try {
@@ -78,7 +80,7 @@ const JoinTeam = ({ params }: { params: { id: string } }) => {
             <LayoutClient>
                 <BannerCommon
                     title={"Quỹ nhó nhóm"}
-                    sub={"Tham gia nhóTham gia nhóm"}
+                    sub={"Tham gia nhóm"}
                     backgroundUrl={banner2.src}
                 />
                 <div className="team-container padding-common">
@@ -130,7 +132,7 @@ const JoinTeam = ({ params }: { params: { id: string } }) => {
                                         }
                                         className="join-btn"
                                     >
-                                        {token ? "Tham gia nhóTham gia nh\xF3m" : "Đăng nhập"}
+                                        {token ? "Tham gia nhóm" : "Đăng nhập"}
                                     </button>
                                 </div>
                             </div>

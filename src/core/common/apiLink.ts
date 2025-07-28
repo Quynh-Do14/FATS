@@ -170,4 +170,9 @@ export class Endpoint {
         static DeleteAdmin = "/blogs/admin/delete"
         static GetRelation = "/blogs/public/related"
     }
+
+    static TeamLog = class {
+        static Get = "/teamlogs/my-goal"
+        static Update = "/teamlogs/confirm"
+    }
 }

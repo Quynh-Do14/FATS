@@ -482,7 +482,7 @@ const GoalSpendingTeamPage = () => {
         return (
             <Menu className='action-admin'>
                 < Menu.Item className='info-admin'>
-                    <a href={`team/team-finance/${item.id}?idTeam=${id}`}>
+                    <a href={`/team/team-finance/${item.id}?idTeam=${id}`}>
                         <div className='info-admin-title px-1 py-2 flex items-center'>
                             <i className="fa fa-users" aria-hidden="true"></i>
                             Xem mục tiêu

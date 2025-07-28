@@ -78,7 +78,7 @@ const JoinTeam = ({ params }: { params: { id: string } }) => {
             <LayoutClient>
                 <BannerCommon
                     title={"Quỹ nhó nhóm"}
-                    sub={"Tham gia nhóTham gia nhóm"}
+                    sub={"Tham gia nhóm"}
                     backgroundUrl={banner2}
                 />
                 <div className="team-container padding-common">
@@ -130,7 +130,7 @@ const JoinTeam = ({ params }: { params: { id: string } }) => {
                                         }
                                         className="join-btn"
                                     >
-                                        {token ? "Tham gia nhóTham gia nh\xF3m" : "Đăng nhập"}
+                                        {token ? "Tham gia nhóm" : "Đăng nhập"}
                                     </button>
                                 </div>
                             </div>

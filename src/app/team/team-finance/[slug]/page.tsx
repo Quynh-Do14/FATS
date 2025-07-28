@@ -32,6 +32,9 @@ import BarChartStatic from "@/app/finance-common/common/barChart";
 import OverviewComponent from "@/app/finance-common/common/overview";
 import StaticComponent from "@/app/finance-common/common/static";
 import PieChart from "@/app/finance-common/common/pieChart";
+import TeamLogComponent from "@/app/finance-common/common/teamLog";
+import { list } from "postcss";
+import teamLogService from "@/infrastructure/repositories/team/teamLog.service";
 
 ChartJS.register(
     LineElement,
@@ -79,6 +82,7 @@ const TeamFinancePage = () => {
     const [dataTable, setDataTable] = useState<any[]>([]);
     const [dataTableMember, setDataTableMember] = useState<any[]>([]);
     const [spendDataTable, setSpendDataTable] = useState<any[]>([]);
+    const [listTeamLog, setListTeamLog] = useState<Array<any>>([]);
 
     const [statisticsByTime, setStatisticsByTime] = useState<any>({
         labels: [],
@@ -326,11 +330,38 @@ const TeamFinancePage = () => {
         }
     };
 
+    //Team Log
+    const onGetListTeamLogAsync = async () => {
+        try {
+            await teamLogService.GetTeamLog(
+                String(id),
+                setLoading
+            ).then((res) => {
+                setListTeamLog(res.content);
+            })
+        }
+        catch (error) {
+            console.error(error);
+        }
+    };
+
+    // const onOpenModalTeamLog = () => {
+    //     setIsOpenModalAddMember(!isOpenModalAddMember);
+    // };
+
+    // const onCloseModalTeamlog = () => {
+    //     setIsOpenModalAddMember(false);
+    // };
+
+    //Team Log
+
+
     useEffect(() => {
         onGetDetailGoalAsync().then(_ => { });
         onGetChatBoxAsync().then(_ => { });
         onGetSpendTeamByGoalStatisticalDaily().then(_ => { });
         onGetStaticByTimeAsync().then(_ => { });
+        onGetListTeamLogAsync().then(_ => { });
     }, [timeRange]);
 
     useEffect(() => {
@@ -364,6 +395,7 @@ const TeamFinancePage = () => {
                     onGetSpendTeamByGoalStatistical().then(_ => { });
                     onGetIncomeTeamByGoalStatistical().then(_ => { });
                     onGetStaticByTimeAsync().then(_ => { });
+                    onGetListTeamLogAsync().then(_ => { });
                 });
             },
         });
@@ -449,9 +481,9 @@ const TeamFinancePage = () => {
                             />
                         </Col>
                         <Col xs={24} sm={24} md={14} lg={16} className="overflow-auto">
-                            {/* <BarChartStatic
+                            <BarChartStatic
                                 statisticsByTime={statisticsByTime}
-                            /> */}
+                            />
                         </Col>
                         <Col sm={24} md={10} lg={8}>
                             <OverviewComponent
@@ -485,11 +517,17 @@ const TeamFinancePage = () => {
                             />
                         </Col>
                         <Col xs={24} sm={24} md={10} lg={8}>
-                            {/* <PieChart
+                            <PieChart
                                 selectedTab={selectedTab}
                                 spendData={spendData}
                                 incomeData={incomeData}
-                            /> */}
+                            />
+                        </Col>
+                        <Col span={24}>
+                            <TeamLogComponent
+                                dataTable={listTeamLog}
+                                setLoading={setLoading}
+                            />
                         </Col>
                     </Row>
                     <ChatButton

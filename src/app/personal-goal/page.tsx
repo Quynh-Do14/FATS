@@ -834,10 +834,69 @@ const GoalSpendingPage = () => {
         router.push(ROUTE_PATH.PAYMENT_INFO)
     }
     ///
+    const [step, setStep] = useState<number>(0);
+    const [isDirection, setIsDirection] = useState<boolean>(true);
+    const steps = [
+        {
+            target: 'step-1',
+            content: 'Tạo ngân sách',
+        },
+        {
+            target: 'step-2',
+            content: 'Tạo mục tiêu',
+        },
+        {
+            target: 'step-3',
+            content: 'Tạo danh mục',
+        },
+    ]
+    const onPreviousDirect = () => {
+        if (step === 0) {
+            setStep(steps.length - 1);
+        }
+        else {
+            setStep(step - 1);
+        }
+    }
+
+    const onNextDirect = () => {
+        if (step === steps.length - 1) {
+            setStep(0);
+        }
+        else {
+            setStep(step + 1);
+        }
+        steps.map((item, index) => {
+            if (step === index) {
+                const stepDom = document.getElementById(item.target);
+                if (!stepDom) return;
+                const rect = stepDom.getBoundingClientRect();
+
+                stepDom?.scrollIntoView({ behavior: 'smooth', inline: "nearest" })
+                stepDom?.classList.add('bg-red-500');
+                const direction = document.getElementById("direction");
+                direction?.classList.add('block');
+                direction?.classList.remove('hidden');
+
+                direction?.classList.add(`top-[${Math.round(rect.top + window.scrollY)}px]`);
+                direction?.classList.add(`left-[${Math.round(rect.right + window.scrollY)}px]`);
+                direction?.classList.add('bg-red-500');
+                direction?.classList.add('block');
+            }
+        })
+    }
 
     return (
         <LayoutClient>
             <div className="personal-finance-container">
+                {
+                    isDirection
+                    &&
+                    <div className="direction-container hidden" id="direction">
+                        <div>Bước 1</div>
+                    </div>
+
+                }
                 <BannerCommon
                     title={"Tài chính cá nhân"}
                     sub={"Tài chính"}
@@ -1006,7 +1065,7 @@ const GoalSpendingPage = () => {
                                         );
                                     })}
                                 </Row>
-                                <div className="flex justify-center gap-2 flex-wrap">
+                                <div className="flex justify-center gap-2 flex-wrap" id="step-2">
                                     <ButtonDesign
                                         classColor={'green'}
                                         onClick={onOpenModalCreate}

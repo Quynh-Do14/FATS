@@ -32,13 +32,12 @@ const InputSelectCommon = (props: Props) => {
 
     const [value, setValue] = useState("");
 
-    const onChange = async (val: any) => {
-        setValue(val || "");
+    const onChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setValue(e.target.value || "");
         setData({
-            [attribute]: val
+            [attribute]: e.target.value
         });
     };
-
     let labelLower = label.toLowerCase();
     const validateBlur = (isImplicitChange = false) => {
         validateFields(isImplicitChange, attribute, !value, setValidate, validate, !value ? `Vui lòng chọn ${labelLower}` : "");

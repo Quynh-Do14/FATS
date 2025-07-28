@@ -70,7 +70,7 @@ const BudgetInfo = () => {
                 </div>
 
             </div>
-            <a href={ROUTE_PATH.PROFILE} className="redirect">
+            <a href={ROUTE_PATH.PROFILE} className="redirect" id='step-1'>
                 Cập nhật ngân sách
             </a>
         </div>
