@@ -41,6 +41,12 @@ export default class Constants {
                 icon: "fa fa-users"
             },
             {
+                label: "Tư vấn",
+                link: ROUTE_PATH.ADVISOR,
+                private: true,
+                icon: "fa fa-users"
+            },
+            {
                 label: "Tin tức",
                 link: ROUTE_PATH.BLOG,
                 private: false,

@@ -27,6 +27,7 @@ export const ROUTE_PATH = {
     PROFILE: `${PREFIX}/profile`,
     JOIN_TEAM: `${PREFIX}/members/t/join/:id`,
 
+    ADVISOR: `${PREFIX}/advisor`,
     CONTACT: `${PREFIX}/contact`,
 
     USE_PRIVATE_POLICY: `${PREFIX}/policy/user-private-policy`,

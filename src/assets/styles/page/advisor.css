@@ -1,0 +1,207 @@
+.advisor-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+}
+
+@media only screen and (min-width: 1600px) {
+  .advisor-container .padding-common {
+    padding: 120px 400px 80px;
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+  .advisor-container .padding-common {
+    padding: 120px 300px 80px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .advisor-container .padding-common {
+    padding: 120px 200px 80px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .advisor-container .padding-common {
+    padding: 120px 100px 80px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .advisor-container .padding-common {
+    padding: 120px 60px 80px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .advisor-container .padding-common {
+    padding: 80px 30px 20px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .advisor-container .padding-common {
+    padding: 80px 20px 20px;
+  }
+}
+
+.advisor-container .header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 60px;
+  padding: 8px 12px;
+  box-shadow: 5px 5px 10px -10px #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.advisor-container .header .status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@keyframes rotateIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.advisor-container .header .rotate {
+  transition: all 0.3s;
+  animation: rotateIcon infinite 2s linear;
+}
+.advisor-container .header .title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #003333;
+}
+
+.advisor-container .header .status-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.advisor-container .header .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3bb78f, #003333);
+}
+
+.advisor-container .header .status-text {
+  font-size: 14px;
+  line-height: 24px;
+  color: #99cc99;
+}
+
+.advisor-container .chat-box {
+  padding: 15px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: calc(100vh - 300px);
+}
+.advisor-container .chat-box .human-name {
+  color: #003333;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0%;
+}
+.advisor-container .chat-box .human-chat {
+  background: #003333;
+  max-width: 90%;
+  gap: 10px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  overflow-wrap: break-word;
+  z-index: 10;
+  padding: 16px;
+
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+.advisor-container .chat-box .human-chat-img {
+  background: #003333;
+  max-width: 50%;
+  gap: 10px;
+}
+.advisor-container .chat-box .ai-chat {
+  background: #ededed;
+  max-width: 90%;
+  gap: 10px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  overflow-wrap: break-word;
+  z-index: 10;
+  padding: 16px;
+
+  color: #666666;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0%;
+}
+.advisor-container .scroll-button {
+  position: absolute;
+  bottom: 80px;
+  right: 22px;
+  background: #003333;
+  border: 1px solid #fff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 11;
+}
+
+.advisor-container .scroll-button:hover {
+  transform: translateY(-3px);
+}
+.advisor-container .input-chat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 22px;
+  gap: 12px;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 5px 4px 20px 0px #00000021;
+  margin: 12px 15px 20px;
+}
+.advisor-container .input-chat input {
+  border: none;
+  width: 100%;
+}
+.advisor-container .input-chat input:focus {
+  outline: none;
+}
+
+.advisor-container .input-chat i {
+  color: #003333;
+  font-size: 20px;
+}
+.title-chat {
+  font-size: 20px;
+}
+.advisor-container .input-chat .upload-img-bill input[type='file'] {
+  display: none;
+}
+.advisor-container .input-chat .upload-img-bill label {
+  cursor: pointer;
+}

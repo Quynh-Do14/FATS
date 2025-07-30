@@ -29,14 +29,14 @@ const setTokens = (accessToken: string, refreshToken: string) => {
         path: '/',
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict',
-        expires: expiresAt,
+        expires: 7,
     });
 
     Cookies.set('refreshToken', refreshToken, {
         path: '/',
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict',
-        expires: expiresAt,
+        expires: 7,
     });
 };
 const clearTokens = () => {

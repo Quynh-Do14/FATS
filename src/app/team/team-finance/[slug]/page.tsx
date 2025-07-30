@@ -523,12 +523,17 @@ const TeamFinancePage = () => {
                                 incomeData={incomeData}
                             />
                         </Col>
-                        <Col span={24}>
-                            <TeamLogComponent
-                                dataTable={listTeamLog}
-                                setLoading={setLoading}
-                            />
-                        </Col>
+                        {
+                            !detailGoal?.team?.familyTeam
+                            &&
+                            <Col span={24}>
+                                <TeamLogComponent
+                                    dataTable={listTeamLog}
+                                    setLoading={setLoading}
+                                />
+                            </Col>
+                        }
+
                     </Row>
                     <ChatButton
                         titleChat={detailGoal.name}

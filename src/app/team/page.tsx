@@ -14,6 +14,10 @@ import DialogConfirmCommon from "@/infrastructure/common/components/modal/dialog
 import { useRecoilValue } from "recoil";
 import { ProfileState } from "@/core/atoms/profile/profileState";
 import banner2 from "@/assets/images/banner/banner2.png";
+import { SelectSearchCommon } from "@/infrastructure/common/components/input/select-search-common";
+import SelectFilterCommon from "@/infrastructure/common/components/input/select-filter";
+import Constants from "@/core/common/constants";
+import Image from "next/image";
 const TeamPage = () => {
     const [listTeam, setListTeam] = useState<Array<any>>([]);
     const [loading, setLoading] = useState(false);
@@ -30,6 +34,7 @@ const TeamPage = () => {
     const [isOpenModalUnLock, setIsOpenModalUnLock] = useState<boolean>(false);
     const [isOpenModalDelete, setIsOpenModalDelete] = useState<boolean>(false);
     const [isOpenModalLeave, setIsOpenModalLeave] = useState<boolean>(false);
+    const [teamType, setTeamType] = useState<string>("true");
 
     const profileState = useRecoilValue(ProfileState).data
     const setDataRequest = (data: any) => {
@@ -53,6 +58,7 @@ const TeamPage = () => {
         const param = {
             // page: 0,
             // size: 4,
+            teamType: teamType
         }
         try {
             await teamService.GetTeam(
@@ -68,7 +74,7 @@ const TeamPage = () => {
     }
     useEffect(() => {
         onGetListTeamAsync().then(_ => { });
-    }, []);
+    }, [teamType]);
 
     const onOpenModalCreate = (item: any) => {
         setIsOpenCreate(!isOpenModalCreate)
@@ -84,7 +90,6 @@ const TeamPage = () => {
             });
         }
     }, [selectedTeam]);
-    console.log("dataRequest", dataRequest);
 
     const onCreateTeamAsync = async () => {
 
@@ -236,6 +241,10 @@ const TeamPage = () => {
         };
     }
     //Rời nhóm
+
+    const onSelectTypeTeam = (event: any) => {
+        setTeamType(event.target.value)
+    }
     const listAction = (item: any) => {
         return (
             <Menu className='action-admin'>
@@ -320,7 +329,28 @@ const TeamPage = () => {
             />
             <div className="team-container padding-common">
                 <div className="content">
-                    <h2 className="text-xl font-bold text-center text-gray-800">Danh sách các quỹ nhóm</h2>
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 rounded-2xl bg-white/70 backdrop-blur-lg shadow-xl border border-gray-100">
+                        <div className="flex items-center gap-3 flex-1">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg">
+                                <i className="fa fa-coins text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 className="text-2xl font-extrabold text-gray-900">Danh sách các quỹ nhóm</h2>
+                                <p className="text-sm text-gray-500">Quản lý & phân loại theo nhóm</p>
+                            </div>
+                        </div>
+
+                        <div className="flex-1 w-full md:w-auto">
+                            <SelectFilterCommon
+                                label="Loại nhóm"
+                                listDataOfItem={Constants.FamilyTeam.List}
+                                onChange={onSelectTypeTeam}
+                            />
+                        </div>
+                    </div>
+
+
+
                     {/* Danh sách mục tiêu */}
                     <Row gutter={[20, 20]}>
                         {listTeam.map((item, index) => {
@@ -332,16 +362,18 @@ const TeamPage = () => {
                                     <Dropdown overlay={() => listAction(item)} trigger={['click']}>
                                         <div className="box">
                                             <div style={{ position: "relative", width: "100%", height: "25vh", overflow: "hidden" }}>
-                                                <div
-                                                    className="img-bg"
-                                                    style={{
-                                                        background: `url(${configImageURL(item.imageCode)})`,
-                                                        backgroundSize: "cover",
-                                                        backgroundRepeat: "no-repeat",
-                                                        backgroundPosition: "center",
-                                                        width: "100%",
-                                                        height: "25vh"
-                                                    }}>
+                                                <div className="image-wrapper">
+                                                    <Image
+                                                        src={configImageURL(item.imageCode)}
+                                                        alt={item.name}
+                                                        layout="fill"
+                                                        objectFit="cover"
+                                                        className="img-bg"
+                                                    />
+                                                    {
+                                                        !item?.active &&
+                                                        <div className="overlay"></div>
+                                                    }
                                                 </div>
                                                 {
                                                     !item?.active

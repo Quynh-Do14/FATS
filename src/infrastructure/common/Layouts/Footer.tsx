@@ -8,7 +8,7 @@ import ytb from "@/assets/images/icon/ytb.png"
 import tw from "@/assets/images/icon/tw.png"
 import Script from "next/script"
 import Link from "next/link";
-
+import bocongthuong from "@/assets/images/bo-cong-thuong.png"
 const FooterClient = () => {
     return (
         <footer className="footer-container padding-common">
@@ -77,13 +77,29 @@ const FooterClient = () => {
                         </p>
                     </div>
                 </Col>
-                <Col span={24}>
-                    <div className="flex justify-center">
-                        <a href="//www.dmca.com/Protection/Status.aspx?ID=60d23d0c-f8a6-4d1b-b3fc-b90faaa075f9" title="DMCA.com Protection Status" className="dmca-badge"> <img src="https://images.dmca.com/Badges/dmca-badge-w150-5x1-10.png?ID=60d23d0c-f8a6-4d1b-b3fc-b90faaa075f9" alt="DMCA.com Protection Status" /></a>
-                        <Script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" />
-                    </div>
-                </Col>
             </Row>
+            <div className="flex flex-col items-center justify-center gap-4 mt-6">
+                <a href="http://online.gov.vn/Website/chi-tiet-134772" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity flex justify-center">
+                    <img
+                        src={bocongthuong.src}
+                        alt="FATS"
+                        width={"50%"}
+                        className="h-auto object-contain"  // Adjust width as needed
+                    />
+                </a>
+                <a
+                    href="//www.dmca.com/Protection/Status.aspx?ID=60d23d0c-f8a6-4d1b-b3fc-b90faaa075f9"
+                    title="DMCA.com Protection Status"
+                    className="dmca-badge hover:opacity-80 transition-opacity"
+                >
+                    <img
+                        src="https://images.dmca.com/Badges/dmca-badge-w150-5x1-10.png?ID=60d23d0c-f8a6-4d1b-b3fc-b90faaa075f9"
+                        alt="DMCA.com Protection Status"
+                        className="h-8 w-auto"  // Adjust height as needed
+                    />
+                </a>
+                <Script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js" />
+            </div>
         </footer>
     )
 }

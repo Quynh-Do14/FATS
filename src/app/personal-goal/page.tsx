@@ -850,52 +850,115 @@ const GoalSpendingPage = () => {
             content: 'Tạo danh mục',
         },
     ]
-    const onPreviousDirect = () => {
-        if (step === 0) {
-            setStep(steps.length - 1);
-        }
-        else {
-            setStep(step - 1);
-        }
-    }
 
+    useEffect(() => {
+        if (isDirection) {
+            updateGuideUI(step);
+        }
+    }, [isDirection]);
+
+    const scrollElementToCenter = (el: HTMLElement) => {
+        const elementRect = el.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Tính vị trí top để scroll sao cho element nằm giữa màn hình
+        const offsetTop = elementRect.top + scrollTop;
+        const elementCenterY = offsetTop - (window.innerHeight / 2) + (elementRect.height / 2);
+
+        window.scrollTo({
+            // top: elementCenterY,
+            behavior: 'smooth',
+        });
+    };
+
+    const updateGuideUI = (stepIndex: number) => {
+        const item = steps[stepIndex];
+        const stepDom = document.getElementById(item.target);
+        const tooltip = document.getElementById("direction");
+
+        if (!stepDom || !tooltip) return;
+
+        // Scroll phần tử vào chính giữa màn hình
+        scrollElementToCenter(stepDom);
+
+        // Highlight phần tử
+        document.querySelectorAll('.guide-highlight').forEach(el => {
+            el.classList.remove('guide-highlight');
+        });
+        stepDom.classList.add('guide-highlight');
+
+        // Tính vị trí tooltip nằm dưới element và căn giữa theo chiều ngang
+        const rect = stepDom.getBoundingClientRect();
+        const tooltipWidth = 260; // bạn có thể điều chỉnh hoặc lấy dynamic nếu cần
+        const top = rect.bottom + window.scrollY + 12;
+        const left = rect.left + window.scrollX + rect.width / 2 - tooltipWidth / 2;
+        console.log("top", top);
+        console.log("left", left);
+
+        // tooltip.style.top = `${top}px`;
+        // tooltip.style.left = `${left}px`;
+        tooltip.style.top = `40%`;
+        tooltip.style.left = `50%`;
+        tooltip.style.width = `${tooltipWidth}px`;
+        tooltip.classList.remove('hidden');
+        tooltip.classList.add('block');
+    };
     const onNextDirect = () => {
-        if (step === steps.length - 1) {
-            setStep(0);
-        }
-        else {
-            setStep(step + 1);
-        }
-        steps.map((item, index) => {
-            if (step === index) {
-                const stepDom = document.getElementById(item.target);
-                if (!stepDom) return;
-                const rect = stepDom.getBoundingClientRect();
+        const nextStep = step + 1;
 
-                stepDom?.scrollIntoView({ behavior: 'smooth', inline: "nearest" })
-                stepDom?.classList.add('bg-red-500');
-                const direction = document.getElementById("direction");
-                direction?.classList.add('block');
-                direction?.classList.remove('hidden');
+        if (nextStep >= steps.length) {
+            setIsDirection(false); // Ẩn hướng dẫn khi kết thúc
+            return;
+        }
 
-                direction?.classList.add(`top-[${Math.round(rect.top + window.scrollY)}px]`);
-                direction?.classList.add(`left-[${Math.round(rect.right + window.scrollY)}px]`);
-                direction?.classList.add('bg-red-500');
-                direction?.classList.add('block');
-            }
-        })
-    }
+        setStep(nextStep);
+        updateGuideUI(nextStep);
+    };
+
+    const onPreviousDirect = () => {
+        const prevStep = step === 0 ? steps.length - 1 : step - 1;
+        setStep(prevStep);
+        updateGuideUI(prevStep);
+    };
+
+    const onSkipGuide = () => {
+        setIsDirection(false);
+        document.querySelectorAll('.guide-highlight').forEach(el => {
+            el.classList.remove('guide-highlight');
+        });
+    };
 
     return (
         <LayoutClient>
             <div className="personal-finance-container">
+                {/* <button
+                    onClick={() => {
+                        setStep(0);
+                        setIsDirection(true);
+                        updateGuideUI(0);
+                    }}
+                    className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded shadow-md"
+                >
+                    ? Xem hướng dẫn
+                </button> */}
                 {
-                    isDirection
-                    &&
-                    <div className="direction-container hidden" id="direction">
-                        <div>Bước 1</div>
-                    </div>
-
+                    isDirection && (
+                        <div
+                            id="direction"
+                            className="fixed hidden z-50 bg-white text-black p-3 rounded shadow-lg transition-all"
+                        >
+                            <p className="text-sm">{steps[step]?.content}</p>
+                            <div className="flex justify-between mt-3">
+                                <button onClick={onPreviousDirect} className="text-gray-500 text-sm">⬅ Quay lại</button>
+                                <div className="flex gap-2">
+                                    <button onClick={onSkipGuide} className="text-red-500 text-sm">Bỏ qua</button>
+                                    <button onClick={onNextDirect} className="text-blue-500 text-sm">
+                                        {step === steps.length - 1 ? 'Kết thúc' : 'Tiếp theo ➡'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )
                 }
                 <BannerCommon
                     title={"Tài chính cá nhân"}

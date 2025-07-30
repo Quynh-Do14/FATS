@@ -9,7 +9,7 @@
 .attendanceContainer .section {
   background: white;
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -29,7 +29,8 @@
 
 .attendanceContainer .todayCard {
   /* background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); */
-background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%);
+  /* background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%); */
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   border-radius: 20px;
   padding: 25px;
   text-align: center;
@@ -71,7 +72,7 @@ background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%);
 
 .attendanceContainer .todayCard .todayDate {
   font-size: 1.1rem;
-  color: #333;
+  color: #fff;
   margin-bottom: 15px;
   font-weight: 600;
 }
@@ -101,7 +102,7 @@ background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%);
 .attendanceContainer .todayCard .rewardAmount {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  color: #fff;
   position: relative;
   z-index: 1;
 }
@@ -128,7 +129,7 @@ background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%);
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
-  min-width: 70px;
+  min-width: 100px;
 }
 
 .attendanceContainer .dayCard:hover {
@@ -137,13 +138,13 @@ background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%);
 }
 
 .attendanceContainer .dayCard.claimed {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-  border-color: #48cae4;
+  background: #dcfce7;
+  border-color: #22c55e;
 }
 
 .attendanceContainer .dayCard.today {
-  background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
-  border-color: #fdcb6e;
+  background: #dbeafe;
+  border-color: #3b82f6;
   animation: pulse 2s infinite;
 }
 
@@ -160,48 +161,48 @@ background: linear-gradient(135deg, #8fd3f4 0%, #a6e3e9 50%, #d0f4de 100%);
 }
 
 .attendanceContainer .dayCard.upcoming {
-  background: #f8f9fa;
-  border-color: #dee2e6;
+  background: #f8fafc;
+  border-color: #e2e8f0;
 }
 
 .attendanceContainer .dayCard .dayName {
-  font-size: 0.8rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
   color: #666;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .attendanceContainer .dayCard .dayStatus {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   padding: 4px 8px;
-  border-radius: 15px;
+  border-radius: 12px;
   margin: 8px 0;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .attendanceContainer .dayCard .statusClaimed {
-  background: #d4edda;
-  color: #155724;
+  background: #bbf7d0;
+  color: #166534;
 }
 
 .attendanceContainer .dayCard .statusToday {
-  background: #fff3cd;
-  color: #856404;
+  background: #bfdbfe;
+  color: #1e40af;
 }
 
 .attendanceContainer .dayCard .statusUpcoming {
-  background: #e2e3e5;
-  color: #6c757d;
+  background: #f1f5f9;
+  color: #64748b;
 }
 
 .attendanceContainer .dayCard .dayReward {
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .attendanceContainer .dayCard .smallCoin {

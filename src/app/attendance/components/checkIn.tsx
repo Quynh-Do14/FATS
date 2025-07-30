@@ -46,7 +46,7 @@ export default function CheckIn() {
                 </div>
                 <div className={styles.rewardAmount}>+100 xu</div>
                 <ButtonDesign
-                    classColor={'green'}
+                    classColor={'white'}
                     onClick={() => { }}
                     title={'Nhận xu'}
                     width={150}

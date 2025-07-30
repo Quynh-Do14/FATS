@@ -34,10 +34,10 @@ const AttendancePage = () => {
             <div className="padding-common">
                 <div className={styles.attendanceContainer}>
                     <Row gutter={[20, 20]} wrap>
-                        <Col md={24} lg={12}>
+                        <Col md={24} lg={24}>
                             <CheckIn />
                         </Col>
-                        <Col md={24} lg={12}>
+                        <Col md={24} lg={24}>
                             <Guide />
                         </Col>
                     </Row>

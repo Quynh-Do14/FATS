@@ -36,6 +36,9 @@
   bottom: 10%;
   right: 7%;
 }
+.chat-container .btn-chat i {
+  font-size: 24px !important;
+}
 
 .chat-box-container .header {
   display: flex;

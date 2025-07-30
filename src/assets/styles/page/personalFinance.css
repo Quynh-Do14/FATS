@@ -371,3 +371,9 @@
   margin: auto;
   z-index: 25;
 }
+
+.guide-highlight {
+  outline: 3px solid #ef4444; /* red-500 */
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}

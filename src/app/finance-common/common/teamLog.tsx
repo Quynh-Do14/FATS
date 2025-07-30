@@ -47,7 +47,7 @@ const TeamLogComponent = (props: Props) => {
     }
     return (
         <div className='box-common'>
-            <p className='title-box'>Hàng chờ</p>
+            <p className='title-box'>Giao dịch đang chờ</p>
             <table>
                 <thead className="bg-[#cce5ff]">
                     <tr className="text-[16px]">
@@ -65,7 +65,17 @@ const TeamLogComponent = (props: Props) => {
                                         } hover:bg-[#b3d8ff]`}
                                 >
                                     <td className="px-6 py-4">{item.message}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{item.type}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{
+                                        item.type == "dong_gop"
+                                            ?
+                                            "Đóng góp"
+                                            :
+                                            item.type == "rut_tien"
+                                                ?
+                                                "Rút tiền"
+                                                :
+                                                ""
+                                    }</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         {
                                             !item.active
