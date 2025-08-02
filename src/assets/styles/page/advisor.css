@@ -3,6 +3,7 @@
   flex-direction: column;
   overflow: hidden;
   background: #fff;
+  height: 100vh;
 }
 
 @media only screen and (min-width: 1600px) {
@@ -103,18 +104,17 @@
 
 .advisor-container .chat-box {
   padding: 15px;
-  overflow: auto;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 280px);
+  position: relative;
 }
-.advisor-container .chat-box .human-name {
-  color: #003333;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 22px;
-  letter-spacing: 0%;
+@media only screen and (max-width: 768px) {
+  .advisor-container .chat-box {
+    height: calc(100vh - 220px);
+  }
 }
 .advisor-container .chat-box .human-chat {
   background: #003333;
@@ -133,11 +133,7 @@
   line-height: 24px;
   letter-spacing: 0%;
 }
-.advisor-container .chat-box .human-chat-img {
-  background: #003333;
-  max-width: 50%;
-  gap: 10px;
-}
+
 .advisor-container .chat-box .ai-chat {
   background: #ededed;
   max-width: 90%;
@@ -155,9 +151,263 @@
   line-height: 24px;
   letter-spacing: 0%;
 }
+.advisor-container .chat-box .option {
+  width: 100%;
+}
+
+.advisor-container .chat-box .option ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.advisor-container .chat-box .option ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00669938;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #006699;
+  cursor: pointer;
+  width: fit-content;
+  height: 36px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.advisor-container .chat-box .plan-container {
+  background: #ededed;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.advisor-container .chat-box .plan-container .plan-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 16px;
+}
+
+.advisor-container .chat-box .plan-container .plan-header .plan-title {
+  color: #1a2b40;
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.advisor-container .chat-box .plan-container .plan-header .plan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.advisor-container .chat-box .plan-container .plan-summary {
+  background-color: #e6f7ff;
+  padding: 16px 20px;
+  border-radius: 12px;
+  color: #004085;
+  line-height: 1.6;
+  font-size: 14px;
+  border-left: 4px solid #1890ff;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-title {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.advisor-container
+  .chat-box
+  .plan-container
+  .plan-schedule
+  .schedule-item:hover {
+  background-color: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.advisor-container
+  .chat-box
+  .plan-container
+  .plan-schedule
+  .schedule-time-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-time {
+  background-color: #3b82f6;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-content {
+  flex: 1;
+}
+
+.advisor-container
+  .chat-box
+  .plan-container
+  .plan-schedule
+  .schedule-content
+  h4 {
+  margin: 0 0 6px 0;
+  color: #1e293b;
+  font-size: 16px;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Khoảng cách giữa icon và chữ */
+  color: #595959;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .schedule-reason {
+  margin: 8px 0 0 0;
+  color: #94a3b8;
+  font-size: 14px;
+  font-style: italic;
+  padding-left: 20px;
+  position: relative;
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .icon-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px; /* Tăng kích thước icon lên một chút */
+  height: 32px;
+  border-radius: 50%; /* Icon vẫn giữ hình tròn */
+  color: #ffffff; /* Đảm bảo màu trắng sáng cho icon */
+  font-size: 16px; /* Tăng kích thước font để icon rõ ràng hơn */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm đổ bóng nhẹ */
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+}
+
+/* Thêm hiệu ứng khi rê chuột vào */
+.advisor-container
+  .chat-box
+  .plan-container
+  .plan-schedule
+  .icon-container:hover {
+  transform: translateY(-2px); /* Icon nhích lên trên một chút */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng đậm hơn khi rê chuột */
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .location-icon {
+  background-color: #ff7043; /* Màu cam tươi tắn hơn */
+}
+
+.advisor-container .chat-box .plan-container .plan-schedule .cost-icon {
+  background-color: #4caf50; /* Màu xanh lá cây đậm và dễ nhìn hơn */
+}
+
+.advisor-container
+  .chat-box
+  .plan-container
+  .plan-schedule
+  .schedule-reason::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  background-color: #94a3b8;
+  border-radius: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .advisor-container .chat-box .plan-container .plan-schedule .schedule-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .advisor-container
+    .chat-box
+    .plan-container
+    .plan-schedule
+    .schedule-time-container {
+    margin-bottom: 4px;
+  }
+
+  .advisor-container .chat-box .plan-container .plan-schedule .schedule-time {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .advisor-container
+    .chat-box
+    .plan-container
+    .plan-schedule
+    .schedule-content
+    h4 {
+    font-size: 14px;
+  }
+
+  .advisor-container .chat-box .plan-container .plan-schedule .schedule-detail,
+  .advisor-container .chat-box .plan-container .plan-schedule .schedule-reason {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .advisor-container .chat-box .plan-container .plan-schedule .plan-schedule {
+    padding: 12px;
+  }
+
+  .advisor-container .chat-box .plan-container .plan-schedule .schedule-item {
+    padding: 10px;
+  }
+
+  .advisor-container .chat-box .plan-container .plan-schedule .schedule-title {
+    font-size: 18px;
+  }
+}
 .advisor-container .scroll-button {
   position: absolute;
-  bottom: 80px;
+  bottom: 140px;
   right: 22px;
   background: #003333;
   border: 1px solid #fff;
@@ -168,7 +418,11 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 11;
 }
-
+@media only screen and (max-width: 768px) {
+  .advisor-container .scroll-button {
+    bottom: 80px;
+  }
+}
 .advisor-container .scroll-button:hover {
   transform: translateY(-3px);
 }

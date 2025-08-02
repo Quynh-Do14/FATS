@@ -28,6 +28,9 @@ export const ROUTE_PATH = {
     JOIN_TEAM: `${PREFIX}/members/t/join/:id`,
 
     ADVISOR: `${PREFIX}/advisor`,
+    ADVISOR_ENTERTAINMENT: `${PREFIX}/advisor/entertainment`,
+    ADVISOR_INVEST: `${PREFIX}/advisor/invest`,
+
     CONTACT: `${PREFIX}/contact`,
 
     USE_PRIVATE_POLICY: `${PREFIX}/policy/user-private-policy`,

@@ -175,4 +175,15 @@ export class Endpoint {
         static Get = "/teamlogs/my-goal"
         static Update = "/teamlogs/confirm"
     }
+
+    static Advisor = class {
+        static Invest = class {
+            static Get = "/ai/invest/suggests"
+            static Add = "/ai/invest/suggest"
+        }
+        static Entertainment = class {
+            static Get = "/ai/play/suggests"
+            static Add = "/ai/play/suggest"
+        }
+    }
 }

@@ -16,7 +16,6 @@ import Loading from './loading';
 import deleteIcon from '@/assets/images/category/delete.png';
 import DialogConfirmCommon from '@/infrastructure/common/components/modal/dialogConfirm';
 
-
 const HistoryTransitionPage = () => {
     const [listHistory, setListHistory] = useState<Array<any>>([]);
     const [selectedTab, setSelectedTab] = useState<"income" | "spend">("spend")

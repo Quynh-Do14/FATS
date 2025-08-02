@@ -44,7 +44,19 @@ export default class Constants {
                 label: "Tư vấn",
                 link: ROUTE_PATH.ADVISOR,
                 private: true,
-                icon: "fa fa-users"
+                icon: "fa fa-users",
+                children: [
+                    {
+                        label: "Giải trí",
+                        link: ROUTE_PATH.ADVISOR_ENTERTAINMENT,
+                        icon: "fas fa-film"
+                    },
+                    {
+                        label: "Đầu tư",
+                        link: ROUTE_PATH.ADVISOR_INVEST,
+                        icon: "fas fa-chart-line"
+                    }
+                ],
             },
             {
                 label: "Tin tức",

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import '@/assets/styles/page/personalFinance.css'
 import { Col, Dropdown, Menu, Row } from "antd";
@@ -834,132 +834,148 @@ const GoalSpendingPage = () => {
         router.push(ROUTE_PATH.PAYMENT_INFO)
     }
     ///
-    const [step, setStep] = useState<number>(0);
-    const [isDirection, setIsDirection] = useState<boolean>(true);
+    const [currentStep, setCurrentStep] = useState<number>(0);
+    const [isGuideVisible, setIsGuideVisible] = useState<boolean>(false);
     const steps = [
         {
             target: 'step-1',
             content: 'Tạo ngân sách',
+            description: 'Bắt đầu bằng cách tạo ngân sách cơ bản của bạn',
         },
         {
             target: 'step-2',
-            content: 'Tạo mục tiêu',
+            content: 'Thêm mục tiêu',
+            description: 'Thêm các mục tiêu tài chính bạn muốn đạt được',
         },
         {
             target: 'step-3',
-            content: 'Tạo danh mục',
+            content: 'Phân bổ mục tiêu',
+            description: 'Phân bổ ngân sách cho từng mục tiêu cụ thể',
         },
-    ]
+        {
+            target: 'step-4',
+            content: 'Kê khai các khoản thu chi với ChatBot',
+            description: 'Sử dụng ChatBot để kê khai các khoản thu/chi cụ thể',
+        },
+    ];
 
-    useEffect(() => {
-        if (isDirection) {
-            updateGuideUI(step);
-        }
-    }, [isDirection]);
-
-    const scrollElementToCenter = (el: HTMLElement) => {
-        const elementRect = el.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Tính vị trí top để scroll sao cho element nằm giữa màn hình
-        const offsetTop = elementRect.top + scrollTop;
-        const elementCenterY = offsetTop - (window.innerHeight / 2) + (elementRect.height / 2);
-
-        window.scrollTo({
-            // top: elementCenterY,
-            behavior: 'smooth',
-        });
-    };
-
-    const updateGuideUI = (stepIndex: number) => {
+    const updateGuideUI = useCallback((stepIndex: number) => {
         const item = steps[stepIndex];
-        const stepDom = document.getElementById(item.target);
+        if (!item) return;
+
+        const stepElement = document.getElementById(item.target);
         const tooltip = document.getElementById("direction");
 
-        if (!stepDom || !tooltip) return;
+        if (!stepElement || !tooltip) return;
 
-        // Scroll phần tử vào chính giữa màn hình
-        scrollElementToCenter(stepDom);
+        // Scroll to element with smooth behavior
+        stepElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center'
+        });
 
-        // Highlight phần tử
+        // Remove highlight from all elements
         document.querySelectorAll('.guide-highlight').forEach(el => {
             el.classList.remove('guide-highlight');
         });
-        stepDom.classList.add('guide-highlight');
 
-        // Tính vị trí tooltip nằm dưới element và căn giữa theo chiều ngang
-        const rect = stepDom.getBoundingClientRect();
-        const tooltipWidth = 260; // bạn có thể điều chỉnh hoặc lấy dynamic nếu cần
-        const top = rect.bottom + window.scrollY + 12;
-        const left = rect.left + window.scrollX + rect.width / 2 - tooltipWidth / 2;
-        console.log("top", top);
-        console.log("left", left);
+        // Add highlight to current element
+        stepElement.classList.add('guide-highlight');
 
-        // tooltip.style.top = `${top}px`;
-        // tooltip.style.left = `${left}px`;
+        // Position tooltip (simplified to always appear at 40%, 50%)
         tooltip.style.top = `40%`;
         tooltip.style.left = `50%`;
-        tooltip.style.width = `${tooltipWidth}px`;
         tooltip.classList.remove('hidden');
         tooltip.classList.add('block');
-    };
-    const onNextDirect = () => {
-        const nextStep = step + 1;
+    }, [steps]);
 
-        if (nextStep >= steps.length) {
-            setIsDirection(false); // Ẩn hướng dẫn khi kết thúc
+    const nextStep = useCallback(() => {
+        const next = currentStep + 1;
+
+        if (next >= steps.length) {
+            finishGuide();
             return;
         }
 
-        setStep(nextStep);
-        updateGuideUI(nextStep);
-    };
+        setCurrentStep(next);
+        updateGuideUI(next);
+    }, [currentStep, steps.length, updateGuideUI]);
 
-    const onPreviousDirect = () => {
-        const prevStep = step === 0 ? steps.length - 1 : step - 1;
-        setStep(prevStep);
-        updateGuideUI(prevStep);
-    };
+    const previousStep = useCallback(() => {
+        const prev = currentStep <= 0 ? steps.length - 1 : currentStep - 1;
+        setCurrentStep(prev);
+        updateGuideUI(prev);
+    }, [currentStep, steps.length, updateGuideUI]);
 
-    const onSkipGuide = () => {
-        setIsDirection(false);
+    const finishGuide = useCallback(() => {
+        setIsGuideVisible(false);
         document.querySelectorAll('.guide-highlight').forEach(el => {
             el.classList.remove('guide-highlight');
         });
-    };
+    }, []);
 
+    // Initialize guide on first render
+    useEffect(() => {
+        if (isGuideVisible) {
+            updateGuideUI(currentStep);
+        }
+    }, [isGuideVisible, currentStep, updateGuideUI]);
+
+    const onGuideLine = () => {
+        setCurrentStep(0);
+        setIsGuideVisible(true);
+        updateGuideUI(0);
+    }
     return (
         <LayoutClient>
             <div className="personal-finance-container">
-                {/* <button
-                    onClick={() => {
-                        setStep(0);
-                        setIsDirection(true);
-                        updateGuideUI(0);
-                    }}
-                    className="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded shadow-md"
-                >
-                    ? Xem hướng dẫn
-                </button> */}
-                {
-                    isDirection && (
-                        <div
-                            id="direction"
-                            className="fixed hidden z-50 bg-white text-black p-3 rounded shadow-lg transition-all"
-                        >
-                            <p className="text-sm">{steps[step]?.content}</p>
-                            <div className="flex justify-between mt-3">
-                                <button onClick={onPreviousDirect} className="text-gray-500 text-sm">⬅ Quay lại</button>
-                                <div className="flex gap-2">
-                                    <button onClick={onSkipGuide} className="text-red-500 text-sm">Bỏ qua</button>
-                                    <button onClick={onNextDirect} className="text-blue-500 text-sm">
-                                        {step === steps.length - 1 ? 'Kết thúc' : 'Tiếp theo ➡'}
-                                    </button>
-                                </div>
+                <div className="overlay"></div>
+                {isGuideVisible && (
+                    <div className="onboarding-container fixed" id="direction">
+                        <div className="progress-container">
+                            <div className="progress-bar">
+                                <div
+                                    className="progress-fill"
+                                    style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+                                />
+                            </div>
+                            <div className="step-indicator">
+                                <div className="step-counter">Bước {currentStep + 1}/{steps.length}</div>
+                                <button className="close-button" onClick={finishGuide}>×</button>
                             </div>
                         </div>
-                    )
-                }
+
+                        <div className="content-card">
+                            <div className="step-content" key={steps[currentStep]?.target}>
+                                <h2 className="step-title">{steps[currentStep]?.content}</h2>
+                                <p className="step-description">{steps[currentStep]?.description}</p>
+                            </div>
+                        </div>
+
+                        <div className="navigation-buttons">
+                            <button
+                                className="btn btn-secondary"
+                                onClick={previousStep}
+                                disabled={currentStep === 0}
+                            >
+                                Quay lại
+                            </button>
+                            <button
+                                className="btn btn-primary"
+                                onClick={nextStep}
+                            >
+                                {currentStep === steps.length - 1 ? 'Hoàn thành' : 'Tiếp theo'}
+                            </button>
+                            <button
+                                className="btn btn-skip"
+                                onClick={finishGuide}
+                            >
+                                Bỏ qua
+                            </button>
+                        </div>
+                    </div>
+                )}
                 <BannerCommon
                     title={"Tài chính cá nhân"}
                     sub={"Tài chính"}
@@ -981,6 +997,7 @@ const GoalSpendingPage = () => {
                                 idGoal={String("")}
                                 loading={loadingBot}
                                 setLoading={setLoadingBot}
+                                onGuideLine={onGuideLine}
                             />
                         </Col>
                         <Col xs={24} sm={24} md={14} lg={8} xxl={8}>
@@ -1128,19 +1145,23 @@ const GoalSpendingPage = () => {
                                         );
                                     })}
                                 </Row>
-                                <div className="flex justify-center gap-2 flex-wrap" id="step-2">
-                                    <ButtonDesign
-                                        classColor={'green'}
-                                        onClick={onOpenModalCreate}
-                                        title={'Thêm mục tiêu'}
-                                        width={200}
-                                    />
-                                    <ButtonDesign
-                                        classColor={'transparent'}
-                                        onClick={onOpenModalAllocation}
-                                        title={'Phân bổ mục tiêu'}
-                                        width={200}
-                                    />
+                                <div className="flex justify-center gap-2 flex-wrap">
+                                    <div id="step-2">
+                                        <ButtonDesign
+                                            classColor={'green'}
+                                            onClick={onOpenModalCreate}
+                                            title={'Thêm mục tiêu'}
+                                            width={200}
+                                        />
+                                    </div>
+                                    <div id="step-3">
+                                        <ButtonDesign
+                                            classColor={'transparent'}
+                                            onClick={onOpenModalAllocation}
+                                            title={'Phân bổ mục tiêu'}
+                                            width={200}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </Col>

@@ -28,7 +28,7 @@ const AlertBudget = () => {
                 <div className="budget-info__level">
                     Mức độ: {profileState?.budgetAlert?.level}
                 </div>
-                <p>{budgetState.totalIncome == 0 ? <a href={ROUTE_PATH.PROFILE}>Tạo ngân sách. {" "} </a> : null} {profileState?.budgetAlert?.alert}</p>
+                <p>{budgetState?.totalIncome == 0 ? <a href={ROUTE_PATH.PROFILE}>Tạo ngân sách. {" "} </a> : null} {profileState?.budgetAlert?.alert}</p>
             </div>
         </div>
     )

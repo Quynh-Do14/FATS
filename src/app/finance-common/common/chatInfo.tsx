@@ -20,6 +20,7 @@ type Props = {
     idGoal: string
     idTeam?: string
     setLoading: (loading: boolean) => void
+    onGuideLine: () => void
 }
 
 const ChatBotInfo = (props: Props) => {
@@ -36,7 +37,8 @@ const ChatBotInfo = (props: Props) => {
         loading,
         idGoal,
         idTeam = "",
-        setLoading
+        setLoading,
+        onGuideLine
     } = props;
 
     const profileState = useRecoilValue(ProfileState).data;
@@ -83,6 +85,9 @@ const ChatBotInfo = (props: Props) => {
                 <a href={"https://www.youtube.com/watch?v=VJK6wijgeaw"} target='_blank' className="redirect">
                     Xem video hướng dẫn
                 </a>
+                <div className="redirect" onClick={onGuideLine}>
+                    Hướng dẫn sử dụng
+                </div>
             </div>
         )
     }

@@ -188,6 +188,36 @@ const NavbarComponent = (props: Props) => {
                                     )
                                 }
                                 else {
+                                    if (item.children?.length) {
+                                        return (
+                                            <div>
+                                                <li key={index} className={`${conditionActive(item.link)} menu-item`}>
+                                                    <span className="icon">
+                                                        <i className={item.icon} aria-hidden="true"></i>
+                                                    </span>
+                                                    <span>{item.label} <i className="fa fa-caret-down" aria-hidden="true"></i></span>
+
+                                                </li>
+                                                <ul className="submenu">
+
+                                                    {item.children.map((child, childIndex) => (
+                                                        <a
+                                                            href={child.link}
+                                                            key={childIndex}
+                                                        >
+                                                            <li className={`submenu-item ${conditionActive(child.link)}`}>
+                                                                <span className="icon">
+                                                                    <i className={child.icon} aria-hidden="true"></i>
+                                                                </span>
+                                                                <span>{child.label}</span>
+                                                            </li>
+                                                        </a>
+                                                    ))}
+                                                </ul>
+                                            </div>
+
+                                        )
+                                    }
                                     return (
                                         <a
                                             href={item.link}

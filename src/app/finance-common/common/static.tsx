@@ -59,7 +59,7 @@ const StaticComponent = (props: Props) => {
     };
 
     return (
-        <div className='static box-common' id="step-3">
+        <div className='static box-common'>
             <div className='flex justify-between items-start'>
                 <p className='title-box'>Các khoản thu chi</p>
                 <ButtonHref

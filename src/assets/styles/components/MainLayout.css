@@ -3,7 +3,6 @@
   flex: 1;
   height: 100dvh;
   flex-direction: column;
-  font-family: 'Mulish', sans-serif;
   overflow: hidden;
   background: #fff;
   position: relative;
@@ -179,7 +178,6 @@
   flex-direction: row;
   background: #fff;
   position: relative;
-  font-family: 'Mulish', sans-serif;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -566,6 +564,24 @@
   color: #1d9b5e;
   font-size: 18px;
 }
+.navbar-container .menu .submenu {
+  padding: 0 20px;
+  font-weight: 600;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.navbar-container .menu .submenu .submenu-item {
+  border-bottom: 1px solid #1d9b5e;
+}
+.navbar-container .menu .submenu .submenu-item span.icon {
+  color: #1d9b5e;
+}
+.navbar-container .menu .submenu .submenu-item span {
+  color: #575757;
+}
 
 .advisement {
   background: url('../../images/bgAdvisement.png') no-repeat center/cover;
@@ -585,4 +601,35 @@
   vertical-align: middle;
   text-transform: capitalize;
   color: #fff;
+}
+
+/* custom-dropdown-menu.css */
+
+/* Tùy chỉnh Menu tổng thể */
+.admin-dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  border: 1px solid #e0e0e0;
+}
+
+/* Tùy chỉnh mỗi item trong Menu */
+.admin-dropdown-item {
+  padding: 0 !important; /* Xóa padding mặc định của Antd */
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+/* Tùy chỉnh nội dung bên trong Link */
+.dropdown-link-content {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  color: #787878;
+}
+
+/* Hiệu ứng khi di chuột qua */
+.admin-dropdown-item:hover .dropdown-link-content {
+  background-color: #f5f5f5;
+  color: #5e5eff; /* Màu xanh tím khi hover */
 }

@@ -351,7 +351,7 @@ const ChatBoxCommon = (props: Props) => {
 
                         </div>
                         <div className="chat-box" ref={chatBoxRef}>
-                            {dataChatBox.map((message, index) => (
+                            {dataChatBox?.map((message, index) => (
                                 <div key={index} className="flex flex-col gap-2">
                                     <div className={`flex flex-col items-end`}>
                                         <div className="human-name">

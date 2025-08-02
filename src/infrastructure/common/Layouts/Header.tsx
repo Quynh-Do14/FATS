@@ -21,6 +21,7 @@ import DialogNotificationCommon from '../components/modal/dialogNotification';
 import { ButtonDesign } from '../components/button/buttonDesign';
 import { useRouter, usePathname } from "next/navigation";
 import Link from 'next/link';
+import Item from 'antd/es/list/Item';
 
 type Props = {
     dataProfile: any
@@ -173,6 +174,22 @@ const HeaderClient = (props: Props) => {
 
         return pathname.includes(link) ? "active" : "";
     };
+    const renderSubMenu = (children: any[]) => {
+        return (
+            <Menu className="admin-dropdown-menu">
+                {children.map((child, childIndex) => (
+                    <Menu.Item key={childIndex} className="admin-dropdown-item">
+                        <Link href={child.link} passHref>
+                            <div className="dropdown-link-content">
+                                <i className={child.icon} aria-hidden='true'></i>
+                                <span className="ml-2">{child.label}</span>
+                            </div>
+                        </Link>
+                    </Menu.Item>
+                ))}
+            </Menu>
+        );
+    };
 
     return (
         <div className={`header-common header-layout-client ${scrollDirection ? 'down' : 'up'} ${lastScrollY == 0 ? "bg-change-none" : "bg-change"}`}>
@@ -194,6 +211,18 @@ const HeaderClient = (props: Props) => {
                             }
                             else {
                                 if (isLoadingToken) {
+                                    if (item.children) {
+                                        return (
+                                            <Dropdown overlay={renderSubMenu(item.children)} trigger={['click']}>
+                                                <a
+                                                    className={`ant-dropdown-link cursor-pointer ${conditionActive(item.link)}`}
+                                                    onClick={e => e.preventDefault()}
+                                                >
+                                                    {item.label} <i className="fa fa-caret-down" aria-hidden="true"></i>
+                                                </a>
+                                            </Dropdown>
+                                        );
+                                    }
                                     if (token) {
                                         return (
                                             <a
