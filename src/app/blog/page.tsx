@@ -4,7 +4,6 @@ import LayoutClient from "@/infrastructure/common/Layouts/Client-Layout";
 import BannerCommon from "@/infrastructure/common/components/banner/BannerCommon";
 import { PaginationCommon } from "@/infrastructure/common/components/pagination/Pagination";
 import banner1 from "@/assets/images/banner/banner1.png"
-import blog from "@/assets/images/blog.jpg"
 import "@/assets/styles/page/blog.css";
 import blogService from "@/infrastructure/repositories/blog/blog.service";
 import { configImageURL, convertSlug } from "@/infrastructure/helper/helper";

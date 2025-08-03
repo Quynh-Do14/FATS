@@ -5,7 +5,7 @@ import thumb2 from "@/assets/images/thumbnail/thumb2.png"
 import thumb3 from "@/assets/images/thumbnail/thumb3.png"
 import { Col, Row } from 'antd'
 import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent'
-import { configFileURL, configImageURL, getEmbedUrl } from '@/infrastructure/helper/helper'
+import { getEmbedUrl } from '@/infrastructure/helper/helper'
 
 const finance = [
     {

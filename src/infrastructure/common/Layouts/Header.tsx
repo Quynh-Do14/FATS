@@ -213,7 +213,7 @@ const HeaderClient = (props: Props) => {
                                 if (isLoadingToken) {
                                     if (item.children) {
                                         return (
-                                            <Dropdown overlay={renderSubMenu(item.children)} trigger={['click']}>
+                                            <Dropdown overlay={renderSubMenu(item.children)} trigger={['hover']}>
                                                 <a
                                                     className={`ant-dropdown-link cursor-pointer ${conditionActive(item.link)}`}
                                                     onClick={e => e.preventDefault()}

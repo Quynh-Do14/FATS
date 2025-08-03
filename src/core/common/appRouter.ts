@@ -31,6 +31,8 @@ export const ROUTE_PATH = {
     ADVISOR_ENTERTAINMENT: `${PREFIX}/advisor/entertainment`,
     ADVISOR_INVEST: `${PREFIX}/advisor/invest`,
 
+    WATCH: `${PREFIX}/watch`,
+
     CONTACT: `${PREFIX}/contact`,
 
     USE_PRIVATE_POLICY: `${PREFIX}/policy/user-private-policy`,

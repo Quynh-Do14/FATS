@@ -44,7 +44,7 @@ export default class Constants {
                 label: "Tư vấn",
                 link: ROUTE_PATH.ADVISOR,
                 private: true,
-                icon: "fa fa-users",
+                icon: "fa fa-handshake-o",
                 children: [
                     {
                         label: "Giải trí",
@@ -247,6 +247,33 @@ export default class Constants {
         static List = [
             { label: "Gia đình", value: "true" },
             { label: "Quỹ nhóm", value: "false" },
+        ]
+    }
+
+    static GeneralQuestion = class {
+        static Entertainment = [
+            "Đi đâu chơi cuối tuần này?",
+            "Chỗ nào vừa đẹp vừa rẻ gần đây?",
+            "Địa điểm nào đáng đi nhất hiện nay?",
+            "Gợi ý vài nơi đi chơi không cần đi xa",
+            "Chỗ nào sống ảo đẹp mà ít người biết?",
+            "Đi đâu khi chỉ có 1 ngày rảnh?",
+            "Chỗ nào phù hợp cho hẹn hò lãng mạn?",
+            "Địa điểm vui chơi cho nhóm bạn thân?",
+            "Nên đi đâu vào ngày mưa?",
+            "Chỗ nào có view đẹp để ngắm hoàng hôn?"
+        ]
+        static Invest = [
+            "Nên đầu tư gì bây giờ là tốt nhất?",
+            "Bắt đầu đầu tư từ đâu với 10 triệu?",
+            "Cách nào kiếm lời nhanh từ đầu tư?",
+            "Đầu tư gì an toàn không sợ lỗ?",
+            "Làm sao biết thời điểm mua vào/bán ra?",
+            "Có nên đầu tư khi kinh tế khó khăn?",
+            "Tôi nên dành bao nhiêu tiền để đầu tư?",
+            "Cách phân biệt đầu tư thật và lừa đảo?",
+            "Kênh đầu tư nào ít rủi ro nhất?",
+            "Có nên nghe theo lời khuyên đầu tư trên mạng?"
         ]
     }
 };

@@ -129,8 +129,8 @@
 
 /* scroll custom */
 ::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {

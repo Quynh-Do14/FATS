@@ -108,12 +108,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 320px);
   position: relative;
 }
 @media only screen and (max-width: 768px) {
   .advisor-container .chat-box {
-    height: calc(100vh - 220px);
+    height: calc(100vh - 260px);
   }
 }
 .advisor-container .chat-box .human-chat {
@@ -458,4 +458,33 @@
 }
 .advisor-container .input-chat .upload-img-bill label {
   cursor: pointer;
+}
+.advisor-container .general-question {
+  width: 100%;
+  padding: 4px 22px;
+}
+
+.advisor-container .general-question ul {
+  display: flex;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 10px;
+}
+.advisor-container .general-question ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00669938;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #006699;
+  cursor: pointer;
+  width: fit-content;
+  height: 36px;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

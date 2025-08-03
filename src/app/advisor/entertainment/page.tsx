@@ -6,6 +6,7 @@ import gptIcon from "@/assets/images/gpt-icon.png"
 import "@/assets/styles/page/advisor.css"
 import advisorService from '@/infrastructure/repositories/advisor/advisor.service'
 import LayoutClientNoFooter from '@/infrastructure/common/Layouts/Client-Layout-NoFooter'
+import Constants from '@/core/common/constants'
 
 interface ScheduleItem {
     time: string;
@@ -27,9 +28,11 @@ interface PlanData {
 }
 
 interface Message {
-    type: "user" | "question" | "plan";
+    type: "user" | "question" | "plan" | "otherMessage";
     userMessage?: string | null;
-    otherMessage?: null;
+    otherMessage?: {
+        otherMessage: string;
+    };
     planData?: {
         plan: PlanData | null;
     }
@@ -55,7 +58,7 @@ const AdvisorPage = () => {
     const [messagesLoading, setMessagesLoading] = useState<string>("");
     const [messages, setMessages] = useState<string>("");
     const [loadingBot, setLoadingBot] = useState(false);
-    const [option, setOption] = useState<string>("");
+    const [genaralQuestion, setGenaralQuestion] = useState<string[]>([]);
     const onGetChatBoxAsync = async () => {
         try {
             await advisorService.GetAdvisorEntertainment(
@@ -98,7 +101,14 @@ const AdvisorPage = () => {
         }
     };
 
-    const onSelectOption = (option: string) => {
+    const onSelectOption = (option: any) => {
+        if (option.value) {
+            handleSendMessage(option.value);
+            setMessagesLoading(option.value);
+        }
+    };
+
+    const onSelectGeneralQuestion = (option: string) => {
         handleSendMessage(option);
         setMessagesLoading(option);
     };
@@ -133,6 +143,16 @@ const AdvisorPage = () => {
             chatBox.removeEventListener("scroll", handleScroll);
         };
     }, [loading]);
+
+    useEffect(() => {
+        function getRandomQuestions(questions: string[], count = 3) {
+            const shuffled = [...questions].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+        const data = Constants.GeneralQuestion.Entertainment;
+        const randomQuestions = getRandomQuestions(data);
+        setGenaralQuestion(randomQuestions);
+    }, []);
 
     return (
         <LayoutClientNoFooter>
@@ -170,9 +190,12 @@ const AdvisorPage = () => {
                                                     <ul>
                                                         {
                                                             message.questionData?.options?.map((option, index) => (
-                                                                <li key={index}
-                                                                    onClick={() => onSelectOption(option.text)}
-                                                                >{option.text}</li>
+                                                                <li
+                                                                    key={index}
+                                                                    onClick={() => onSelectOption(option)}
+                                                                >
+                                                                    {option.text}
+                                                                </li>
                                                             ))
                                                         }
                                                     </ul>
@@ -233,7 +256,13 @@ const AdvisorPage = () => {
                                                     )}
                                                 </div>
                                                 :
-                                                null
+                                                message.type === "otherMessage"
+                                                    ?
+                                                    <div className="ai-chat">
+                                                        {message.otherMessage?.otherMessage}
+                                                    </div>
+                                                    :
+                                                    null
                                 }
                             </div>
                         ))}
@@ -274,6 +303,21 @@ const AdvisorPage = () => {
                             <i className="fa fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     )}
+
+                    <div className='general-question'>
+                        <ul>
+                            {
+                                genaralQuestion.map((item, index) => {
+                                    return (
+                                        <li key={index}
+                                            onClick={() => onSelectGeneralQuestion(item)}>
+                                            {item}
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
                     <div className="input-chat">
                         <input
                             type="text"
