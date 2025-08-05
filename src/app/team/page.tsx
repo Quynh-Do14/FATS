@@ -335,7 +335,7 @@ const TeamPage = () => {
                                 <i className="fa fa-coins text-lg"></i>
                             </div>
                             <div>
-                                <h2 className="text-2xl font-extrabold text-gray-900">Danh sách các quỹ nhóm</h2>
+                                <h2 className="text-2xl font-semibold text-gray-900">Danh sách các quỹ nhóm</h2>
                                 <p className="text-sm text-gray-500">Quản lý & phân loại theo nhóm</p>
                             </div>
                         </div>

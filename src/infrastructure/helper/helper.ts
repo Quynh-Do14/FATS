@@ -117,3 +117,14 @@ export const extractYouTubeId = (url: string): string | null => {
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
 };
+
+export const isTodayCheckinDate = (checkinDate: string) => {
+    const today = new Date();
+    const checkinDateObj = new Date(checkinDate);
+
+    return (
+        today.getFullYear() === checkinDateObj.getFullYear() &&
+        today.getMonth() === checkinDateObj.getMonth() &&
+        today.getDate() === checkinDateObj.getDate()
+    );
+}

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent';
 import blogService from '@/infrastructure/repositories/blog/blog.service';
-import { configImageURL, convertSlug } from '@/infrastructure/helper/helper';
+import { configImageURL, convertDateOnlyShow, convertSlug } from '@/infrastructure/helper/helper';
 import { ROUTE_PATH } from '@/core/common/appRouter';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -98,7 +98,7 @@ const PostComponent = () => {
                                 <div>
                                     <p className="author">
                                         <i className="fa fa-clock-o me-2" aria-hidden="true"></i>
-                                        <span>{item.createdAt}</span>
+                                        <span>{convertDateOnlyShow(item.createdAt)}</span>
                                         <i
                                             className="fa fa-user-o ms-4 me-2"
                                             aria-hidden="true"

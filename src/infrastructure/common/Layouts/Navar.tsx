@@ -256,11 +256,19 @@ const NavbarComponent = (props: Props) => {
                                     </li>
                                 </a>
                                 <a href={ROUTE_PATH.SELECT_CHAT_BOT}>
-                                    <li className={`menu-item`} onClick={openModalChangePassword}>
+                                    <li className={`menu-item`}>
                                         <span className="icon">
                                             <i className="fa fa-retweet" aria-hidden="true"></i>
                                         </span>
                                         <span>Thay đổi Bot Chat</span>
+                                    </li>
+                                </a>
+                                <a href={ROUTE_PATH.ATTENDANCE}>
+                                    <li className={`menu-item`}>
+                                        <span className="icon">
+                                            <i className="fa fa-retweet" aria-hidden="true"></i>
+                                        </span>
+                                        <span>Điểm danh hàng ngày</span>
                                     </li>
                                 </a>
                                 <li className={`menu-item`} onClick={openModalChangePassword}>

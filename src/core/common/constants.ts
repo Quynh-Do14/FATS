@@ -49,12 +49,15 @@ export default class Constants {
                     {
                         label: "Giải trí",
                         link: ROUTE_PATH.ADVISOR_ENTERTAINMENT,
-                        icon: "fas fa-film"
+                        icon: "fas fa-film",
+                        private: true,
                     },
                     {
                         label: "Đầu tư",
                         link: ROUTE_PATH.ADVISOR_INVEST,
-                        icon: "fas fa-chart-line"
+                        icon: "fas fa-chart-line",
+                        private: true,
+
                     }
                 ],
             },

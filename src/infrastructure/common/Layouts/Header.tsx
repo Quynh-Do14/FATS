@@ -147,6 +147,16 @@ const HeaderClient = (props: Props) => {
                         </div>
                     </a>
                 </Menu.Item>
+
+                <Menu.Item className='info-admin'>
+                    <a href={ROUTE_PATH.ATTENDANCE}>
+                        <div className='info-admin-title px-1 py-2 flex items-center hover:text-[#5e5eff]'>
+                            <i className='fa fa-calendar-check' aria-hidden='true'></i>
+                            Điểm danh hàng ngày
+                        </div>
+                    </a>
+                </Menu.Item>
+
                 <Menu.Item className='info-admin' onClick={openModalChangePassword}>
                     <div className='info-admin-title px-1 py-2 flex items-center hover:text-[#5e5eff]'>
                         <i className="fa fa-key" aria-hidden="true"></i>
@@ -177,16 +187,32 @@ const HeaderClient = (props: Props) => {
     const renderSubMenu = (children: any[]) => {
         return (
             <Menu className="admin-dropdown-menu">
-                {children.map((child, childIndex) => (
-                    <Menu.Item key={childIndex} className="admin-dropdown-item">
-                        <Link href={child.link} passHref>
-                            <div className="dropdown-link-content">
-                                <i className={child.icon} aria-hidden='true'></i>
-                                <span className="ml-2">{child.label}</span>
-                            </div>
-                        </Link>
-                    </Menu.Item>
-                ))}
+                {children.map((child, childIndex) => {
+                    if (token) {
+                        return (
+                            <Menu.Item key={childIndex} className="admin-dropdown-item">
+                                <Link href={child.link} passHref>
+                                    <div className="dropdown-link-content">
+                                        <i className={child.icon} aria-hidden='true'></i>
+                                        <span className="ml-2">{child.label}</span>
+                                    </div>
+                                </Link>
+                            </Menu.Item>
+                        )
+                    }
+                    else {
+                        return (
+                            <Menu.Item key={childIndex} className="admin-dropdown-item">
+                                <Link href={ROUTE_PATH.LOGIN} passHref>
+                                    <div className="dropdown-link-content">
+                                        <i className={child.icon} aria-hidden='true'></i>
+                                        <span className="ml-2">{child.label}</span>
+                                    </div>
+                                </Link>
+                            </Menu.Item>
+                        )
+                    }
+                })}
             </Menu>
         );
     };

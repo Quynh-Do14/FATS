@@ -1,96 +1,96 @@
-import { useState } from 'react'
+// components/CheckInCard.tsx
+import { useEffect, useState } from 'react';
 import styles from '@/assets/styles/page/attendance.module.css';
-import coin from "@/assets/images/attendance/coin.png"
-import coinGif from "@/assets/images/attendance/coin.gif"
-import Image from 'next/image';
-import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
-export default function CheckIn() {
-    const [claimed, setClaimed] = useState(false)
+import coin from '@/assets/images/attendance/coin.gif'
+interface DayData {
+    checkinDate: string;
+    dayOfWeek: string;
+    checkin: boolean;
+}
 
-    const handleClaim = () => {
-        setClaimed(true)
+type Props = {
+    onCheckInAsync: () => void;
+    todayCheckin: DayData | undefined;
+};
+const CheckIn = (props: Props) => {
+    const { onCheckInAsync, todayCheckin } = props
+    const [currentDate, setCurrentDate] = useState<string>('');
 
-        const todayCard = document.querySelector(`.${styles.todayCard}`)
-        if (todayCard) {
-            for (let i = 0; i < 15; i++) {
-                const sparkle = document.createElement('div')
-                sparkle.innerHTML = '✨'
-                sparkle.style.position = 'absolute'
-                sparkle.style.left = `${Math.random() * 100}%`
-                sparkle.style.top = `${Math.random() * 100}%`
-                sparkle.style.fontSize = `${Math.random() * 15 + 10}px`
-                sparkle.style.animation = 'sparkle 1s ease-out forwards'
-                sparkle.style.pointerEvents = 'none'
-                sparkle.style.zIndex = '10'
-                todayCard.appendChild(sparkle)
+    useEffect(() => {
+        const date = new Date();
+        const options: Intl.DateTimeFormatOptions = {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        };
+        setCurrentDate(date.toLocaleDateString('vi-VN', options));
+    }, []);
 
-                setTimeout(() => sparkle.remove(), 1000)
-            }
-        }
-    }
 
     return (
-        <div className={styles.section}>
-            <h1 className={styles.sectionTitle}>Điểm danh nhận xu mỗi ngày</h1>
+        <div className={styles.checkIn}>
+            <div className={`${styles.card} ${styles.cardHover}`}>
+                <div className={styles.textCenter}>
+                    {/* Motivational Quote */}
+                    <div className="mb-6">
+                        <h3 className={`${styles.title} ${styles.textGlow}`}>Thêm một ngày, thêm một xu!</h3>
+                        <p className={styles.subtitle}>Hôm nay bạn đã sẵn sàng nhận thưởng chưa?</p>
+                    </div>
 
-            <div className={styles.todayCard}>
-                <div className={styles.todayDate} id="currentDate"></div>
-                <div className={styles.coinIcon}>
-                    <Image
-                        src={coinGif}
-                        alt="coin"
-                        width={50}
-                        height={50}
-                    />
-
-                </div>
-                <div className={styles.rewardAmount}>+100 xu</div>
-                <ButtonDesign
-                    classColor={'white'}
-                    onClick={() => { }}
-                    title={'Nhận xu'}
-                    width={150}
-                />
-            </div>
-
-            <div className={styles.weeklyGrid}>
-                {['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'].map((day, i) => {
-                    const isClaimed = i < 2 || (i === 2 && claimed)
-                    const isToday = i === 2 && !claimed
-                    const isUpcoming = i > 2 && !claimed
-
-                    return (
-                        <div
-                            key={day}
-                            className={`${styles.dayCard} ${isClaimed ? styles.claimed : isToday ? styles.today : styles.upcoming
-                                }`}
-                        >
-                            {isClaimed && <div className={styles.checkmark}>✓</div>}
-                            <div className={styles.dayName}>{day}</div>
-                            <div
-                                className={`${styles.dayStatus} ${isClaimed
-                                    ? styles.statusClaimed
-                                    : isToday
-                                        ? styles.statusToday
-                                        : styles.statusUpcoming
-                                    }`}
-                            >
-                                {isClaimed ? 'Đã nhận' : isToday ? 'Hôm nay' : 'Chưa nhận'}
-                            </div>
-                            <div className={styles.dayReward}>
-                                <span className={styles.smallCoin}>
-                                    <Image
-                                        src={coin}
-                                        alt="coin"
-                                        width={30}
-                                        height={30}
-                                    />
-                                </span> {50 + i * 10}
-                            </div>
+                    {/* Current Date */}
+                    <div className="mb-6">
+                        <div className={styles.currentDateContainer}>
+                            <p className={styles.currentDateLabel}>Hôm nay</p>
+                            <p className={styles.currentDate} id="currentDate">{currentDate}</p>
                         </div>
-                    )
-                })}
+                    </div>
+
+                    {/* Coin Display */}
+                    <div className="mb-8">
+                        <div className={`${styles.coinContainer} ${styles.coinBounce}`}>
+                            <img src={coin.src} alt='' />
+                        </div>
+                        <div className="flex items-center justify-center space-x-2">
+                            <span className={styles.coinCount} id="coinCount">Nhận ngay: 5 xu</span>
+                        </div>
+                    </div>
+
+                    {/* Check-in Button */}
+                    <button
+                        className={`
+                            ${styles.checkInBtn} 
+                            ${todayCheckin?.checkin ? styles.checkInBtnSuccess : ''}
+                            relative overflow-hidden transition-all duration-300
+                            px-6 py-3 rounded-lg font-medium text-white
+                            shadow-lg hover:shadow-xl
+                            transform hover:-translate-y-1 active:translate-y-0
+                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+                            disabled:opacity-80 disabled:cursor-not-allowed
+                        `}
+                        onClick={onCheckInAsync}
+                        disabled={todayCheckin?.checkin}
+                    >
+                        <span className={`${styles.btnText} relative z-10 flex items-center justify-center`}>
+                            {todayCheckin?.checkin ? (
+                                <span className="mr-2">Đã Điểm Danh</span>
+                            ) : (
+                                <span className="mr-2">Điểm Danh Ngay</span>
+                            )}
+                        </span>
+
+                        {/* Hiệu ứng background khi hover */}
+                        {!todayCheckin?.checkin && (
+                            <span className={`
+                                ${styles.ripple} absolute inset-0 bg-gradient-to-r 
+                                from-blue-400 to-blue-600 opacity-0 
+                                group-hover:opacity-100 transition-opacity duration-300
+                                `} />
+                        )}
+                    </button>
+                </div>
             </div>
         </div>
-    )
+    );
 }
+export default CheckIn

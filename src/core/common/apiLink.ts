@@ -186,4 +186,9 @@ export class Endpoint {
             static Add = "/ai/play/suggest"
         }
     }
+
+    static Attendance = class {
+        static Get = "/auth/checkin-log"
+        static CheckIn = "/auth/checkin"
+    }
 }

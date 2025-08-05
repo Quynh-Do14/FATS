@@ -33,6 +33,9 @@ export const ROUTE_PATH = {
 
     WATCH: `${PREFIX}/watch`,
 
+    ATTENDANCE: `${PREFIX}/attendance`,
+
+
     CONTACT: `${PREFIX}/contact`,
 
     USE_PRIVATE_POLICY: `${PREFIX}/policy/user-private-policy`,
