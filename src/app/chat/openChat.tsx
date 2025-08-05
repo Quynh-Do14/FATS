@@ -51,7 +51,7 @@ const OpenChatBot = (props: Props) => {
         return (
             <div className='open-chatbot'>
                 <img src={botInfo?.avatar.src} alt='' width={100} />
-                <div className='bot-name'>
+                <div className='bot-name' >
                     <ButtonSend
                         classColor={'green'}
                         onClick={handleCartClick}

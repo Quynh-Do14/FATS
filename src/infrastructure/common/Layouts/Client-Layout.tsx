@@ -14,7 +14,7 @@ import { BudgetState } from "@/core/atoms/budget/budgetState";
 import { CategoryBlogState } from "@/core/atoms/category/categoryState";
 import categoryBlogService from '@/infrastructure/repositories/category/categoryBlog.service';
 
-const LayoutClient = ({ ...props }: any) => {
+const LayoutClient = ({ isScroll = false, ...props }: any) => {
     const [isLoginClick, setIsLoginClick] = useState<boolean>(false);
     const [isOpenModalLogout, setIsOpenModalLogout] = useState<boolean>(false);
     const [isOpenModalProfile, setIsOpenModalProfile] = useState<boolean>(false);
@@ -169,7 +169,7 @@ const LayoutClient = ({ ...props }: any) => {
                 setIsOpenModalChangePassword={setIsOpenModalChangePassword}
             />
             {/* <div className="overlay"></div> */}
-            <div ref={scrollRef} className="content-layout-client">
+            <div ref={scrollRef} className={`content-layout-client ${isScroll && "overflow-hidden"}`}>
                 <div>
                     {props.children}
                 </div>

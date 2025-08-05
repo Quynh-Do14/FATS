@@ -127,7 +127,7 @@ const ModalAllocation = (props: Props) => {
                         <ButtonDesign
                             classColor={'green'}
                             onClick={onAllocateAsync}
-                            title={'Thêm mục tiêu'}
+                            title={'Phân bổ'}
                         />
                     </Col>
                 </Row>

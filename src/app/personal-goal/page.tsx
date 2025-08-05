@@ -838,24 +838,29 @@ const GoalSpendingPage = () => {
     const [isGuideVisible, setIsGuideVisible] = useState<boolean>(false);
     const steps = [
         {
+            target: '',
+            content: 'Bắt đầu hành trình quản lý tài chính',
+            description: 'Hãy cùng khám phá cách sử dụng ứng dụng theo các bước sau!',
+        },
+        {
             target: 'step-1',
-            content: 'Tạo ngân sách',
-            description: 'Bắt đầu bằng cách tạo ngân sách cơ bản của bạn',
+            content: 'Tạo ngân sách cơ bản',
+            description: 'Thiết lập ngân sách tổng thể dựa trên thu nhập và các khoản chi tiêu cố định hàng tháng',
         },
         {
             target: 'step-2',
-            content: 'Thêm mục tiêu',
-            description: 'Thêm các mục tiêu tài chính bạn muốn đạt được',
+            content: 'Đặt mục tiêu tài chính',
+            description: 'Xác định các mục tiêu quan trọng như tiết kiệm, đầu tư hoặc mua sắm lớn',
         },
         {
             target: 'step-3',
-            content: 'Phân bổ mục tiêu',
-            description: 'Phân bổ ngân sách cho từng mục tiêu cụ thể',
+            content: 'Phân bổ ngân sách',
+            description: 'Chia ngân sách thành các hạng mục cụ thể phù hợp với nhu cầu và mục tiêu của bạn',
         },
         {
             target: 'step-4',
-            content: 'Kê khai các khoản thu chi với ChatBot',
-            description: 'Sử dụng ChatBot để kê khai các khoản thu/chi cụ thể',
+            content: 'Theo dõi thu chi thông minh',
+            description: 'Tương tác với ChatBot để ghi chép và phân tích các giao dịch tự động, nhanh chóng',
         },
     ];
 
@@ -868,28 +873,48 @@ const GoalSpendingPage = () => {
 
         if (!stepElement || !tooltip) return;
 
-        // Scroll to element with smooth behavior
-        stepElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-            inline: 'center'
-        });
+        // Ẩn tooltip ngay lập tức
+        tooltip.classList.add('hidden');
+        tooltip.classList.remove('block');
 
-        // Remove highlight from all elements
+        // Remove highlight từ tất cả các element
         document.querySelectorAll('.guide-highlight').forEach(el => {
             el.classList.remove('guide-highlight');
         });
 
-        // Add highlight to current element
+        // Add highlight cho element hiện tại
         stepElement.classList.add('guide-highlight');
 
-        // Position tooltip (simplified to always appear at 40%, 50%)
-        tooltip.style.top = `40%`;
-        tooltip.style.left = `50%`;
-        tooltip.classList.remove('hidden');
-        tooltip.classList.add('block');
-    }, [steps]);
+        // Bắt đầu scroll
+        stepElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center',
+        });
 
+        // Đợi scroll hoàn tất (khoảng 500ms - có thể điều chỉnh)
+        setTimeout(() => {
+            // Lấy vị trí sau khi scroll
+            const elementRect = stepElement.getBoundingClientRect();
+
+            // Tính toán vị trí tooltip (ví dụ: phía trên element)
+            const tooltipTop = elementRect.top - tooltip.offsetHeight - 10;
+            const tooltipLeft = elementRect.left + (elementRect.width / 2) - (tooltip.offsetWidth / 2);
+
+            // Đảm bảo tooltip không bị che
+            const adjustedTop = Math.max(10, tooltipTop);
+            const adjustedLeft = Math.max(10, Math.min(
+                tooltipLeft,
+                window.innerWidth - tooltip.offsetWidth - 10
+            ));
+
+            // Đặt vị trí và hiển thị tooltip
+            tooltip.style.top = `${adjustedTop}px`;
+            tooltip.style.left = `${adjustedLeft}px`;
+            tooltip.classList.remove('hidden');
+            tooltip.classList.add('block');
+        }, 500); // Thời gian chờ scroll hoàn tất
+    }, [steps]);
     const nextStep = useCallback(() => {
         const next = currentStep + 1;
 
@@ -928,7 +953,7 @@ const GoalSpendingPage = () => {
         updateGuideUI(0);
     }
     return (
-        <LayoutClient>
+        <LayoutClient isScroll={isGuideVisible}>
             <div className="personal-finance-container">
                 <div className="overlay"></div>
                 {isGuideVisible && (

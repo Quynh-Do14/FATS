@@ -1,7 +1,7 @@
 // components/CheckInCard.tsx
 import { useEffect, useState } from 'react';
 import styles from '@/assets/styles/page/attendance.module.css';
-import coin from '@/assets/images/attendance/coin.gif'
+import coin from '@/assets/images/attendance/coin.png'
 interface DayData {
     checkinDate: string;
     dayOfWeek: string;
@@ -33,13 +33,13 @@ const CheckIn = (props: Props) => {
             <div className={`${styles.card} ${styles.cardHover}`}>
                 <div className={styles.textCenter}>
                     {/* Motivational Quote */}
-                    <div className="mb-6">
+                    <div className="mb-4">
                         <h3 className={`${styles.title} ${styles.textGlow}`}>Thêm một ngày, thêm một xu!</h3>
                         <p className={styles.subtitle}>Hôm nay bạn đã sẵn sàng nhận thưởng chưa?</p>
                     </div>
 
                     {/* Current Date */}
-                    <div className="mb-6">
+                    <div className="mb-4">
                         <div className={styles.currentDateContainer}>
                             <p className={styles.currentDateLabel}>Hôm nay</p>
                             <p className={styles.currentDate} id="currentDate">{currentDate}</p>
@@ -47,9 +47,21 @@ const CheckIn = (props: Props) => {
                     </div>
 
                     {/* Coin Display */}
-                    <div className="mb-8">
+                    <div className="mb-4 flex flex-col items-center justify-center gap-2">
                         <div className={`${styles.coinContainer} ${styles.coinBounce}`}>
-                            <img src={coin.src} alt='' />
+                            <div className={`
+                            ${styles.coin3D}
+                            w-12 h-12 flex items-center justify-center
+                            bg-amber-400 rounded-full
+                            shadow-[0_0_20px_rgba(255,215,0,0.6)]
+                            border-2 border-amber-200
+                            `}>
+                                <img
+                                    src={coin.src}
+                                    alt="FATS Coin"
+                                    className="w-8 h-8 object-contain animate-coin-spin"
+                                />
+                            </div>
                         </div>
                         <div className="flex items-center justify-center space-x-2">
                             <span className={styles.coinCount} id="coinCount">Nhận ngay: 5 xu</span>
@@ -73,9 +85,9 @@ const CheckIn = (props: Props) => {
                     >
                         <span className={`${styles.btnText} relative z-10 flex items-center justify-center`}>
                             {todayCheckin?.checkin ? (
-                                <span className="mr-2">Đã Điểm Danh</span>
+                                <span className="">Đã Điểm Danh</span>
                             ) : (
-                                <span className="mr-2">Điểm Danh Ngay</span>
+                                <span className="">Điểm Danh Ngay</span>
                             )}
                         </span>
 

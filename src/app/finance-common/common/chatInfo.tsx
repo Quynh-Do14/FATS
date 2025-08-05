@@ -60,12 +60,14 @@ const ChatBotInfo = (props: Props) => {
                         title={'Thay đổi Bot'}
                         width={140}
                     />
-                    <ButtonSend
-                        classColor={'green'}
-                        onClick={handleCartClick}
-                        title={'Trò chuyện'}
-                        width={140}
-                    />
+                    <div id="step-4">
+                        <ButtonSend
+                            classColor={'green'}
+                            onClick={handleCartClick}
+                            title={'Trò chuyện'}
+                            width={140}
+                        />
+                    </div>
                     <ChatBoxCommon
                         titleChat={titleChat}
                         isOpen={isOpenChatBox}

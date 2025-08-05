@@ -6,6 +6,8 @@ import styles from '@/assets/styles/page/attendance.module.css';
 import coin from '@/assets/images/attendance/coin.png'
 import attendanceService from '@/infrastructure/repositories/attendance/attendance.service';
 import { isTodayCheckinDate } from '@/infrastructure/helper/helper';
+import { useRecoilValue } from 'recoil';
+import { ProfileState } from '@/core/atoms/profile/profileState';
 interface DayData {
     checkinDate: string;
     dayOfWeek: string;
@@ -18,7 +20,9 @@ type Props = {
 };
 
 const AttendanceCalendar = (props: Props) => {
-    const { weekDates, todayCheckin } = props
+    const { weekDates, todayCheckin } = props;
+    const profileState = useRecoilValue(ProfileState).data;
+
     return (
         <div className={styles.cardWrapper}>
             <div className={styles.card}>
@@ -148,7 +152,7 @@ const AttendanceCalendar = (props: Props) => {
                                     text-shadow-gold
                                     tracking-wide
                                     `}>
-                                    330
+                                    {profileState.coinCheckin ? profileState.coinCheckin : 0}
                                 </span>
                                 <span className="text-sm font-bold text-amber-800 mb-0.5">xu</span>
                             </div>

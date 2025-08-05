@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
 import '@/assets/styles/page/watch.css';
+import BreadcrumbCommon from '@/infrastructure/common/Layouts/Breadcumb';
+import { ROUTE_PATH } from '@/core/common/appRouter';
 
 // Type declarations for YouTube IFrame API
 declare global {
@@ -133,6 +135,11 @@ const SlugWatch = () => {
     return (
         <div className="slug-watch-container">
             <div className="padding-common">
+                <BreadcrumbCommon
+                    breadcrumb={"Xem video"}
+                    redirect={ROUTE_PATH.WATCH}
+                    title={""}
+                />
                 <div className="w-full">
                     {/* Header */}
                     <div className="text-center mb-8">
