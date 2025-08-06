@@ -319,11 +319,11 @@
   animation-timing-function: linear;
 }
 .main-layout-client .content-layout-client {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  background: #fff;
-  overflow-x: hidden;
-  max-height: 100vh;
+  background: #fff; */
+  min-height: 100vh;
+  overflow: hidden;
 }
 @keyframes spin {
   from {
