@@ -719,7 +719,6 @@ const GoalSpendingPage = () => {
         }
     };
 
-
     const generateColors = (length: number) => {
         const colors = [
             "#FFC371", // Cam nhẹ (tươi tắn)

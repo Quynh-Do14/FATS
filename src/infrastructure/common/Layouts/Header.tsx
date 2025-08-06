@@ -143,7 +143,7 @@ const HeaderClient = (props: Props) => {
                     <a href={ROUTE_PATH.SELECT_CHAT_BOT}>
                         <div className='info-admin-title px-1 py-2 flex items-center hover:text-[#5e5eff]'>
                             <i className="fa fa-retweet" aria-hidden="true"></i>
-                            Thay đổi Bot Chat
+                            Thay đổi ChatAI
                         </div>
                     </a>
                 </Menu.Item>

@@ -60,4 +60,10 @@ export const ROUTE_PATH = {
 
     BANNER_MANAGEMENT: `${ADMIN_PREFIX}/banner`,
     ADD_BANNER_MANAGEMENT: `${ADMIN_PREFIX}/banner/add`,
+
+    USER_MANAGEMENT: `${ADMIN_PREFIX}/user-management`,
+    ADD_USER_MANAGEMENT: `${ADMIN_PREFIX}/user-management/add`,
+
+    VIDEO_MANAGEMENT: `${ADMIN_PREFIX}/video-management`,
+    ADD_VIDEO_MANAGEMENT: `${ADMIN_PREFIX}/video-management/add`,
 }

@@ -53,7 +53,7 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 50.25%; /* 16:9 Aspect Ratio */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);

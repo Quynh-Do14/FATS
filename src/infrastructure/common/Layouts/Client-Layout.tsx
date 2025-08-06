@@ -13,6 +13,8 @@ import budgetService from "../../repositories/budget/budget.service";
 import { BudgetState } from "@/core/atoms/budget/budgetState";
 import { CategoryBlogState } from "@/core/atoms/category/categoryState";
 import categoryBlogService from '@/infrastructure/repositories/category/categoryBlog.service';
+import attendanceService from "@/infrastructure/repositories/attendance/attendance.service";
+import { AttendanceState } from "@/core/atoms/attendance/attendanceState";
 
 const LayoutClient = ({ isScroll = false, ...props }: any) => {
     const [isLoginClick, setIsLoginClick] = useState<boolean>(false);
@@ -30,6 +32,7 @@ const LayoutClient = ({ isScroll = false, ...props }: any) => {
     const [dataProfile, setDataProfile] = useState<any>({});
     const [, setProfileState] = useRecoilState(ProfileState);
     const [, setBudgetState] = useRecoilState(BudgetState);
+    const [, setAttendanceState] = useRecoilState(AttendanceState);
     const [, setCategoryBlogState] = useRecoilState(CategoryBlogState);
 
     useEffect(() => {
@@ -69,6 +72,7 @@ const LayoutClient = ({ isScroll = false, ...props }: any) => {
         }
 
     }
+    
     const onGetBudgetAsync = async () => {
         if (isLoadingToken) {
             if (!token) return;
@@ -88,10 +92,30 @@ const LayoutClient = ({ isScroll = false, ...props }: any) => {
         }
     };
 
+    const onGetAttendanceAsync = async () => {
+        if (isLoadingToken) {
+            if (!token) return;
+            try {
+                await attendanceService.GetAttendanceLog(
+                    {},
+                    () => { }
+                ).then((response) => {
+                    setAttendanceState({
+                        data: response
+                    });
+
+                })
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+    };
 
     useEffect(() => {
         getProfileUser().then(() => { })
         onGetBudgetAsync().then(() => { });
+        onGetAttendanceAsync().then(() => { });
     }, [token, isLoadingToken])
 
     const onGetListCategoryBlogAsync = async () => {

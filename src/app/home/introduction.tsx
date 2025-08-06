@@ -1,17 +1,22 @@
 "use client"
 import React from "react"
-import introduction from "@/assets/images/banner4.gif"
 import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign'
 import TitleComponent from '@/infrastructure/common/components/controls/TitleComponent'
 import { useEffect, useState } from "react";
 import { isTokenStoraged } from "@/infrastructure/utils/storage";
 import { ROUTE_PATH } from "@/core/common/appRouter";
 import { useRouter } from "next/navigation";
-import { configFileURL, configImageURL, getEmbedUrl } from "@/infrastructure/helper/helper"
+import { getEmbedUrl } from "@/infrastructure/helper/helper"
+import PopupAttendance from "./popupAttendance"
+import { useRecoilValue } from "recoil"
+import { AttendanceState } from "@/core/atoms/attendance/attendanceState"
+
 const IntroductionComponent = () => {
     const [token, setToken] = useState<boolean>(false);
     const [isLoadingToken, setIsLoadingToken] = useState<boolean>(false);
+    const [isOpenModalAttendance, setIsOpenModalAttendance] = useState<boolean>(false);
 
+    const attendanceState = useRecoilValue(AttendanceState).data
     const router = useRouter();
     const url = "https://www.youtube.com/watch?v=zg5SUXqHQnA";
     useEffect(() => {
@@ -39,6 +44,19 @@ const IntroductionComponent = () => {
         }
     }
 
+    useEffect(() => {
+        if (attendanceState.length) {
+            const today = new Date().toISOString().split('T')[0];
+            const todayCheckin = attendanceState.find(
+                (item) => item.checkinDate === today
+            );
+            setIsOpenModalAttendance(!!!todayCheckin.checkin)
+        }
+    }, [attendanceState])
+
+    const onCloseModalAttendance = () => {
+        setIsOpenModalAttendance(false)
+    }
     return (
         <div className="introduction">
             <TitleComponent
@@ -80,6 +98,9 @@ const IntroductionComponent = () => {
                     title="YouTube video"
                 />
             </div>
+            <PopupAttendance
+                handleCancel={onCloseModalAttendance}
+                visible={isOpenModalAttendance} />
         </div >
     )
 }

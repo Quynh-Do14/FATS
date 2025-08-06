@@ -9,6 +9,11 @@ export default class Constants {
     static Menu = class {
         static List = [
             {
+                label: "Quản lý người dùng",
+                link: ROUTE_PATH.USER_MANAGEMENT,
+                icon: "fa fa-user" // Icon thư mục
+            },
+            {
                 label: "Quản lý danh mục",
                 link: ROUTE_PATH.BLOG_CATEGORY_MANAGEMENT,
                 icon: "fa fa-folder-open" // Icon thư mục
@@ -17,7 +22,12 @@ export default class Constants {
                 label: "Quản lý bài viết",
                 link: ROUTE_PATH.BLOG_MANAGEMENT,
                 icon: "fa fa-newspaper" // Icon bài viết
-            }
+            },
+            {
+                label: "Quản lý video",
+                link: ROUTE_PATH.VIDEO_MANAGEMENT,
+                icon: "fa fa-file-video-o" // Icon bài viết
+            },
         ]
     };
     static MenuClient = class {
@@ -72,6 +82,13 @@ export default class Constants {
     static TOKEN = "token";
     static DEBOUNCE_SEARCH = 800;
 
+    static Role = class {
+        static List = [
+            { label: "Quản trị viên", value: "admin" },
+            { label: "Người dùng", value: "user" },
+        ]
+    }
+
     static Params = class {
         static limit = "limit";
         static page = "page";
@@ -114,7 +131,6 @@ export default class Constants {
             { label: "Tuần", value: "weekly" },
             { label: "Tháng", value: "monthly" },
             { label: "Lựa chọn thời gian", value: "" },
-
         ]
     }
 
@@ -277,6 +293,13 @@ export default class Constants {
             "Cách phân biệt đầu tư thật và lừa đảo?",
             "Kênh đầu tư nào ít rủi ro nhất?",
             "Có nên nghe theo lời khuyên đầu tư trên mạng?"
+        ]
+    }
+
+    static VideoType = class {
+        static List = [
+            { label: "Youtube", value: "" },
+            { label: "Tiktok", value: "" },
         ]
     }
 };

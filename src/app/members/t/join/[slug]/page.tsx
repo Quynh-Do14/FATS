@@ -79,7 +79,7 @@ const JoinTeam = ({ params }: { params: { slug: string } }) => {
         <Suspense fallback={<Loading />}>
             <LayoutClient>
                 <BannerCommon
-                    title={"Quỹ nhó nhóm"}
+                    title={"Quỹ nhóm"}
                     sub={"Tham gia nhóm"}
                     backgroundUrl={banner2.src}
                 />

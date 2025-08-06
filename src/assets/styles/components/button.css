@@ -206,6 +206,7 @@
   border-radius: 5px;
   text-align: center;
   white-space: nowrap;
+  color: #000;
 }
 
 .btn-send.green {

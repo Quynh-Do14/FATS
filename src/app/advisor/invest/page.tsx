@@ -2,7 +2,7 @@
 import TypingIndicator from '@/infrastructure/common/components/controls/Typing'
 import { convertDateOnlyShow } from '@/infrastructure/helper/helper'
 import React, { useEffect, useRef, useState } from 'react'
-import gptIcon from "@/assets/images/gpt-icon.png"
+import gptIcon from "@/assets/images/AI/ai2.png"
 import "@/assets/styles/page/advisor.css"
 import advisorService from '@/infrastructure/repositories/advisor/advisor.service'
 import LayoutClientNoFooter from '@/infrastructure/common/Layouts/Client-Layout-NoFooter'
@@ -161,7 +161,7 @@ const AdvisorPage = () => {
                     <div className="header">
                         <img src={gptIcon.src} alt="" />
                         <div className="status-container">
-                            <div className="title">ChatBot Tư Vấn Đầu tư</div>
+                            <div className="title">Finora Tư Vấn Đầu tư</div>
                             <div className="status-line">
                                 <span className="dot" />
                                 <span className="status-text">Online</span>

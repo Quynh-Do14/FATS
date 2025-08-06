@@ -144,7 +144,7 @@ const SlugWatch = () => {
                     {/* Header */}
                     <div className="text-center mb-8">
                         <h1 className="text-5xl font-bold text-white mb-4">
-                            🎬 <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">YouTube Rewards</span>
+                            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">YouTube Rewards</span>
                         </h1>
                         <p className="text-white/80 text-xl">Xem video đầy đủ 15 giây để nhận phần thưởng hấp dẫn!</p>
                     </div>
@@ -187,42 +187,6 @@ const SlugWatch = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
-                <div>
-                    <strong>Current:</strong> {formatTime(currentTime)}
-                </div>
-                <div>
-                    <strong>Duration:</strong> {formatTime(duration)}
-                </div>
-                <div>
-                    <strong>Status:</strong> {playerState}
-                </div>
-            </div>
-
-            <div style={{ marginTop: '20px', display: 'flex', gap: '10px' }}>
-                <button
-                    onClick={() => playerRef.current?.playVideo()}
-                    disabled={playerState === 'PLAYING'}
-                >
-                    Play
-                </button>
-                <button
-                    onClick={() => playerRef.current?.pauseVideo()}
-                    disabled={playerState !== 'PLAYING'}
-                >
-                    Pause
-                </button>
-                <button onClick={() => playerRef.current?.seekTo(currentTime + 10, true)}>
-                    +10s
-                </button>
-                <button onClick={() => playerRef.current?.seekTo(currentTime - 5, true)}>
-                    -5s
-                </button>
-                <button onClick={() => playerRef.current?.seekTo(0, true)}>
-                    Restart
-                </button>
-            </div> */}
             </div>
         </div>
     );

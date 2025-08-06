@@ -173,13 +173,13 @@
 }
 
 .main-layout-client {
-  flex: 1;
+  /* flex: 1; */
   height: 100vh;
-  flex-direction: row;
+  /* flex-direction: row;
   background: #fff;
   position: relative;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden; */
 }
 
 .main-layout-client .header-common {

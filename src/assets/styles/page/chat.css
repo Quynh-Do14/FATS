@@ -26,11 +26,36 @@
   z-index: 11;
   border: 3px #fff solid;
   transition: 0.3s;
+  overflow: hidden;
 }
 
-.chat-container .btn-chat:hover {
-  background-color: #036161;
+.chat-container .btn-chat::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: elsaShimmer 3s infinite;
 }
+
+/* Hiệu ứng ánh sáng lướt qua */
+@keyframes elsaShimmer {
+  0% {
+    transform: rotate(30deg) translate(-30%, -30%);
+  }
+  100% {
+    transform: rotate(30deg) translate(30%, 30%);
+  }
+}
+
 .chat-container .message {
   position: fixed;
   bottom: 10%;

@@ -58,7 +58,7 @@ const OpenChatBot = (props: Props) => {
                         title={'Trò chuyện'}
                         width={120}
                     />
-                    <p>Bắt đầu trò chuyện với ChatBot</p>
+                    <p>Bắt đầu trò chuyện với Fisca</p>
                 </div>
                 <ChatBoxCommon
                     titleChat={titleChat}

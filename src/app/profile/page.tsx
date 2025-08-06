@@ -290,7 +290,7 @@ const ProfilePage = () => {
                             tab == 2
                                 ?
                                 <div className='content'>
-                                    <h2>Thông tin BotChat</h2>
+                                    <h2>Thông tin ChatAI</h2>
                                     <div className='chatbot'>
                                         <div className='flex flex-col gap-2 items-center'>
                                             <img src={botInfo?.avatar.src} alt='' width={100} />

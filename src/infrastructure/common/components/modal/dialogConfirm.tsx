@@ -33,7 +33,7 @@ const DialogConfirmCommon = (props: Props) => {
                             classColor={'transparent'}
                             onClick={() => handleCancel()}
                             title={titleCancel}
-                            width={120}
+                            width={160}
                         />
 
                         <ButtonDesign
@@ -41,7 +41,7 @@ const DialogConfirmCommon = (props: Props) => {
                             classColor={'green'}
                             onClick={() => handleOk()}
                             title={titleOk}
-                            width={120}
+                            width={160}
                         />
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ROUTE_PATH } from '../../../core/common/appRouter';
 import Constants from '../../../core/common/constants';
 import ChatBoxCommon from '../../chat';
+import { ButtonHref } from '@/infrastructure/common/components/button/buttonHref';
 
 type Props = {
     titleChat: string
@@ -54,17 +55,17 @@ const ChatBotInfo = (props: Props) => {
             <div className='chatbot-info'>
                 <img src={botInfo?.avatar.src} alt='' width={100} />
                 <div className='bot-name'>
-                    <ButtonSend
+                    <ButtonHref
                         classColor={'green'}
-                        onClick={() => router.push(ROUTE_PATH.SELECT_CHAT_BOT)}
-                        title={'Thay đổi Bot'}
+                        href={ROUTE_PATH.SELECT_CHAT_BOT}
+                        title={'Thay đổi BotAI'}
                         width={140}
                     />
                     <div id="step-4">
                         <ButtonSend
                             classColor={'green'}
                             onClick={handleCartClick}
-                            title={'Trò chuyện'}
+                            title={'Chat với Fisca'}
                             width={140}
                         />
                     </div>

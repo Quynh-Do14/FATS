@@ -171,6 +171,25 @@ export class Endpoint {
         static GetRelation = "/blogs/public/related"
     }
 
+    static User = class {
+        static GetAdmin = "/auth/admin/get-all-users"
+        static GetAdminById = "/"
+        static AddAdmin = "/auth/admin/create-account"
+        static UpdateAdmin = "/"
+        static DeleteAdmin = "/"
+    }
+
+    static Video = class {
+        static GetAll = "/"
+        static GetById = "/"
+
+        static GetAdmin = "/"
+        static GetAdminById = "/"
+        static Add = "/"
+        static Update = "/"
+        static Delete = "/"
+    }
+
     static TeamLog = class {
         static Get = "/teamlogs/my-goal"
         static Update = "/teamlogs/confirm"
