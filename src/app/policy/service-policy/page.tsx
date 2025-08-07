@@ -7,7 +7,7 @@ const ServicePolicy = () => {
         <LayoutClient>
             <div className="padding-common policy-container">
                 <div className="content">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-6">
+                    <h1 className="text-3xl font-semibold text-gray-800 mb-6">
                         Chính sách cung ứng dịch vụ FATS
                     </h1>
 

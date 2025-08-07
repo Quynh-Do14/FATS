@@ -82,7 +82,7 @@ const ChangePasswordModal = (props: Props) => {
         >
             <div className='flex flex-col gap-4'>
                 <div className="">
-                    <p className="text-center font-bold text-[28px] text-[#787878]">Thay đổi mật khẩu</p>
+                    <p className="text-center font-semibold text-[28px] text-[#787878]">Thay đổi mật khẩu</p>
                 </div>
                 <Row gutter={[10, 10]}>
                     <Col span={24}>

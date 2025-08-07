@@ -53,7 +53,7 @@ const VerifyEmailPage = () => {
                     <>
                         <div className="flex flex-col items-center text-center space-y-4">
                             <div className="text-[#389d21] text-5xl">⏳</div>
-                            <h2 className="text-2xl font-bold text-[#389d21]">
+                            <h2 className="text-2xl font-semibold text-[#389d21]">
                                 Đang Xác Thực Tài Khoản
                             </h2>
                             <p className="text-gray-600">
@@ -65,7 +65,7 @@ const VerifyEmailPage = () => {
                     <>
                         <div className="flex flex-col items-center text-center space-y-4">
                             <div className="text-green-500 text-5xl">✅</div>
-                            <h2 className="text-2xl font-bold text-green-600">
+                            <h2 className="text-2xl font-semibold text-green-600">
                                 Xác Thực Thành Công
                             </h2>
                             <p className="text-gray-700">
@@ -77,7 +77,7 @@ const VerifyEmailPage = () => {
                     <>
                         <div className="flex flex-col items-center text-center space-y-4">
                             <div className="text-red-500 text-5xl">❌</div>
-                            <h2 className="text-2xl font-bold text-red-500">
+                            <h2 className="text-2xl font-semibold text-red-500">
                                 Xác Thực Không Thành Công
                             </h2>
                             <p className="text-gray-700">

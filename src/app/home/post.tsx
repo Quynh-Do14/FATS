@@ -105,7 +105,7 @@ const PostComponent = () => {
                                         ></i>
                                         <span>{item.createdBy}</span>
                                     </p>
-                                    <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title">
+                                    <Link href={`${ROUTE_PATH.BLOG}/${convertSlug(item?.title)}-${item?.id}.html`} className="title text-truncate-2">
                                         {item.title}
                                     </Link>
                                 </div>

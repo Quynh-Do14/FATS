@@ -60,7 +60,7 @@ const BlogDetailPage = async ({ params }: Props) => {
                                 redirect={ROUTE_PATH.BLOG}
                                 title={blogDetail.title}
                             />
-                            <h2 className="text-2xl font-bold text-gray-800">{blogDetail.title}</h2>
+                            <h2 className="text-2xl font-semibold text-gray-800">{blogDetail.title}</h2>
                             <article
                                 className="prose max-w-none px-2 text-justify"
                                 dangerouslySetInnerHTML={{ __html: blogDetail.content }}

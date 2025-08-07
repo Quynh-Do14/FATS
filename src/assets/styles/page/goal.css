@@ -6,7 +6,7 @@
   );
 
   width: 100%;
-  position: relative;
+  /* position: relative; */
 }
 
 .goal-container .overview {
@@ -194,7 +194,7 @@
 }
 
 .goal-container .box-common .title-box {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 25px;
   line-height: 35px;
   letter-spacing: 0%;

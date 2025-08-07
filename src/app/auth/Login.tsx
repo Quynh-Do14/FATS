@@ -110,7 +110,7 @@ const LoginModal = (props: Props) => {
                     <img src={""} alt="" />
                 </div> */}
                 <div className="">
-                    <p className="text-center font-bold text-[28px] text-[#787878]">Đăng nhập</p>
+                    <p className="text-center font-semibold text-[28px] text-[#787878]">Đăng nhập</p>
                 </div>
                 <Row gutter={[30, 10]}>
                     <Col span={24}>

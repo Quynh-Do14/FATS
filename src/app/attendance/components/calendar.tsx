@@ -154,7 +154,7 @@ const AttendanceCalendar = (props: Props) => {
                                     `}>
                                     {profileState.coinCheckin ? profileState.coinCheckin : 0}
                                 </span>
-                                <span className="text-sm font-bold text-amber-800 mb-0.5">xu</span>
+                                <span className="text-sm font-semibold text-amber-800 mb-0.5">xu</span>
                             </div>
                         </div>
 

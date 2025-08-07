@@ -143,7 +143,7 @@ const SlugWatch = () => {
                 <div className="w-full">
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <h1 className="text-5xl font-bold text-white mb-4">
+                        <h1 className="text-5xl font-semibold text-white mb-4">
                             <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">YouTube Rewards</span>
                         </h1>
                         <p className="text-white/80 text-xl">Xem video đầy đủ 15 giây để nhận phần thưởng hấp dẫn!</p>
@@ -171,7 +171,7 @@ const SlugWatch = () => {
                             </div>
 
                             <div id="progressText" className="text-white/80 text-lg mb-6">
-                                Vui lòng xem video trong <span id="remainingTime" className="font-bold text-yellow-400">15 giây</span> để nhận thưởng
+                                Vui lòng xem video trong <span id="remainingTime" className="font-semibold text-yellow-400">15 giây</span> để nhận thưởng
                             </div>
                         </div>
 
@@ -179,7 +179,7 @@ const SlugWatch = () => {
                         <div className="text-center">
                             <button
                                 id="rewardButton"
-                                className={`reward-button px-12 py-4 rounded-full text-white font-bold text-xl pulse-ring ${showRewardButton ? '' : 'hidden'}`}
+                                className={`reward-button px-12 py-4 rounded-full text-white font-semibold text-xl pulse-ring ${showRewardButton ? '' : 'hidden'}`}
                             // onClick={claimReward}
                             >
                                 🎁 Nhận Thưởng Ngay!

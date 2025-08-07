@@ -626,7 +626,7 @@ const GoalSpendingTeamPage = () => {
                                             <Row gutter={[20, 20]} >
                                                 <Col span={24}>
                                                     <div className="flex justify-between w-full gap-2 flex-wrap">
-                                                        <h2 className="text-xl font-bold text-left text-gray-800">Danh sách mục tiêu</h2>
+                                                        <h2 className="text-xl font-semibold text-left text-gray-800">Danh sách mục tiêu</h2>
                                                         {
                                                             newlistGoal.length
                                                                 ?

@@ -199,7 +199,7 @@
 .title {
   font-size: 1.5rem;
   line-height: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(17 24 39);
   margin-bottom: 0.5rem;
 }
@@ -554,7 +554,7 @@
 .currentDate {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(17 24 39);
 }
 
@@ -592,7 +592,7 @@
   padding: 1rem 1.5rem;
   border-radius: 0.75rem;
   color: white;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.125rem;
   line-height: 1.75rem;
   background-color: rgb(59 130 246);
@@ -645,7 +645,7 @@
 
 .notificationTitle {
   color: rgb(22 101 52);
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
@@ -712,7 +712,7 @@
 .title {
   font-size: 1.5rem;
   line-height: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(17 24 39);
   margin-bottom: 0.5rem;
 }
@@ -809,7 +809,7 @@
 }
 
 .itemTitle {
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(17 24 39);
   margin-bottom: 0.25rem;
 }
@@ -879,7 +879,7 @@
 }
 
 .tipTitle {
-  font-weight: 700;
+  font-weight: 600;
   color: rgb(30 64 175);
   font-size: 0.875rem;
   line-height: 1.25rem;

@@ -31,14 +31,14 @@
   background: #fff;
   border-radius: 8px 8px 0 0;
   padding: 12px 0px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
   line-height: 26px;
   color: #47cef7;
   width: 120px;
 }
 .profile-page .tabs .option.no-active {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
   line-height: 26px;
   color: #787878;
@@ -61,7 +61,7 @@
   align-items: center;
 }
 .profile-page h2 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 20px;
   line-height: 30px;
   letter-spacing: 0%;

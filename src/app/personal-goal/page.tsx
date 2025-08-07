@@ -1034,7 +1034,7 @@ const GoalSpendingPage = () => {
                         <Col xs={24} sm={24} md={10} lg={8} xxl={6}>
                             <div className="category">
                                 <div className="flex flex-col gap-4">
-                                    <h2 className="text-xl font-bold text-left text-gray-800">Danh sách danh mục</h2>
+                                    <h2 className="text-xl font-semibold text-left text-gray-800">Danh sách danh mục</h2>
                                     <div className="flex justify-center gap-4">
                                         <ButtonDesign
                                             classColor={selectedTab === "spend" ? "green" : "transparent"}
@@ -1079,7 +1079,7 @@ const GoalSpendingPage = () => {
                                 <Row gutter={[20, 20]} >
                                     <Col span={24}>
                                         <div className="flex justify-between w-full gap-2 flex-wrap">
-                                            <h2 className="text-xl font-bold text-left text-gray-800">Danh sách mục tiêu</h2>
+                                            <h2 className="text-xl font-semibold text-left text-gray-800">Danh sách mục tiêu</h2>
                                             {
                                                 newlistGoal.length
                                                     ?

@@ -27,7 +27,7 @@
   text-align: left;
   font-size: 54px;
   line-height: 60px;
-  font-weight: 700;
+  font-weight: 600;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
   font-family: 'Arial', sans-serif;
@@ -250,7 +250,7 @@
   text-align: left;
   font-size: 48px;
   line-height: 60px;
-  font-weight: 700;
+  font-weight: 600;
   color: #353535;
   font-family: 'Arial', sans-serif;
   font-family: 'Arial', sans-serif;
@@ -298,7 +298,7 @@
   text-align: center;
   font-size: 48px;
   line-height: 60px;
-  font-weight: 700;
+  font-weight: 600;
   color: #353535;
   font-family: 'Arial', sans-serif;
   font-family: 'Arial', sans-serif;
@@ -382,7 +382,7 @@
 }
 .homepage-container .introduction .title h1,
 .homepage-container .introduction .title h2 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 48px;
   line-height: 60px;
   letter-spacing: 0%;
@@ -392,7 +392,7 @@
 }
 
 .homepage-container .introduction .title h3 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 48px;
   line-height: 60px;
   letter-spacing: 0%;
@@ -457,7 +457,7 @@
   gap: 30px;
 }
 .homepage-container .pricing-container .title h2 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 48px;
   line-height: 60px;
   letter-spacing: 0%;
@@ -467,7 +467,7 @@
 }
 
 .homepage-container .pricing-container .title h3 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 48px;
   line-height: 60px;
   letter-spacing: 0%;
@@ -545,7 +545,7 @@
 }
 
 .homepage-container .pricing-container .box h3 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 24px;
   line-height: 34px;
   letter-spacing: 0%;
@@ -638,7 +638,7 @@
   gap: 16px;
 }
 .homepage-container .slogan .content h2 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 36px;
   line-height: 45px;
   text-transform: capitalize;
@@ -704,7 +704,7 @@
   text-align: center;
   font-size: 48px;
   line-height: 60px;
-  font-weight: 700;
+  font-weight: 600;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
   font-family: 'Arial', sans-serif;
@@ -771,7 +771,7 @@
   gap: 50px;
 }
 .homepage-container .post .title h2 {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 48px;
   line-height: 60px;
   letter-spacing: 0%;
@@ -860,7 +860,7 @@
 }
 
 .homepage-container .finance .finance-content .title {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 24px;
   line-height: 34px;
   color: #101010;
@@ -976,7 +976,7 @@
 }
 @media only screen and (min-width: 1201px) {
   .homepage-container .banner .layout {
-    height: 700px;
+    height: 600px;
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -1166,7 +1166,7 @@
 
 .popup-attendance .popup-title {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #111827;
   margin-bottom: 12px;
 }
@@ -1262,7 +1262,7 @@
 }
 
 .popup-attendance .time-left {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .popup-attendance .action-buttons {

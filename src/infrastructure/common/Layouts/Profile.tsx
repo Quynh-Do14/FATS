@@ -119,7 +119,7 @@ const ProfileModal = (props: Props) => {
       closeIcon={<i className="fa fa-times text-[20px]" aria-hidden="true"></i>}
     >
       <div className='flex flex-col gap-4 p-3'>
-        <p className="text-center font-bold text-[28px] text-[#787878]">Thông tin cá nhân</p>
+        <p className="text-center font-semibold text-[28px] text-[#787878]">Thông tin cá nhân</p>
 
         <div className='flex items-center gap-4'>
           <UploadAvatar
