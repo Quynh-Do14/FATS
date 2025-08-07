@@ -30,6 +30,7 @@
   justify-content: space-between;
   gap: 16px;
   height: 100%;
+  position: relative;
 }
 .personal-finance-container .category .content .box.show {
   opacity: 1;
@@ -212,7 +213,7 @@
   background: #d8f8eb;
   z-index: 1;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-radius: 4px;
   height: 100%;
   color: #101010;
@@ -240,9 +241,6 @@
 
 .personal-finance-container .target .box:hover::before {
   opacity: 1;
-}
-
-.personal-finance-container .target .box:hover {
 }
 
 .personal-finance-container .target .box::after {
@@ -313,19 +311,111 @@
   color: #fff;
   white-space: nowrap;
 }
-.is-saving {
+.personal-finance-container .target .box .is-saving {
   padding: 4px 8px;
   border-radius: 4px;
   font-weight: 600;
   font-size: 14px;
 }
 
-.suggestion-box {
+.personal-finance-container .target .box .suggestion-box {
   padding: 12px;
   border-radius: 8px;
   border-left: 4px solid;
   margin-top: 12px;
 }
+
+/* Tooltip */
+.personal-finance-container .target .box .advisal-tooltip {
+  position: absolute;
+  top: -40px;
+  left: 0px;
+  z-index: 12;
+  background: linear-gradient(135deg, #4a6bff 0%, #6d8eff 50%, #8fb1ff 100%);
+  color: white;
+  padding: 10px 8px;
+  border-radius: 12px; /* More rounded corners */
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.8) translateY(30px);
+  box-shadow: 0 6px 20px rgba(74, 107, 255, 0.4); /* Matching blue shadow */
+  pointer-events: none;
+  animation: popFloat 5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.5s infinite; /* Changed to 5s */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+@keyframes popFloat {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+  20% {
+    transform: scale(1) translateY(0);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+}
+
+/* Arrow effect */
+.personal-finance-container .target .box .advisal-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #6d8eff; /* Middle color of gradient */
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Bubble pulse effect */
+.personal-finance-container .target .box .advisal-tooltip::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 12px; /* Matching rounded corners */
+  background: rgba(255, 255, 255, 0.1);
+  animation: bubblePulse 5s ease-in-out infinite; /* Changed to 5s */
+}
+
+@keyframes bubblePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.2;
+  }
+}
+
+/* Hover effect */
+.personal-finance-container .target .box:hover .advisal-tooltip {
+  animation: none;
+  transform: scale(1.05);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(74, 107, 255, 0.6); /* Matching blue shadow */
+}
+/* Tooltip */
 
 .highlight-amount {
   font-weight: 700;

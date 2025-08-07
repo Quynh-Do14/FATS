@@ -72,7 +72,7 @@ const LayoutClient = ({ isScroll = false, ...props }: any) => {
         }
 
     }
-    
+
     const onGetBudgetAsync = async () => {
         if (isLoadingToken) {
             if (!token) return;
@@ -194,9 +194,7 @@ const LayoutClient = ({ isScroll = false, ...props }: any) => {
             />
             {/* <div className="overlay"></div> */}
             <div ref={scrollRef} className={`content-layout-client ${isScroll && "overflow-hidden"}`}>
-                <div>
-                    {props.children}
-                </div>
+                {props.children}
                 <FormAdvisement />
                 <FooterClient />
             </div>

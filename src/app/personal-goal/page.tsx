@@ -1109,8 +1109,12 @@ const GoalSpendingPage = () => {
                                                             boxShadow: !goal.startDate ? `0 0 10px ${goal.color.line}40` : "none"
                                                         }}
                                                     >
+                                                        {!goal.startDate
+                                                            &&
+                                                            <div className="advisal-tooltip">Tiết kiệm rồi, tiếp theo là gì?</div>
+                                                        }
                                                         <div className="flex flex-col gap-2">
-                                                            <div className="flex gap-2 items-start justify-between">
+                                                            <div className="flex gap-2 items-start justify-between flex-wrap">
                                                                 <p className="text-[20px] font-semibold text-truncate-2">{goal.name}</p>
                                                                 {
                                                                     goal.startDate ? (
@@ -1175,10 +1179,10 @@ const GoalSpendingPage = () => {
                                                                 <div className="suggestion-options">
                                                                     <p>Bạn muốn:</p>
                                                                     <div className="options-grid">
-                                                                        <a href={ROUTE_PATH.ADVISOR_ENTERTAINMENT} className="option-btn invest-btn">
+                                                                        <a href={ROUTE_PATH.ADVISOR_INVEST} className="option-btn invest-btn">
                                                                             Đầu tư sinh lời
                                                                         </a>
-                                                                        <a href={ROUTE_PATH.ADVISOR_INVEST} className="option-btn reward-btn">
+                                                                        <a href={ROUTE_PATH.ADVISOR_ENTERTAINMENT} className="option-btn reward-btn">
                                                                             Chi tiêu cho bản thân
                                                                         </a>
                                                                     </div>
