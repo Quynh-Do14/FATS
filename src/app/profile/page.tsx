@@ -290,6 +290,43 @@ const ProfilePage = () => {
                             tab == 2
                                 ?
                                 <div className='content'>
+                                    <h2>Trạng thái tài khoản</h2>
+                                    <div className="table-container">
+                                        <table className="data-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Tài khoản xu</td>
+                                                    <td>{detailProfile.coinCheckin} xu</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Gói người dùng</td>
+                                                    <td>
+                                                        <span className={`package-badge ${detailProfile.packageType.toLowerCase()}`}>
+                                                            {detailProfile.packageType}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                {
+                                                    detailProfile.expiryDate
+                                                    &&
+                                                    <tr>
+                                                        <td>Ngày hết hạn</td>
+                                                        <td>{detailProfile.expiryDate}</td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td>Sử dụng ChatAI</td>
+                                                    <td>
+                                                        {detailProfile.chatAble ? (
+                                                            <span className="status-active">Khả dụng</span>
+                                                        ) : (
+                                                            <span className="status-inactive">Không khả dụng</span>
+                                                        )}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     <h2>Thông tin ChatAI</h2>
                                     <div className='chatbot'>
                                         <div className='flex flex-col gap-2 items-center'>

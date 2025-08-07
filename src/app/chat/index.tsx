@@ -324,7 +324,7 @@ const ChatBoxCommon = (props: Props) => {
                             <i onClick={closeDrawer} className="fa fa-arrow-left text-[#999] text-[20px] cursor-pointer" aria-hidden="true"></i>
                             <img src={gptIcon.src} alt="" />
                             <div className="status-container">
-                                <div className="title">Fisca</div>
+                                <div className="title">Moola</div>
                                 <div className="status-line">
                                     <span className="dot" />
                                     <span className="status-text">Online</span>
@@ -339,13 +339,13 @@ const ChatBoxCommon = (props: Props) => {
                                 isChatContent
                                     ?
                                     <div className="type-chat">
-                                        <div>Trò chuyện với Fisca</div>
+                                        <div>Trò chuyện với Moola</div>
                                         <p onClick={() => { setIsChatContent(!isChatContent) }}>Chuyển chế độ nhập chi tiêu</p>
                                     </div>
                                     :
                                     <div className="type-chat">
                                         <div>Chế độ nhập chi tiêu</div>
-                                        <p onClick={() => { setIsChatContent(!isChatContent) }}>Trò chuyện với Fisca </p>
+                                        <p onClick={() => { setIsChatContent(!isChatContent) }}>Trò chuyện với Moola </p>
                                     </div>
                             }
 
@@ -456,7 +456,7 @@ const ChatBoxCommon = (props: Props) => {
                             <i onClick={closeDrawer} className="fa fa-arrow-left text-[#999] text-[20px] cursor-pointer" aria-hidden="true"></i>
                             <img src={gptIcon.src} alt="" />
                             <div className="status-container">
-                                <div className="title">Fisca</div>
+                                <div className="title">Moola</div>
                                 <div className="status-line">
                                     <span className="dot" />
                                     <span className="status-text">Online</span>
@@ -471,13 +471,13 @@ const ChatBoxCommon = (props: Props) => {
                                 isChatContent
                                     ?
                                     <div className="type-chat">
-                                        <div>Trò chuyện với Fisca </div>
+                                        <div>Trò chuyện với Moola </div>
                                         <p onClick={() => { setIsChatContent(!isChatContent) }}>Chuyển chế độ nhập chi tiêu</p>
                                     </div>
                                     :
                                     <div className="type-chat">
                                         <div>Chế độ nhập chi tiêu</div>
-                                        <p onClick={() => { setIsChatContent(!isChatContent) }}>Trò chuyện với Fisca</p>
+                                        <p onClick={() => { setIsChatContent(!isChatContent) }}>Trò chuyện với Moola</p>
                                     </div>
                             }
                         </div>

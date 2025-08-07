@@ -258,7 +258,7 @@ export default class Constants {
     static ProfileTab = class {
         static List = [
             { label: "Ngân sách", value: 1 },
-            { label: "Botchat", value: 2 },
+            { label: "Tài khoản", value: 2 },
             { label: "Hồ sơ", value: 3 },
         ]
     }

@@ -15,6 +15,7 @@
   font-family: "Work Sans", sans-serif;
   /* font-family: 'Open Sans', sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
+  /* font-family: 'Be Vietnam Pro', sans-serif; */
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -132,7 +133,7 @@
 
 /* scroll custom */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 2px;
   height: 4px;
 }
 

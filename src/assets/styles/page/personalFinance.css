@@ -17,7 +17,7 @@
   gap: 16px;
   height: 100%;
   min-height: 200px;
-  max-height: 600px;
+  max-height: 800px;
 }
 
 .personal-finance-container .category .content {
@@ -195,7 +195,7 @@
   padding: 20px;
   height: 100%;
   min-height: 200px;
-  max-height: 600px;
+  max-height: 800px;
   overflow: auto;
 }
 
@@ -313,6 +313,69 @@
   color: #fff;
   white-space: nowrap;
 }
+.is-saving {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.suggestion-box {
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid;
+  margin-top: 12px;
+}
+
+.highlight-amount {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.suggestion-text {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.suggestion-options {
+  font-size: 14px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.option-btn {
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.invest-btn {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.reward-btn {
+  background-color: #fff8e1;
+  color: #ff8f00;
+}
+
+.continue-btn {
+  grid-column: span 2;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  justify-content: center;
+}
 
 .personal-finance-container .lock-team {
   display: flex;
@@ -360,6 +423,36 @@
   75% {
     transform: translateY(4px);
   }
+}
+
+.personal-finance-container .static table {
+  width: 100%;
+  text-align: left;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0%;
+}
+.personal-finance-container .static table tr {
+  font-size: 16px;
+}
+
+.personal-finance-container .static table tr th {
+  white-space: nowrap;
+}
+
+.personal-finance-container .static table tr td {
+  font-size: 14px;
+  line-height: 20px;
+}
+.personal-finance-container .static table tr td .cate {
+  width: 60px;
+  padding: 6px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #99cc99;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
 }
 
 .direction-container {

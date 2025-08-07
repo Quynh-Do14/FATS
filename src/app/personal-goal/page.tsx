@@ -36,6 +36,7 @@ import BudgetInfo from "@/infrastructure/common/components/budget/budget-info.";
 import AlertBudget from "@/infrastructure/common/components/budget/alert-budget";
 import ModalAllocation from "../finance-common/modal/modalAllocation";
 import DrawerSelectCategory from "../finance-common/common/drawerSelectCategory";
+import { ButtonHref } from "@/infrastructure/common/components/button/buttonHref";
 
 
 const GoalSpendingPage = () => {
@@ -1103,66 +1104,87 @@ const GoalSpendingPage = () => {
                                                         key={index}
                                                         className="box"
                                                         style={{
-                                                            background: `${goal.color.background}`
+                                                            background: `${goal.color.background}`,
+                                                            border: !goal.startDate ? `2px solid ${goal.color.line}` : "none",
+                                                            boxShadow: !goal.startDate ? `0 0 10px ${goal.color.line}40` : "none"
                                                         }}
                                                     >
                                                         <div className="flex flex-col gap-2">
                                                             <div className="flex gap-2 items-start justify-between">
                                                                 <p className="text-[20px] font-semibold text-truncate-2">{goal.name}</p>
                                                                 {
-                                                                    goal.startDate
-                                                                    && (
-                                                                        goal.achieved
-                                                                            ?
-                                                                            <div className='is-complete'>Đã hoàn thành</div>
-                                                                            :
-                                                                            goal.currentAmount >= goal.goalAmount
-                                                                                ?
-                                                                                <div className='is-done'>Hoàn thành</div>
-                                                                                :
+                                                                    goal.startDate ? (
+                                                                        goal.achieved ?
+                                                                            <div className='is-complete'>Đã hoàn thành</div> :
+                                                                            goal.currentAmount >= goal.goalAmount ?
+                                                                                <div className='is-done'>Hoàn thành</div> :
                                                                                 <div className='is-not-done'>Chưa đạt</div>
+                                                                    ) : (
+                                                                        <div className='is-saving' style={{ color: goal.color.line }}>
+                                                                            Đang tích lũy
+                                                                        </div>
                                                                     )
                                                                 }
                                                             </div>
-                                                            {
-                                                                goal.allocationPercentage > 0
-                                                                &&
-                                                                <p className="text-[14px]">Phân bổ: {goal.allocationPercentage}% thặng dư</p>
-                                                            }
-                                                            {
-                                                                goal.startDate
-                                                                    ?
-                                                                    <p className="text-[14px]">Mục tiêu: {formatCurrencyVND(goal.currentAmount)} / {formatCurrencyVND(goal.goalAmount)}</p>
-                                                                    :
-                                                                    <p className="text-[14px]">Đã tiết kiệm: {formatCurrencyVND(goal.currentAmount)}</p>
-                                                            }
-                                                            {
-                                                                goal.startDate
-                                                                &&
-                                                                <p className="text-[14px]">Thời gian: {convertDateOnlyShow(goal.startDate)} - {convertDateOnlyShow(goal.endDate)}</p>
-                                                            }
-                                                        </div>
-                                                        {
-                                                            goal.startDate
-                                                                ?
-                                                                <div className="w-full">
-                                                                    <div className="relative w-full h-2 bg-[#ffffff] rounded-full overflow-hidden">
-                                                                        <div
-                                                                            style={{
-                                                                                background: `${goal.color.line}`,
-                                                                                width: `${percentage}%`
-                                                                            }}
-                                                                            className="absolute top-0 left-0 h-full"
-                                                                        ></div>
-                                                                    </div>
-                                                                    <p className="text-right text-sm text-[#242424] mt-1">
-                                                                        {percentage.toFixed(0)}%
-                                                                    </p>
-                                                                </div>
-                                                                :
-                                                                <p className="text-[14px]">Quỹ này là nơi lưu trữ phần dư được tích lũy từ thặng dư hàng ngày</p>
-                                                        }
 
+                                                            {goal.allocationPercentage > 0 && (
+                                                                <p className="text-[14px]">Phân bổ: {goal.allocationPercentage}% thặng dư</p>
+                                                            )}
+
+                                                            {goal.startDate ? (
+                                                                <>
+                                                                    <p className="text-[14px]">Mục tiêu: {formatCurrencyVND(goal.currentAmount)} / {formatCurrencyVND(goal.goalAmount)}</p>
+                                                                    <p className="text-[14px]">Thời gian: {convertDateOnlyShow(goal.startDate)} - {convertDateOnlyShow(goal.endDate)}</p>
+                                                                </>
+                                                            ) : (
+                                                                <>
+                                                                    <p className="text-[16px] font-medium" style={{ color: goal.color.line }}>
+                                                                        Số dư hiện tại: {formatCurrencyVND(goal.currentAmount)}
+                                                                    </p>
+                                                                    <p className="text-[14px] text-gray-600">
+                                                                        Quỹ này tự động tích lũy từ thặng dư hàng ngày của bạn
+                                                                    </p>
+                                                                </>
+                                                            )}
+                                                        </div>
+
+                                                        {goal.startDate ? (
+                                                            <div className="w-full">
+                                                                <div className="relative w-full h-2 bg-[#ffffff] rounded-full overflow-hidden">
+                                                                    <div
+                                                                        style={{
+                                                                            background: `${goal.color.line}`,
+                                                                            width: `${percentage}%`
+                                                                        }}
+                                                                        className="absolute top-0 left-0 h-full"
+                                                                    ></div>
+                                                                </div>
+                                                                <p className="text-right text-sm text-[#242424] mt-1">
+                                                                    {percentage.toFixed(0)}%
+                                                                </p>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="suggestion-box" style={{
+                                                                borderColor: goal.color.line,
+                                                                backgroundColor: `${goal.color.line}15`
+                                                            }}>
+                                                                <p className="suggestion-text">
+                                                                    Chúc mừng! Bạn đã tích lũy được <span className="highlight-amount">{formatCurrencyVND(goal.currentAmount)}</span>
+                                                                </p>
+
+                                                                <div className="suggestion-options">
+                                                                    <p>Bạn muốn:</p>
+                                                                    <div className="options-grid">
+                                                                        <a href={ROUTE_PATH.ADVISOR_ENTERTAINMENT} className="option-btn invest-btn">
+                                                                            Đầu tư sinh lời
+                                                                        </a>
+                                                                        <a href={ROUTE_PATH.ADVISOR_INVEST} className="option-btn reward-btn">
+                                                                            Chi tiêu cho bản thân
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </Dropdown>
                                             </Col>

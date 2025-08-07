@@ -51,6 +51,9 @@ const SlugWatch = () => {
     const playerRef = useRef<YT.Player | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
+    const [timeCounter, setTimeCounter] = useState<number>(0);
+    const [showRewardButton, setShowRewardButton] = useState(true);
+
     const [playerState, setPlayerState] = useState<string>('UNSTARTED');
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
     const videoId = 'zg5SUXqHQnA'; // Extracted from your YouTube URL
@@ -121,16 +124,38 @@ const SlugWatch = () => {
             3: 'BUFFERING',
             5: 'CUED'
         };
-        setPlayerState(states[event.data as keyof typeof states] || 'UNKNOWN');
+        const newState = states[event.data as keyof typeof states] || 'UNKNOWN';
+        setPlayerState(newState);
+        console.log("Player state changed to:", newState);
     };
 
+    useEffect(() => {
+        // Clear interval cũ trước khi tạo mới
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+
+        // Chỉ đếm thời gian khi PLAYING
+        if (playerState === 'PLAYING') {
+            intervalRef.current = setInterval(() => {
+                setTimeCounter(prev => prev + 1);
+            }, 1000);
+        }
+
+        // Cleanup khi component unmount hoặc state thay đổi
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [playerState]);
     // Format time from seconds to MM:SS
     const formatTime = (time: number) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
-    const [showRewardButton, setShowRewardButton] = useState(true);
 
     return (
         <div className="slug-watch-container">
@@ -167,7 +192,7 @@ const SlugWatch = () => {
                         <div className="text-center mb-8">
                             <div className="flex items-center justify-center gap-1 mb-4">
                                 <span className="text-white/70 font-medium">Tiến trình xem:</span>
-                                <span id="timeDisplay" className="countdown-text text-2xl text-white">{formatTime(currentTime)}</span>
+                                <span id="timeDisplay" className="countdown-text text-2xl text-white">{formatTime(timeCounter)}</span>
                             </div>
 
                             <div id="progressText" className="text-white/80 text-lg mb-6">

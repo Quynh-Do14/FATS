@@ -65,7 +65,7 @@ const ChatBotInfo = (props: Props) => {
                         <ButtonSend
                             classColor={'green'}
                             onClick={handleCartClick}
-                            title={'Chat với Fisca'}
+                            title={'Chat với Moola'}
                             width={140}
                         />
                     </div>

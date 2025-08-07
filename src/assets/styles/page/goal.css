@@ -191,6 +191,7 @@
   display: flex;
   gap: 15px;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .goal-container .box-common .title-box {

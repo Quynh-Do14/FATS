@@ -31,13 +31,13 @@
 
 .watch-container .slider-container .slick-dots li button {
   box-shadow: 1px 1px 5px 0px rgba(152, 152, 152, 0.35);
-  background: rgba(156, 39, 176, 0.3);
+  background: #00bfff22;
   width: 15px;
   height: 15px;
   border-radius: 50%;
 }
 .watch-container .slider-container .slick-dots li.slick-active button {
-  background: #9c27b0;
+  background: #00bfff;
 }
 .watch-container .slider-container .slick-dots li button:before {
   color: transparent;
