@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 import Constants from '@/core/common/constants';
 import DialogConfirmCommon from '@/infrastructure/common/components/modal/dialogConfirm';
 import { ActionCommon } from '@/infrastructure/common/components/action/action-common';
-import categoryBlogService from '@/infrastructure/repositories/category/categoryBlog.service';
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
 import { ButtonDesign } from '@/infrastructure/common/components/button/buttonDesign';
 import { InputSearchCommon } from '@/infrastructure/common/components/input/input-search-common';
@@ -19,7 +18,7 @@ import videoService from '@/infrastructure/repositories/video/video.service';
 
 let timeout: any
 const ListVideoManagement = () => {
-    const [listCategory, setListCategory] = useState<Array<any>>([])
+    const [listCategory, setListCategory] = useState<Array<any>>([]);
     const [total, setTotal] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [pageSize, setPageSize] = useState<number>(10);
@@ -40,12 +39,12 @@ const ListVideoManagement = () => {
                 param,
                 setLoading
             ).then((res) => {
-                setListCategory(res.content)
-                setTotal(res.page.totalElements)
+                setListCategory(res.content);
+                setTotal(res.page.totalElements);
             })
         }
         catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
     const onSearch = async (name = "", size = pageSize, page = 1,) => {
@@ -62,16 +61,16 @@ const ListVideoManagement = () => {
 
     useEffect(() => {
         onSearch().then(_ => { });
-    }, [])
+    }, []);
     const onChangePage = async (value: any) => {
-        setCurrentPage(value)
+        setCurrentPage(value);
         await onSearch(searchText, pageSize, value).then(_ => { });
-    }
+    };
     const onPageSizeChanged = async (value: any) => {
-        setPageSize(value)
-        setCurrentPage(1)
+        setPageSize(value);
+        setCurrentPage(1);
         await onSearch(searchText, value, 1).then(_ => { });
-    }
+    };
 
     const onOpenModalDelete = (id: any) => {
         setIsDeleteModal(true);
@@ -89,14 +88,14 @@ const ListVideoManagement = () => {
                 setLoading
             ).then((res) => {
                 if (res) {
-                    onSearch().then(() => { })
+                    onSearch().then(() => { });
                 }
             })
         }
         catch (error) {
-            console.error(error)
+            console.error(error);
         }
-    }
+    };
     return (
         <AdminLayout
             title={'Danh sách video'}
@@ -140,32 +139,22 @@ const ListVideoManagement = () => {
                             <Column
                                 title={
                                     <TitleTableCommon
-                                        title="Tên video"
+                                        title="Link Video"
                                         width={'250px'}
                                     />
                                 }
-                                key={"name"}
-                                dataIndex={"name"}
+                                key={"urlVideo"}
+                                dataIndex={"urlVideo"}
                             />
                             <Column
                                 title={
                                     <TitleTableCommon
-                                        title="Link video"
+                                        title="Loại Video"
                                         width={'250px'}
                                     />
                                 }
-                                key={"name"}
-                                dataIndex={"name"}
-                            />
-                            <Column
-                                title={
-                                    <TitleTableCommon
-                                        title="Loai"
-                                        width={'250px'}
-                                    />
-                                }
-                                key={"name"}
-                                dataIndex={"name"}
+                                key={"videoType"}
+                                dataIndex={"videoType"}
                             />
                             <Column
                                 title={

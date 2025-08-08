@@ -74,7 +74,8 @@ const SlugCategoryManagement = ({ params }: Props) => {
     useEffect(() => {
         if (detail) {
             setDataRequest({
-                name: detail.name,
+                urlVideo: detail.urlVideo,
+                videoType: detail.videoType,
             });
         };
     }, [detail]);
@@ -86,8 +87,8 @@ const SlugCategoryManagement = ({ params }: Props) => {
             await videoService.UpdateVideoAdmin(
                 params.slug,
                 {
-                    name: dataRequest.name,
-                    description: "",
+                    urlVideo: dataRequest.urlVideo,
+                    videoType: dataRequest.videoType,
                 },
                 onBack,
                 setLoading
@@ -123,27 +124,14 @@ const SlugCategoryManagement = ({ params }: Props) => {
                     <div className={styles.form_container}>
                         <Row gutter={[30, 20]}>
                             <Col xs={24} sm={24} className={`${styles.border_add} flex justify-center`}>
-                                <div className={styles.legend_title}>Thêm thông tin mới</div>
+                                <div className={styles.legend_title}>Cập nhật thông tin</div>
                                 <Row gutter={[30, 20]}>
                                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <InputTextCommon
-                                            label={"Tên video"}
-                                            attribute={"name"}
-                                            isRequired={true}
-                                            dataAttribute={dataRequest.name}
-                                            setData={setDataRequest}
-                                            disabled={false}
-                                            validate={validate}
-                                            setValidate={setValidate}
-                                            submittedTime={submittedTime}
-                                        />
-                                    </Col>
-                                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                                        <InputTextCommon
                                             label={"Link video"}
-                                            attribute={"name"}
+                                            attribute={"urlVideo"}
                                             isRequired={true}
-                                            dataAttribute={dataRequest.name}
+                                            dataAttribute={dataRequest.urlVideo}
                                             setData={setDataRequest}
                                             disabled={false}
                                             validate={validate}
@@ -153,10 +141,10 @@ const SlugCategoryManagement = ({ params }: Props) => {
                                     </Col>
                                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <InputSelectCategoryCommon
-                                            label={"Quyền"}
-                                            attribute={"categoryId"}
+                                            label={"Loại video"}
+                                            attribute={"videoType"}
                                             isRequired={true}
-                                            dataAttribute={dataRequest.categoryId}
+                                            dataAttribute={dataRequest.videoType}
                                             setData={setDataRequest}
                                             disabled={false}
                                             validate={validate}

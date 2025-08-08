@@ -1,4 +1,5 @@
 import styles from '@/assets/styles/page/attendance.module.css';
+import { ROUTE_PATH } from '@/core/common/appRouter';
 
 function Guide() {
     return (
@@ -10,7 +11,7 @@ function Guide() {
                 </div>
 
                 <div className={styles.usageItems}>
-                    {/* Gift exchange */}
+                    {/* Daily check-in */}
                     <div className={styles.usageItem}>
                         <div className={styles.itemContent}>
                             <div className={`${styles.iconContainer} ${styles.pinkGradient}`}>
@@ -19,14 +20,14 @@ function Guide() {
                                 </svg>
                             </div>
                             <div className={styles.itemText}>
-                                <h3 className={styles.itemTitle}>Đổi Quà Tặng</h3>
-                                <p className={styles.itemDescription}>Voucher giảm giá, quà tặng độc quyền và nhiều phần thưởng hấp dẫn khác</p>
-                                <span className={`${styles.priceTag} ${styles.pinkPriceTag}`}>Từ 50 xu</span>
+                                <h3 className={styles.itemTitle}>Điểm Danh Hàng Ngày</h3>
+                                <p className={styles.itemDescription}>Hãy điểm danh hàng ngày để nhận phần thưởng</p>
+                                <span className={`${styles.priceTag} ${styles.pinkPriceTag}`}>Miễn phí</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Account upgrade */}
+                    {/* AI consultation */}
                     <div className={styles.usageItem}>
                         <div className={styles.itemContent}>
                             <div className={`${styles.iconContainer} ${styles.purpleGradient}`}>
@@ -35,27 +36,27 @@ function Guide() {
                                 </svg>
                             </div>
                             <div className={styles.itemText}>
-                                <h3 className={styles.itemTitle}>Nâng Cấp Premium</h3>
-                                <p className={styles.itemDescription}>Mở khóa tính năng cao cấp và trải nghiệm không giới hạn</p>
-                                <span className={`${styles.priceTag} ${styles.purplePriceTag}`}>Từ 200 xu</span>
+                                <h3 className={styles.itemTitle}>Tư Vấn Từ AI</h3>
+                                <p className={styles.itemDescription}>Điểm danh để nhận tư vấn từ trí tuệ nhân tạo</p>
+                                <span className={`${styles.priceTag} ${styles.purplePriceTag}`}>Miễn phí</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Mini-game */}
+                    {/* Watch videos */}
                     <div className={styles.usageItem}>
-                        <div className={styles.itemContent}>
+                        <a href={ROUTE_PATH.WATCH} className={styles.itemContent}>
                             <div className={`${styles.iconContainer} ${styles.greenGradient}`}>
                                 <svg className={`${styles.icon} ${styles.greenIcon}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2.5 2.5 0 110 5H9m4.5-5H15a2.5 2.5 0 110 5h-1.5m-5-5v5m5-5v5"></path>
                                 </svg>
                             </div>
                             <div className={styles.itemText}>
-                                <h3 className={styles.itemTitle}>Mini-Game Thú Vị</h3>
-                                <p className={styles.itemDescription}>Tham gia các trò chơi mini để nhân đôi xu và giành thêm phần thưởng</p>
-                                <span className={`${styles.priceTag} ${styles.greenPriceTag}`}>Từ 20 xu</span>
+                                <h3 className={styles.itemTitle}>Xem Video</h3>
+                                <p className={styles.itemDescription}>Xem video hàng ngày để nhận thêm xu</p>
+                                <span className={`${styles.priceTag} ${styles.greenPriceTag}`}>Miễn phí</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -69,7 +70,7 @@ function Guide() {
                         </div>
                         <div className={styles.tipText}>
                             <h4 className={styles.tipTitle}>💡 Bí quyết thành công:</h4>
-                            <p className={styles.tipDescription}>Điểm danh liên tục 7 ngày để nhận bonus x2 xu! Hãy tạo thói quen tốt và gặt hái thành quả ngọt ngào.</p>
+                            <p className={styles.tipDescription}>Điểm danh liên tục 7 ngày để nhận xu đều đặn! Hãy tạo thói quen tốt và gặt hái thành quả ngọt ngào.</p>
                         </div>
                     </div>
                 </div>

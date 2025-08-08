@@ -50,8 +50,8 @@ const AddVideoManagement = () => {
             await setSubmittedTime(Date.now());
             if (isValidData()) {
                 await videoService.AddVideoAdmin({
-                    name: dataBlog.name,
-                    description: "",
+                    urlVideo: dataBlog.urlVideo,
+                    videoType: dataBlog.videoType,
                 },
                     onBack,
                     setLoading
@@ -94,23 +94,10 @@ const AddVideoManagement = () => {
                                 <Row gutter={[30, 20]}>
                                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <InputTextCommon
-                                            label={"Tên video"}
-                                            attribute={"name"}
-                                            isRequired={true}
-                                            dataAttribute={dataBlog.name}
-                                            setData={setDataBlog}
-                                            disabled={false}
-                                            validate={validate}
-                                            setValidate={setValidate}
-                                            submittedTime={submittedTime}
-                                        />
-                                    </Col>
-                                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                                        <InputTextCommon
                                             label={"Link video"}
-                                            attribute={"name"}
+                                            attribute={"urlVideo"}
                                             isRequired={true}
-                                            dataAttribute={dataBlog.name}
+                                            dataAttribute={dataBlog.urlVideo}
                                             setData={setDataBlog}
                                             disabled={false}
                                             validate={validate}
@@ -120,10 +107,10 @@ const AddVideoManagement = () => {
                                     </Col>
                                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <InputSelectCategoryCommon
-                                            label={"Quyền"}
-                                            attribute={"categoryId"}
+                                            label={"Loại video"}
+                                            attribute={"videoType"}
                                             isRequired={true}
-                                            dataAttribute={dataBlog.categoryId}
+                                            dataAttribute={dataBlog.videoType}
                                             setData={setDataBlog}
                                             disabled={false}
                                             validate={validate}

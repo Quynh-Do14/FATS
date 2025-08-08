@@ -298,8 +298,8 @@ export default class Constants {
 
     static VideoType = class {
         static List = [
-            { label: "Youtube", value: "" },
-            { label: "Tiktok", value: "" },
+            { label: "Youtube", value: "YOUTUBE" },
+            { label: "Tiktok", value: "TIKTOK" },
         ]
     }
 };

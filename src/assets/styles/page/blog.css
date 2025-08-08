@@ -1,7 +1,7 @@
 .blog {
   position: relative;
   background: #e6f0f5;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .blog .left .item-text {

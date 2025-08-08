@@ -45,6 +45,27 @@ class AttendanceService {
             setLoading(false);
         }
     }
+    async CheckInVideo(id: string, onBack: Function, setLoading: Function) {
+        setLoading(true)
+        try {
+            return await RequestService
+                .put(`${Endpoint.Attendance.CheckInVideo}/${id}`)
+                .then(response => {
+                    if (response) {
+                        onBack()
+                        SuccessMessage("Lấy xu thành công", "")
+                        return response
+                    }
+                    setLoading(false)
+                    return response;
+                });
+        } catch (error: any) {
+            FailMessage("Lấy xu không thành công", error.response.data.message)
+            console.error(error)
+        } finally {
+            setLoading(false);
+        }
+    }
 }
 
 const attendanceService = new AttendanceService();

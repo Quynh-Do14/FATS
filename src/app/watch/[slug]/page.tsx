@@ -3,8 +3,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import '@/assets/styles/page/watch.css';
 import BreadcrumbCommon from '@/infrastructure/common/Layouts/Breadcumb';
 import { ROUTE_PATH } from '@/core/common/appRouter';
+import videoService from '@/infrastructure/repositories/video/video.service';
+import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
+import attendanceService from '@/infrastructure/repositories/attendance/attendance.service';
 
-// Type declarations for YouTube IFrame API
 declare global {
     interface Window {
         YT: {
@@ -47,22 +49,73 @@ declare global {
     }
 }
 
-const SlugWatch = () => {
+type Props = {
+    params: { slug: string };
+};
+
+const SlugWatch = ({ params }: Props) => {
     const playerRef = useRef<YT.Player | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
     const [timeCounter, setTimeCounter] = useState<number>(0);
-    const [showRewardButton, setShowRewardButton] = useState(true);
+    const [showRewardButton, setShowRewardButton] = useState<boolean>(false);
+    const [videoId, setVideoId] = useState<string>("");
+    const [isWatched, setIsWatched] = useState<boolean>(false);
+
+    const [loading, setLoading] = useState<boolean>(false);
+    const [detail, setDetail] = useState<any>({});
 
     const [playerState, setPlayerState] = useState<string>('UNSTARTED');
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
-    const videoId = 'zg5SUXqHQnA'; // Extracted from your YouTube URL
 
+    const onGetByIdAsync = async () => {
+        if (params.slug) {
+            try {
+                await videoService.GetVideoById(
+                    params.slug,
+                    setLoading
+                ).then((res) => {
+                    setDetail(res);
+                    if (res.videoType == "YOUTUBE") {
+                        const videoId = res.urlVideo.split('v=')[1];
+                        setVideoId(videoId);
+                    }
+                })
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+    }
+
+    useEffect(() => {
+        onGetByIdAsync().then(() => { })
+    }, [])
+
+    const onCheckInVideoAsync = async () => {
+        if (showRewardButton && !isWatched) {
+            try {
+                await attendanceService.CheckInVideo(
+                    params.slug,
+                    () => {
+                        setIsWatched(true);
+                        setShowRewardButton(false);
+                    },
+                    setLoading
+                ).then(() => { })
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+    }
     // Load YouTube API script
     useEffect(() => {
         if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
             // Script already exists
-            initializePlayer();
+            if (videoId) {
+                initializePlayer();
+            }
             return;
         }
 
@@ -84,7 +137,7 @@ const SlugWatch = () => {
                 clearInterval(intervalRef.current);
             }
         };
-    }, []);
+    }, [videoId]);
 
     // Initialize YouTube player
     const initializePlayer = () => {
@@ -92,16 +145,17 @@ const SlugWatch = () => {
             console.error('YouTube API not loaded');
             return;
         }
-
-        playerRef.current = new window.YT.Player('youtube-player', {
-            height: '100%',
-            width: '100%',
-            videoId: videoId,
-            events: {
-                onReady: onPlayerReady,
-                onStateChange: onPlayerStateChange,
-            },
-        });
+        if (videoId) {
+            playerRef.current = new window.YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                events: {
+                    onReady: onPlayerReady,
+                    onStateChange: onPlayerStateChange,
+                },
+            });
+        }
     };
 
     // When player is ready
@@ -150,12 +204,24 @@ const SlugWatch = () => {
             }
         };
     }, [playerState]);
+
+    useEffect(() => {
+        if (timeCounter >= 15) {
+            setShowRewardButton(true);
+        }
+        else {
+            setShowRewardButton(false);
+        }
+    }, [timeCounter]);
+
+
     // Format time from seconds to MM:SS
     const formatTime = (time: number) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
+    console.log("isWatched", isWatched);
 
     return (
         <div className="slug-watch-container">
@@ -191,7 +257,7 @@ const SlugWatch = () => {
                         {/* Progress Section */}
                         <div className="text-center mb-8">
                             <div className="flex items-center justify-center gap-1 mb-4">
-                                <span className="text-white/70 font-medium">Tiến trình xem:</span>
+                                <span className="text-white/70 font-medium">Thời gian xem:</span>
                                 <span id="timeDisplay" className="countdown-text text-2xl text-white">{formatTime(timeCounter)}</span>
                             </div>
 
@@ -204,8 +270,8 @@ const SlugWatch = () => {
                         <div className="text-center">
                             <button
                                 id="rewardButton"
-                                className={`reward-button px-12 py-4 rounded-full text-white font-semibold text-xl pulse-ring ${showRewardButton ? '' : 'hidden'}`}
-                            // onClick={claimReward}
+                                className={`reward-button px-12 py-4 rounded-full text-white font-semibold text-xl pulse-ring ${showRewardButton || !isWatched ? '' : 'hidden'}`}
+                                onClick={onCheckInVideoAsync}
                             >
                                 🎁 Nhận Thưởng Ngay!
                             </button>
@@ -213,6 +279,7 @@ const SlugWatch = () => {
                     </div>
                 </div>
             </div>
+            <FullPageLoading isLoading={loading} />
         </div>
     );
 };

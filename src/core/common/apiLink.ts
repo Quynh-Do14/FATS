@@ -180,14 +180,14 @@ export class Endpoint {
     }
 
     static Video = class {
-        static GetAll = "/"
-        static GetById = "/"
+        static GetAll = "/videos/public/all"
+        static GetById = "/videos/public"
 
         static GetAdmin = "/"
         static GetAdminById = "/"
-        static Add = "/"
-        static Update = "/"
-        static Delete = "/"
+        static Add = "/videos/admin/upload"
+        static Update = "/videos/admin/update"
+        static Delete = "/videos/admin/delete"
     }
 
     static TeamLog = class {
@@ -209,5 +209,6 @@ export class Endpoint {
     static Attendance = class {
         static Get = "/auth/checkin-log"
         static CheckIn = "/auth/checkin"
+        static CheckInVideo = "/videos/private/checkin"
     }
 }
