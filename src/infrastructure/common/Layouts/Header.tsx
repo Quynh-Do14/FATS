@@ -237,18 +237,18 @@ const HeaderClient = (props: Props) => {
                             }
                             else {
                                 if (isLoadingToken) {
-                                    if (item.children) {
-                                        return (
-                                            <Dropdown overlay={renderSubMenu(item.children)} trigger={['hover']}>
-                                                <a
-                                                    className={`ant-dropdown-link cursor-pointer ${conditionActive(item.link)}`}
-                                                    onClick={e => e.preventDefault()}
-                                                >
-                                                    {item.label} <i className="fa fa-caret-down" aria-hidden="true"></i>
-                                                </a>
-                                            </Dropdown>
-                                        );
-                                    }
+                                    // if (item.children) {
+                                    //     return (
+                                    //         <Dropdown overlay={renderSubMenu(item.children)} trigger={['hover']}>
+                                    //             <a
+                                    //                 className={`ant-dropdown-link cursor-pointer ${conditionActive(item.link)}`}
+                                    //                 onClick={e => e.preventDefault()}
+                                    //             >
+                                    //                 {item.label} <i className="fa fa-caret-down" aria-hidden="true"></i>
+                                    //             </a>
+                                    //         </Dropdown>
+                                    //     );
+                                    // }
                                     if (token) {
                                         return (
                                             <a

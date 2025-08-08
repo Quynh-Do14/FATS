@@ -50,27 +50,27 @@ export default class Constants {
                 private: true,
                 icon: "fa fa-users"
             },
-            {
-                label: "Tư vấn",
-                link: ROUTE_PATH.ADVISOR,
-                private: true,
-                icon: "fa fa-handshake-o",
-                children: [
-                    {
-                        label: "Giải trí",
-                        link: ROUTE_PATH.ADVISOR_ENTERTAINMENT,
-                        icon: "fas fa-film",
-                        private: true,
-                    },
-                    {
-                        label: "Đầu tư",
-                        link: ROUTE_PATH.ADVISOR_INVEST,
-                        icon: "fas fa-chart-line",
-                        private: true,
+            // {
+            //     label: "Tư vấn",
+            //     link: ROUTE_PATH.ADVISOR,
+            //     private: true,
+            //     icon: "fa fa-handshake-o",
+            //     children: [
+            //         {
+            //             label: "Giải trí",
+            //             link: ROUTE_PATH.ADVISOR_ENTERTAINMENT,
+            //             icon: "fas fa-film",
+            //             private: true,
+            //         },
+            //         {
+            //             label: "Đầu tư",
+            //             link: ROUTE_PATH.ADVISOR_INVEST,
+            //             icon: "fas fa-chart-line",
+            //             private: true,
 
-                    }
-                ],
-            },
+            //         }
+            //     ],
+            // },
             {
                 label: "Tin tức",
                 link: ROUTE_PATH.BLOG,

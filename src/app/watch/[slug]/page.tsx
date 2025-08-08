@@ -6,6 +6,9 @@ import { ROUTE_PATH } from '@/core/common/appRouter';
 import videoService from '@/infrastructure/repositories/video/video.service';
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
 import attendanceService from '@/infrastructure/repositories/attendance/attendance.service';
+import BubbleCommon from '@/infrastructure/common/components/controls/Bubble';
+import DialogConfirmCommon from '@/infrastructure/common/components/modal/dialogConfirm';
+import { useRouter } from "next/navigation";
 
 declare global {
     interface Window {
@@ -61,13 +64,14 @@ const SlugWatch = ({ params }: Props) => {
     const [showRewardButton, setShowRewardButton] = useState<boolean>(false);
     const [videoId, setVideoId] = useState<string>("");
     const [isWatched, setIsWatched] = useState<boolean>(false);
+    const [isModalSuccess, setIsModalSuccess] = useState<boolean>(false);
 
     const [loading, setLoading] = useState<boolean>(false);
     const [detail, setDetail] = useState<any>({});
 
     const [playerState, setPlayerState] = useState<string>('UNSTARTED');
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
+    const router = useRouter()
     const onGetByIdAsync = async () => {
         if (params.slug) {
             try {
@@ -100,6 +104,7 @@ const SlugWatch = ({ params }: Props) => {
                     () => {
                         setIsWatched(true);
                         setShowRewardButton(false);
+                        setIsModalSuccess(true)
                     },
                     setLoading
                 ).then(() => { })
@@ -109,34 +114,41 @@ const SlugWatch = ({ params }: Props) => {
             }
         }
     }
+    const closeModalSuccess = () => {
+        setIsModalSuccess(false);
+    }
+    const onBack = () => {
+        router.push(ROUTE_PATH.WATCH);
+    }
     // Load YouTube API script
     useEffect(() => {
-        if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-            // Script already exists
-            if (videoId) {
+        if (videoId) {
+            if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+                // Script already exists
+
                 initializePlayer();
+                return;
             }
-            return;
-        }
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
 
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-
-        // Try to insert after first script tag, fallback to head
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        if (firstScriptTag?.parentNode) {
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        } else {
-            document.head.appendChild(tag);
-        }
-
-        window.onYouTubeIframeAPIReady = initializePlayer;
-
-        return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
+            // Try to insert after first script tag, fallback to head
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            if (firstScriptTag?.parentNode) {
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            } else {
+                document.head.appendChild(tag);
             }
-        };
+
+            window.onYouTubeIframeAPIReady = initializePlayer;
+
+            return () => {
+                if (intervalRef.current) {
+                    clearInterval(intervalRef.current);
+                }
+            };
+        }
+        return
     }, [videoId]);
 
     // Initialize YouTube player
@@ -221,33 +233,29 @@ const SlugWatch = ({ params }: Props) => {
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
-    console.log("isWatched", isWatched);
 
     return (
         <div className="slug-watch-container">
             <div className="padding-common">
-                <BreadcrumbCommon
-                    breadcrumb={"Xem video"}
-                    redirect={ROUTE_PATH.WATCH}
-                    title={""}
-                />
-                <div className="w-full">
+                <BubbleCommon />
+                <div className="w-full flex flex-col gap-4">
+                    <BreadcrumbCommon
+                        breadcrumb={"Xem Video"}
+                        redirect={ROUTE_PATH.WATCH}
+                        title={"Xem Video Nhận Xu"}
+                    />
                     {/* Header */}
-                    <div className="text-center mb-8">
-                        <h1 className="text-5xl font-semibold text-white mb-4">
-                            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">YouTube Rewards</span>
+                    <div className="text-center">
+                        <h1 className="text-5xl font-semibold text-white">
+                            <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent font-bold">
+                                Xem Video Nhận Xu
+                            </span>
                         </h1>
-                        <p className="text-white/80 text-xl">Xem video đầy đủ 15 giây để nhận phần thưởng hấp dẫn!</p>
                     </div>
 
                     {/* Main Content */}
-                    <div className="glass-card rounded-3xl p-8 mb-6">
+                    <div className="glass-card rounded-3xl p-6">
                         {/* Status Indicator */}
-                        <div className="flex items-center justify-center mb-6">
-                            <div className="status-indicator status-watching px-6 py-3 rounded-full text-white font-semibold text-lg">
-                                <span>Xem video nhận thưởng</span>
-                            </div>
-                        </div>
 
                         {/* Video Container */}
                         <div className="video-container">
@@ -255,7 +263,7 @@ const SlugWatch = ({ params }: Props) => {
                         </div>
 
                         {/* Progress Section */}
-                        <div className="text-center mb-8">
+                        <div className="text-center mb-4">
                             <div className="flex items-center justify-center gap-1 mb-4">
                                 <span className="text-white/70 font-medium">Thời gian xem:</span>
                                 <span id="timeDisplay" className="countdown-text text-2xl text-white">{formatTime(timeCounter)}</span>
@@ -270,15 +278,24 @@ const SlugWatch = ({ params }: Props) => {
                         <div className="text-center">
                             <button
                                 id="rewardButton"
-                                className={`reward-button px-12 py-4 rounded-full text-white font-semibold text-xl pulse-ring ${showRewardButton || !isWatched ? '' : 'hidden'}`}
+                                className={`reward-button px-12 py-4 rounded-full text-white font-semibold text-xl pulse-ring ${!showRewardButton || isWatched ? 'hidden' : ''}`}
                                 onClick={onCheckInVideoAsync}
                             >
-                                🎁 Nhận Thưởng Ngay!
+                                Nhận Thưởng Ngay!
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            <DialogConfirmCommon
+                message={"Bạn đã lấy xu thành công"}
+                titleCancel={"Xem tiếp"}
+                titleOk={"Quay lại"}
+                visible={isModalSuccess}
+                handleCancel={closeModalSuccess}
+                handleOk={onBack}
+                title={"Lấy xu thành công"}
+            />
             <FullPageLoading isLoading={loading} />
         </div>
     );

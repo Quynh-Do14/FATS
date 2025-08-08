@@ -4,7 +4,7 @@ import { FullPageLoading } from "@/infrastructure/common/components/controls/loa
 import authService from "@/infrastructure/repositories/auth/service/auth.service";
 import BubbleCommon from "@/infrastructure/common/components/controls/Bubble";
 import { ROUTE_PATH } from "@/core/common/appRouter";
-import { useRouter } from "next/navigation";;
+import { useRouter } from "next/navigation";
 
 const VerifyEmailPage = () => {
     const [code, setCode] = useState<string>("");

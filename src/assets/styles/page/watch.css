@@ -11,13 +11,65 @@
   gap: 15px;
   align-items: flex-start;
   justify-content: center;
-  padding: 0 20px;
-  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.watch-container .youtube-thumbnail .video-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.watch-container .youtube-thumbnail:hover .video-hover-overlay {
+  opacity: 1;
+}
+
+.watch-container .youtube-thumbnail .video-info {
+  color: white;
+}
+
+.watch-container .youtube-thumbnail .video-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.watch-container .youtube-thumbnail .video-info p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.watch-container .youtube-thumbnail .play-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.watch-container .youtube-thumbnail .play-icon svg {
+  opacity: 0.9;
+  transition: transform 0.2s ease;
+}
+
+.watch-container .youtube-thumbnail:hover .play-icon svg {
+  transform: scale(1.1);
+  opacity: 1;
 }
 .watch-container .slider-container .youtube-thumbnail img {
   aspect-ratio: 9/12;
   object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
-  border-radius: 16px;
   cursor: pointer;
 }
 .watch-container .slider-container .youtube-thumbnail .loading {
@@ -44,7 +96,7 @@
 }
 
 .slug-watch-container {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #059669 100%);
   min-height: 100vh;
 }
 
@@ -53,7 +105,6 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding-bottom: 50.25%; /* 16:9 Aspect Ratio */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
@@ -61,6 +112,18 @@
   transform: scale(0.98);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
   border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+@media only screen and (min-width: 577px) {
+  .slug-watch-container .video-container {
+    padding-bottom: 40.25%; /* 16:9 Aspect Ratio */
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .slug-watch-container .video-container {
+    padding-bottom: 60.25%; /* 16:9 Aspect Ratio */
+  }
 }
 
 .slug-watch-container .video-container:hover {

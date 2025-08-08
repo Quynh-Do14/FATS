@@ -53,7 +53,6 @@ class AttendanceService {
                 .then(response => {
                     if (response) {
                         onBack()
-                        SuccessMessage("Lấy xu thành công", "")
                         return response
                     }
                     setLoading(false)
