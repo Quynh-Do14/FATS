@@ -29,7 +29,7 @@ function Guide() {
 
                     {/* AI consultation */}
                     <div className={styles.usageItem}>
-                        <div className={styles.itemContent}>
+                        <a href={ROUTE_PATH.ADVISOR_ENTERTAINMENT} className={styles.itemContent}>
                             <div className={`${styles.iconContainer} ${styles.purpleGradient}`}>
                                 <svg className={`${styles.icon} ${styles.purpleIcon}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -40,7 +40,7 @@ function Guide() {
                                 <p className={styles.itemDescription}>Điểm danh để nhận tư vấn từ trí tuệ nhân tạo</p>
                                 <span className={`${styles.priceTag} ${styles.purplePriceTag}`}>Miễn phí</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
 
                     {/* Watch videos */}
@@ -75,7 +75,7 @@ function Guide() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 export default Guide

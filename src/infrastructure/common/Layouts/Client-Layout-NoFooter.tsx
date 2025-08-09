@@ -65,7 +65,6 @@ const LayoutClientNoFooter = ({ ...props }: any) => {
                 console.error(error);
             }
         }
-
     }
     const onGetBudgetAsync = async () => {
         if (isLoadingToken) {

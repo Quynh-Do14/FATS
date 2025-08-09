@@ -139,6 +139,16 @@ const ListVideoManagement = () => {
                             <Column
                                 title={
                                     <TitleTableCommon
+                                        title="Tiêu đề"
+                                        width={'250px'}
+                                    />
+                                }
+                                key={"title"}
+                                dataIndex={"title"}
+                            />
+                            <Column
+                                title={
+                                    <TitleTableCommon
                                         title="Link Video"
                                         width={'250px'}
                                     />

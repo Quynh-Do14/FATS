@@ -128,3 +128,32 @@ export const isTodayCheckinDate = (checkinDate: string) => {
         today.getDate() === checkinDateObj.getDate()
     );
 }
+
+export const extractTikTokVideoId = (url: string): string | null => {
+    try {
+        // Xử lý các dạng URL TikTok phổ biến:
+        // 1. https://www.tiktok.com/@username/video/1234567890123456789
+        // 2. https://vm.tiktok.com/abcdefg/
+        // 3. https://www.tiktok.com/t/abcdefg/
+
+        const parsedUrl = new URL(url);
+        const pathParts = parsedUrl.pathname.split('/').filter(Boolean);
+
+        // Dạng 1: /@username/video/1234567890123456789
+        if (pathParts.length >= 3 && pathParts[1] === 'video') {
+            return pathParts[2];
+        }
+
+        // Dạng 2 hoặc 3: /abcdefg/
+        if (pathParts.length === 1) {
+            // Nếu là short URL, cần resolve để lấy ID thật
+            // Trong thực tế có thể cần gọi API để lấy ID
+            return pathParts[0];
+        }
+
+        return null;
+    } catch {
+        return null;
+    }
+}
+

@@ -50,6 +50,7 @@ const AddVideoManagement = () => {
             await setSubmittedTime(Date.now());
             if (isValidData()) {
                 await videoService.AddVideoAdmin({
+                    title: dataBlog.title,
                     urlVideo: dataBlog.urlVideo,
                     videoType: dataBlog.videoType,
                 },
@@ -92,6 +93,19 @@ const AddVideoManagement = () => {
                             <Col xs={24} sm={24} className={`${styles.border_add} flex justify-center`}>
                                 <div className={styles.legend_title}>Thêm thông tin mới</div>
                                 <Row gutter={[30, 20]}>
+                                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                                        <InputTextCommon
+                                            label={"Tiêu đề"}
+                                            attribute={"title"}
+                                            isRequired={true}
+                                            dataAttribute={dataBlog.title}
+                                            setData={setDataBlog}
+                                            disabled={false}
+                                            validate={validate}
+                                            setValidate={setValidate}
+                                            submittedTime={submittedTime}
+                                        />
+                                    </Col>
                                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <InputTextCommon
                                             label={"Link video"}

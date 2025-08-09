@@ -952,6 +952,41 @@ const GoalSpendingPage = () => {
         setIsGuideVisible(true);
         updateGuideUI(0);
     }
+
+    type SavingProps = {
+        currentAmount: number;
+    }
+    const SavingsCongratulation = ({ currentAmount }: SavingProps) => {
+        if (currentAmount >= 50000000) {
+            return (
+                <p className="suggestion-text">
+                    Wow! Bạn là cao thủ tích lũy với <span className="highlight-amount">{formatCurrencyVND(currentAmount)}</span>!
+                </p>
+            );
+        }
+
+        if (currentAmount >= 30000000) {
+            return (
+                <p className="suggestion-text">
+                    Xuất sắc! <span className="highlight-amount">{formatCurrencyVND(currentAmount)}</span> là con số đáng ngưỡng mộ!
+                </p>
+            );
+        }
+
+        if (currentAmount >= 10000000) {
+            return (
+                <p className="suggestion-text">
+                    Chúc mừng bạn đã đạt <span className="highlight-amount">{formatCurrencyVND(currentAmount)}</span> - Khởi đầu ấn tượng!
+                </p>
+            );
+        }
+
+        return (
+            <p className="suggestion-text">
+                Bạn đang có <span className="highlight-amount">{formatCurrencyVND(currentAmount)}</span> tiết kiệm - Cố lên nhé!
+            </p>
+        );
+    }
     return (
         <LayoutClient isScroll={isGuideVisible}>
             <div className="personal-finance-container">
@@ -1172,10 +1207,7 @@ const GoalSpendingPage = () => {
                                                                 borderColor: goal.color.line,
                                                                 backgroundColor: `${goal.color.line}15`
                                                             }}>
-                                                                <p className="suggestion-text">
-                                                                    Chúc mừng! Bạn đã tích lũy được <span className="highlight-amount">{formatCurrencyVND(goal.currentAmount)}</span>
-                                                                </p>
-
+                                                                <SavingsCongratulation currentAmount={goal.currentAmount} />
                                                                 <div className="suggestion-options">
                                                                     <p>Bạn muốn:</p>
                                                                     <div className="options-grid">

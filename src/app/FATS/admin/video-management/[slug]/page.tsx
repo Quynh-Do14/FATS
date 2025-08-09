@@ -74,6 +74,7 @@ const SlugCategoryManagement = ({ params }: Props) => {
     useEffect(() => {
         if (detail) {
             setDataRequest({
+                title: detail.title,
                 urlVideo: detail.urlVideo,
                 videoType: detail.videoType,
             });
@@ -87,6 +88,7 @@ const SlugCategoryManagement = ({ params }: Props) => {
             await videoService.UpdateVideoAdmin(
                 params.slug,
                 {
+                    title: dataRequest.title,
                     urlVideo: dataRequest.urlVideo,
                     videoType: dataRequest.videoType,
                 },
@@ -126,6 +128,19 @@ const SlugCategoryManagement = ({ params }: Props) => {
                             <Col xs={24} sm={24} className={`${styles.border_add} flex justify-center`}>
                                 <div className={styles.legend_title}>Cập nhật thông tin</div>
                                 <Row gutter={[30, 20]}>
+                                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                                        <InputTextCommon
+                                            label={"Tiêu đề"}
+                                            attribute={"title"}
+                                            isRequired={true}
+                                            dataAttribute={dataRequest.title}
+                                            setData={setDataRequest}
+                                            disabled={false}
+                                            validate={validate}
+                                            setValidate={setValidate}
+                                            submittedTime={submittedTime}
+                                        />
+                                    </Col>
                                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <InputTextCommon
                                             label={"Link video"}

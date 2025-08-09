@@ -13,6 +13,8 @@ import { ROUTE_PATH } from '@/core/common/appRouter'
 import videoService from '@/infrastructure/repositories/video/video.service'
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading'
 import { Col, Row } from 'antd'
+import { convertSlug } from '@/infrastructure/helper/helper'
+import TikTokThumbnail from './tiktok-thumbnail'
 
 const WatchPage = () => {
     const [listVideo, setListVideo] = useState<Array<any>>([])
@@ -110,16 +112,31 @@ const WatchPage = () => {
                                 listVideo.map((item, index) => {
                                     return (
                                         <Col key={index} xs={24} sm={12} md={8} lg={6}>
-                                            <Link href={`${ROUTE_PATH.WATCH}/${item.id}`}>
+                                            <Link href={`${ROUTE_PATH.WATCH}/${convertSlug(item?.title)}-${item?.id}.html`}>
                                                 <div className="youtube-thumbnail">
-                                                    <YouTubeThumbnail
-                                                        url={item.urlVideo}
-                                                        key={index}
-                                                        quality="maxresdefault"
-                                                    />
+                                                    {
+                                                        item.videoType == "YOUTUBE"
+                                                            ?
+                                                            <YouTubeThumbnail
+                                                                url={item.urlVideo}
+                                                                key={index}
+                                                                quality="maxresdefault"
+                                                            />
+                                                            :
+                                                            item.videoType == "TIKTOK"
+                                                                ?
+                                                                <TikTokThumbnail
+                                                                    url={item.urlVideo}
+                                                                    key={index}
+                                                                />
+                                                                :
+                                                                null
+                                                    }
+
                                                     <div className="video-hover-overlay">
                                                         <div className="video-info">
-                                                            <h4>{item.urlVideo}</h4>
+                                                            <h4>{item.title}</h4>
+                                                            <p>{item.urlVideo}</p>
                                                             <p>{item.videoType}</p>
                                                         </div>
                                                         <div className="play-icon">
