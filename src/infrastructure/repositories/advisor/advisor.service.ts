@@ -22,7 +22,7 @@ class AdvisorService {
             setLoading(false);
         }
     };
-    async AddAdvisorInvest(data: object, onBack: Function, setLoading: Function) {
+    async AddAdvisorInvest(data: object, onBack: Function, onError: Function, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService
@@ -39,7 +39,10 @@ class AdvisorService {
                     return response;
                 });
         } catch (error: any) {
-            FailMessage("Thêm mới không thành công", error.response.data.message)
+            // FailMessage("Thêm mới không thành công", error.response.data.message)
+            if (error.response.data.status == 1001) {
+                onError()
+            }
             console.error(error)
         } finally {
             setLoading(false);
@@ -66,7 +69,7 @@ class AdvisorService {
             setLoading(false);
         }
     };
-    async AddAdvisorEntertainment(data: object, onBack: Function, setLoading: Function) {
+    async AddAdvisorEntertainment(data: object, onBack: Function, onError: Function, setLoading: Function) {
         setLoading(true)
         try {
             return await RequestService
@@ -83,7 +86,10 @@ class AdvisorService {
                     return response;
                 });
         } catch (error: any) {
-            FailMessage("Thêm mới không thành công", error.response.data.message)
+            // FailMessage("Chat không", error.response.data.message)
+            if (error.response.data.status == 1001) {
+                onError()
+            }
             console.error(error)
         } finally {
             setLoading(false);

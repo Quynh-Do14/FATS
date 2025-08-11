@@ -11,6 +11,8 @@ import { Tooltip } from 'antd'
 import Link from 'next/link'
 import { ROUTE_PATH } from '@/core/common/appRouter'
 import ReactMarkdown from "react-markdown";
+import DialogNotificationCommon from '@/infrastructure/common/components/modal/dialogNotification'
+import { useRouter } from 'next/navigation'
 
 interface ScheduleItem {
     time: string;
@@ -63,6 +65,8 @@ const AdvisorPage = () => {
     const [messages, setMessages] = useState<string>("");
     const [loadingBot, setLoadingBot] = useState(false);
     const [genaralQuestion, setGenaralQuestion] = useState<string[]>([]);
+    const [isModalError, setIsModalError] = useState<boolean>(false);
+    const router = useRouter()
     const onGetChatBoxAsync = async () => {
         try {
             await advisorService.GetAdvisorEntertainment(
@@ -96,6 +100,9 @@ const AdvisorPage = () => {
                     setMessagesLoading("");
                     onGetChatBoxAsync().then(_ => { });
                 },
+                () => {
+                    setIsModalError(true)
+                },
                 setLoadingBot,
             ).then(() => {
             });
@@ -105,6 +112,10 @@ const AdvisorPage = () => {
         }
     };
 
+    const onCloseModalError = () => {
+        setIsModalError(false);
+        router.push(ROUTE_PATH.WATCH)
+    };
     const onSelectOption = (option: any) => {
         if (option.value) {
             handleSendMessage(option.value);
@@ -346,6 +357,13 @@ const AdvisorPage = () => {
                     </div>
                 </div>
             </div>
+            <DialogNotificationCommon
+                visible={isModalError}
+                title={'Bạn đã hết xu'}
+                message={'Bạn cần có ít nhất 5 xu để sử dụng tính năng này'}
+                titleCancel={'Lấy thêm xu'}
+                handleCancel={onCloseModalError}
+            />
         </LayoutClientNoFooter >
     )
 }

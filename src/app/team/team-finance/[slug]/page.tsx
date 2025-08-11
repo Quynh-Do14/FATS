@@ -33,7 +33,6 @@ import OverviewComponent from "@/app/finance-common/common/overview";
 import StaticComponent from "@/app/finance-common/common/static";
 import PieChart from "@/app/finance-common/common/pieChart";
 import TeamLogComponent from "@/app/finance-common/common/teamLog";
-import { list } from "postcss";
 import teamLogService from "@/infrastructure/repositories/team/teamLog.service";
 
 ChartJS.register(

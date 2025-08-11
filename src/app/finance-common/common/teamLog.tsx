@@ -4,6 +4,7 @@ import inConfirmIcon from '@/assets/images/inconfirm.png';
 import teamLogService from '@/infrastructure/repositories/team/teamLog.service';
 import DialogConfirmCommon from '@/infrastructure/common/components/modal/dialogConfirm';
 import { Tooltip } from 'antd';
+import DialogNotificationCommon from '@/infrastructure/common/components/modal/dialogNotification';
 
 type Props = {
     dataTable: any[]
@@ -18,7 +19,6 @@ const TeamLogComponent = (props: Props) => {
     const [isModalConfirm, setIsModalConfirm] = useState<boolean>(false);
     const [idConfirm, setIdConfirm] = useState<string>("");
     const [typeConfirm, setTypeConfirm] = useState<boolean>(false);
-
 
     const onOpenModalConfirm = (id: string, confirm: boolean) => {
         setIdConfirm(id);
@@ -54,6 +54,7 @@ const TeamLogComponent = (props: Props) => {
                         <th className="px-6 py-4 text-left">Nội dung</th>
                         <th className="px-6 py-4 min-w-[150px] text-left">Danh mục</th>
                         <th className="px-6 py-4 min-w-[150px] text-left">Trạng thái</th>
+                        <th className="px-6 py-4 min-w-[150px] text-left"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +62,7 @@ const TeamLogComponent = (props: Props) => {
                         dataTable.map((item, index) => {
                             return (
                                 <tr
-                                    className={`${index % 2 === 0 ? "bg-[#ccf2dd]" : "bg-[#cce5ff]"
+                                    className={`${item.confirmStatus ? "bg-[#ccf2dd]" : !item.confirmStatus ? "bg-[#ffcccc]" : "bg-[#cce5ff]"
                                         } hover:bg-[#b3d8ff]`}
                                 >
                                     <td className="px-6 py-4">{item.message}</td>
@@ -76,6 +77,7 @@ const TeamLogComponent = (props: Props) => {
                                                 :
                                                 ""
                                     }</td>
+                                    <td className="px-6 py-4">{item.confirmStatus ? "Đã duyệt" : "Đã từ chối"}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         {
                                             !item.active
@@ -114,6 +116,7 @@ const TeamLogComponent = (props: Props) => {
                 handleCancel={onCloseModalConfirm}
                 visible={isModalConfirm}
             />
+          
         </div >
     )
 }
