@@ -13,7 +13,7 @@ const PieChart = (props: Props) => {
     } = props;
     return (
         <div className='box-common'>
-            <p className='title-box'>Biểu đồ thu chi</p>
+            <p className='title-box' id='step-13'>Biểu đồ thu chi</p>
             <Doughnut data={selectedTab === "spend" ? spendData : incomeData} />
         </div>
     )

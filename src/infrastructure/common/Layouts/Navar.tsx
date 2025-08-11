@@ -266,7 +266,7 @@ const NavbarComponent = (props: Props) => {
                                 <a href={ROUTE_PATH.ATTENDANCE}>
                                     <li className={`menu-item`}>
                                         <span className="icon">
-                                            <i className="fa fa-retweet" aria-hidden="true"></i>
+                                            <i className='fa fa-calendar-check' aria-hidden='true'></i>
                                         </span>
                                         <span>Điểm danh hàng ngày</span>
                                     </li>

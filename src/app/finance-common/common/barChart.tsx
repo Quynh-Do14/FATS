@@ -10,7 +10,7 @@ const BarChartStatic = (props: Props) => {
 
     return (
         <div className='bar-chart box-common'>
-            <p className='title-box'>Biểu đồ thu chi</p>
+            <p className='title-box' id='step-11'>Biểu đồ thu chi</p>
             <Bar
                 data={statisticsByTime}
                 options={{

@@ -541,7 +541,7 @@
 .direction-container {
   width: 500px;
   height: 300px;
-  position: absolute;
+  position: fixed;
   /* right: 0; */
   /* bottom: 0; */
   margin: auto;
@@ -595,15 +595,6 @@
     transform: rotate(30deg) translate(30%, 30%);
   }
 }
-/* .personal-finance-container .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ffffff25;
-  z-index: 1;
-} */
 
 .onboarding-container {
   background: white;
@@ -628,11 +619,11 @@
   }
 }
 
-.progress-container {
+.onboarding-container .progress-container {
   position: relative;
 }
 
-.progress-bar {
+.onboarding-container .progress-bar {
   width: 100%;
   height: 8px;
   background: #e2e8f0;
@@ -641,7 +632,7 @@
   margin-bottom: 16px;
 }
 
-.progress-fill {
+.onboarding-container .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #4361ee 0%, #3a0ca3 100%);
   border-radius: 4px;
@@ -649,7 +640,7 @@
   position: relative;
 }
 
-.progress-fill::after {
+.onboarding-container .progress-fill::after {
   content: '';
   position: absolute;
   top: 0;
@@ -673,13 +664,13 @@
   }
 }
 
-.step-indicator {
+.onboarding-container .step-indicator {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.step-counter {
+.onboarding-container .step-counter {
   font-size: 14px;
   font-weight: 600;
   color: #64748b;
@@ -688,7 +679,7 @@
   border-radius: 20px;
 }
 
-.close-button {
+.onboarding-container .close-button {
   background: none;
   border: none;
   font-size: 24px;
@@ -704,13 +695,13 @@
   height: 40px;
 }
 
-.close-button:hover {
+.onboarding-container .close-button:hover {
   background: #f1f5f9;
   color: #64748b;
   transform: scale(1.1);
 }
 
-.content-card {
+.onboarding-container .content-card {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -718,7 +709,7 @@
   margin-bottom: 20px;
 }
 
-.step-content {
+.onboarding-container .step-content {
   opacity: 0;
   transform: translateX(20px);
   animation: slideIn 0.4s ease-out 0.2s forwards;
@@ -736,7 +727,7 @@
   }
 }
 
-.step-icon {
+.onboarding-container .step-icon {
   font-size: 64px;
   background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
   -webkit-background-clip: text;
@@ -744,26 +735,26 @@
   background-clip: text;
 }
 
-.step-title {
+.onboarding-container .step-title {
   font-size: 28px;
   font-weight: 600;
   color: #1e293b;
   line-height: 1.2;
 }
 
-.step-description {
+.onboarding-container .step-description {
   font-size: 16px;
   color: #64748b;
   line-height: 1.6;
 }
 
-.navigation-buttons {
+.onboarding-container .navigation-buttons {
   display: flex;
   gap: 12px;
   justify-content: center;
 }
 
-.btn {
+.onboarding-container .btn {
   padding: 14px 28px;
   border-radius: 12px;
   font-size: 16px;
@@ -775,45 +766,45 @@
   overflow: hidden;
 }
 
-.btn-primary {
+.onboarding-container .btn-primary {
   background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
   color: white;
   box-shadow: 0 4px 14px 0 rgba(67, 97, 238, 0.3);
 }
 
-.btn-primary:hover {
+.onboarding-container .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px 0 rgba(67, 97, 238, 0.4);
 }
 
-.btn-primary:active {
+.onboarding-container .btn-primary:active {
   transform: translateY(0);
 }
 
-.btn-secondary {
+.onboarding-container .btn-secondary {
   background: #f8fafc;
   color: #64748b;
   border: 2px solid #e2e8f0;
 }
 
-.btn-secondary:hover {
+.onboarding-container .btn-secondary:hover {
   background: #f1f5f9;
   border-color: #cbd5e1;
   transform: translateY(-1px);
 }
 
-.btn-skip {
+.onboarding-container .btn-skip {
   background: none;
   color: #94a3b8;
   text-decoration: underline;
   padding: 14px 20px;
 }
 
-.btn-skip:hover {
+.onboarding-container .btn-skip:hover {
   color: #64748b;
 }
 
-.completion-animation {
+.onboarding-container .completion-animation {
   animation: celebrate 0.6s ease-out;
 }
 
@@ -831,36 +822,49 @@
 
 @media (max-width: 640px) {
   .onboarding-container {
-    border-radius: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    max-height: 360px;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease-out;
+    z-index: 99;
+    padding: 4px;
   }
 
-  .progress-container,
-  .content-card,
-  .navigation-buttons {
-    padding-left: 24px;
-    padding-right: 24px;
+  .onboarding-container .progress-container,
+  .onboarding-container .content-card,
+  .onboarding-container .navigation-buttons {
+    padding-left: 2px;
+    padding-right: 2px;
   }
 
-  .step-title {
-    font-size: 24px;
+  .onboarding-container .step-title {
+    font-size: 16px;
   }
 
-  .navigation-buttons {
+  .onboarding-container .navigation-buttons {
     flex-direction: column;
   }
 
-  .btn {
+  .onboarding-container .btn {
     width: 100%;
+    padding: 8px 24px;
+  }
+  .onboarding-container .btn-skip {
+    padding: 8px 24px;
   }
 }
 
-.position-popup {
+.onboarding-container .position-popup {
   top: 55%;
   left: 40%;
 }
 
 @media (max-width: 768px) {
-  .position-popup {
+  .onboarding-container .position-popup {
     top: 0%;
     left: 0%;
   }

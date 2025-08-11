@@ -79,7 +79,7 @@ const TikTokVideo = (props: Props) => {
     };
 
     return (
-        <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-6">
             <BreadcrumbCommon
                 breadcrumb={"Xem Video"}
                 redirect={ROUTE_PATH.WATCH}

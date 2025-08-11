@@ -61,12 +61,13 @@ const StaticComponent = (props: Props) => {
     return (
         <div className='static box-common'>
             <div className='flex justify-between items-start'>
-                <p className='title-box'>Các khoản thu chi</p>
+                <p className='title-box' id='step-12'>Các khoản thu chi</p>
                 <ButtonHref
                     classColor={'green'}
                     href={`${ROUTE_PATH.HISTORY_TRANSITION}?goadId=${goadId}`}
                     title={'Lịch sử giao dịch'}
                     width={170}
+                    id='step-15'
                 />
             </div>
             <TimeFilter

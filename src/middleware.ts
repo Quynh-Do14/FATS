@@ -103,5 +103,7 @@ export const config = {
         '/select-bot',
         '/history-transition',
         '/attendance',
+        '/advisor/entertainment',
+        '/advisor/invest',
     ],
 };

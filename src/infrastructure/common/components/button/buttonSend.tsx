@@ -6,6 +6,7 @@ type Props = {
     title: string,
     width?: number
     disabled?: boolean
+    id?: string
 }
 export const ButtonSend = (props: Props) => {
     const {
@@ -14,10 +15,12 @@ export const ButtonSend = (props: Props) => {
         icon,
         title,
         width = false,
-        disabled = false
+        disabled = false,
+        id
     } = props;
     return (
         <button
+            id={id}
             className={`btn-send ${classColor}`}
             style={{
                 width: width ? width : "100%"

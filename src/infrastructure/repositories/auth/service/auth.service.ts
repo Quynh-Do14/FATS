@@ -208,7 +208,23 @@ class AuthService {
             setLoading(false);
         }
     }
-
+    async SkipFirstLogin(setLoading: (loading: boolean) => void) {
+        setLoading(true)
+        try {
+            return await RequestService
+                .put(Endpoint.Auth.SkipFirstLogin)
+                .then(response => {
+                    if (response) {
+                    }
+                    setLoading(false);
+                    return response;
+                });
+        } catch (error: any) {
+            console.error(error)
+        } finally {
+            setLoading(false);
+        }
+    }
 
 }
 const authService = new AuthService();

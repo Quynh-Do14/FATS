@@ -488,3 +488,33 @@
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.advisor-container .header .type-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2px;
+  min-width: 190px;
+}
+@media only screen and (max-width: 992px) {
+  .advisor-container .header .type-chat {
+    display: none;
+  }
+}
+.advisor-container .header .type-chat div {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: bold;
+  color: #003333;
+}
+
+.advisor-container .header .type-chat p {
+  font-size: 13px;
+  line-height: 23px;
+  font-weight: bold;
+  color: #003333;
+  cursor: pointer;
+}
+.advisor-container .header .type-chat p:hover {
+  text-decoration: underline;
+}

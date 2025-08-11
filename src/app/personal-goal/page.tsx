@@ -37,6 +37,9 @@ import AlertBudget from "@/infrastructure/common/components/budget/alert-budget"
 import ModalAllocation from "../finance-common/modal/modalAllocation";
 import DrawerSelectCategory from "../finance-common/common/drawerSelectCategory";
 import { ButtonHref } from "@/infrastructure/common/components/button/buttonHref";
+import { useRecoilValue } from "recoil";
+import { ProfileState } from "@/core/atoms/profile/profileState";
+import authService from "@/infrastructure/repositories/auth/service/auth.service";
 
 
 const GoalSpendingPage = () => {
@@ -150,8 +153,9 @@ const GoalSpendingPage = () => {
         });
         return allRequestOK;
     };
+    const profileState = useRecoilValue(ProfileState).data;
     const router = useRouter();
-    const pageSize = 4
+    const pageSize = 4;
     const onGetListGoalAsync = async () => {
         const param = {
             page: page - 1,
@@ -839,29 +843,84 @@ const GoalSpendingPage = () => {
     const steps = [
         {
             target: '',
-            content: 'Bắt đầu hành trình quản lý tài chính',
-            description: 'Hãy cùng khám phá cách sử dụng ứng dụng theo các bước sau!',
+            content: 'Chào mừng đến với Hành trình Tài chính Thông minh',
+            description: 'Khám phá cách ứng dụng giúp bạn quản lý tiền bạc hiệu quả và đạt mục tiêu tài chính dễ dàng hơn!',
         },
         {
             target: 'step-1',
-            content: 'Tạo ngân sách cơ bản',
-            description: 'Thiết lập ngân sách tổng thể dựa trên thu nhập và các khoản chi tiêu cố định hàng tháng',
+            content: 'Thiết lập ngân sách cơ bản',
+            description: 'Bắt đầu bằng việc nhập thu nhập và các khoản chi tiêu cố định để có cái nhìn tổng quan',
         },
         {
             target: 'step-2',
             content: 'Đặt mục tiêu tài chính',
-            description: 'Xác định các mục tiêu quan trọng như tiết kiệm, đầu tư hoặc mua sắm lớn',
+            description: 'Xác định các mục tiêu ngắn hạn và dài hạn như mua nhà, du lịch hay đầu tư',
         },
         {
             target: 'step-3',
-            content: 'Phân bổ ngân sách',
-            description: 'Chia ngân sách thành các hạng mục cụ thể phù hợp với nhu cầu và mục tiêu của bạn',
+            content: 'Phân bổ ngân sách thông minh',
+            description: 'Tự động chia ngân sách vào các hạng mục phù hợp với nhu cầu cá nhân của bạn',
         },
         {
             target: 'step-4',
-            content: 'Theo dõi thu chi thông minh',
-            description: 'Tương tác với ChatBot để ghi chép và phân tích các giao dịch tự động, nhanh chóng',
+            content: 'Theo dõi thu chi tự động',
+            description: 'Hệ thống AI thông minh giúp ghi nhận và phân loại giao dịch tự động',
         },
+        {
+            target: 'step-5',
+            content: 'Tối ưu tiết kiệm tự động',
+            description: 'Tự động chuyển khoản thặng dư vào các mục tiêu tiết kiệm của bạn',
+        },
+        {
+            target: 'step-6',
+            content: 'Tích lũy thông minh hàng ngày',
+            description: 'Tận dụng mọi khoản tiền nhàn rỗi để gia tăng tài sản tự động',
+        },
+        {
+            target: 'step-7',
+            content: 'Lựa chọn sau khi tiết kiệm',
+            description: 'Đầu tư sinh lời hoặc chi tiêu thông minh - bạn chọn cách sử dụng tiền của mình',
+        },
+        {
+            target: 'step-8',
+            content: 'Tư vấn đầu tư cá nhân hóa',
+            description: 'Nhận đề xuất đầu tư phù hợp với mục tiêu và mức độ chấp nhận rủi ro của bạn',
+        },
+        {
+            target: 'step-9',
+            content: 'Gợi ý chi tiêu hợp lý',
+            description: 'Cân đối giữa tiết kiệm và hưởng thụ với các đề xuất chi tiêu thông minh',
+        },
+        {
+            target: 'step-10',
+            content: 'Tổng quan thu chi trong ngày',
+            description: 'Xem nhanh báo cáo thu nhập và chi tiêu của bạn trong ngày',
+        },
+        {
+            target: 'step-11',
+            content: 'Biểu đồ thu chi theo tuần',
+            description: 'Trực quan hóa dòng tiền của bạn qua biểu đồ cột dễ hiểu',
+        },
+        {
+            target: 'step-12',
+            content: 'Danh sách chi tiêu chi tiết',
+            description: 'Xem lại toàn bộ các khoản chi tiêu được phân loại rõ ràng',
+        },
+        {
+            target: 'step-13',
+            content: 'Phân bổ thu chi theo danh mục',
+            description: 'Biểu đồ tròn giúp bạn thấy rõ tỷ lệ chi tiêu vào từng hạng mục',
+        },
+        {
+            target: 'step-14',
+            content: 'Bộ lọc giao dịch theo thời gian',
+            description: 'Dễ dàng tra cứu giao dịch theo khoảng thời gian bạn quan tâm',
+        },
+        {
+            target: 'step-15',
+            content: 'Lịch sử giao dịch đầy đủ',
+            description: 'Xem lại toàn bộ lịch sử thu chi được lưu trữ an toàn',
+        }
     ];
 
     const updateGuideUI = useCallback((stepIndex: number) => {
@@ -874,8 +933,9 @@ const GoalSpendingPage = () => {
         if (!stepElement || !tooltip) return;
 
         // Ẩn tooltip ngay lập tức
-        tooltip.classList.add('hidden');
-        tooltip.classList.remove('block');
+        tooltip.style.transition = 'opacity 0.15s ease';
+        tooltip.style.opacity = '0';
+        tooltip.style.pointerEvents = 'none';
 
         // Remove highlight từ tất cả các element
         document.querySelectorAll('.guide-highlight').forEach(el => {
@@ -885,36 +945,102 @@ const GoalSpendingPage = () => {
         // Add highlight cho element hiện tại
         stepElement.classList.add('guide-highlight');
 
-        // Bắt đầu scroll
-        stepElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-            inline: 'center',
+        // Hàm cập nhật vị trí tooltip
+        const updateTooltipPosition = () => {
+            const elementRect = stepElement.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+            const viewportPadding = 10;
+
+            // Tính toán vị trí mong muốn (phía trên element)
+            let desiredTop = elementRect.top - tooltipRect.height - 10;
+            let desiredLeft = elementRect.left + (elementRect.width / 2) - (tooltipRect.width / 2);
+
+            // Nếu không đủ không gian phía trên, đặt phía dưới
+            if (desiredTop < viewportPadding) {
+                desiredTop = elementRect.bottom + 10;
+            }
+
+            // Đảm bảo tooltip không vượt ra khỏi viewport
+            desiredLeft = Math.max(
+                viewportPadding,
+                Math.min(
+                    desiredLeft,
+                    window.innerWidth - tooltipRect.width - viewportPadding
+                )
+            );
+
+            // Thêm transition cho vị trí
+            tooltip.style.transition = 'top 0.3s ease-out, left 0.3s ease-out, opacity 0.3s ease';
+
+            // Áp dụng vị trí
+            tooltip.style.top = `${Math.max(viewportPadding, desiredTop)}px`;
+            tooltip.style.left = `${desiredLeft}px`;
+
+            // Hiển thị tooltip với hiệu ứng mờ dần
+            tooltip.style.opacity = '1';
+            tooltip.style.pointerEvents = 'auto';
+        };
+
+        // Bắt đầu scroll và cập nhật vị trí
+        const scrollAndPosition = () => {
+            stepElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'center',
+            });
+
+            // Sử dụng MutationObserver để phát hiện khi scroll hoàn tất
+            const observer = new MutationObserver(() => {
+                let checks = 0;
+                const checkPosition = () => {
+                    checks++;
+                    const currentRect = stepElement.getBoundingClientRect();
+
+                    // Kiểm tra nếu element đã ổn định vị trí
+                    if (Math.abs(currentRect.top - prevRect.top) < 5 || checks > 20) {
+                        updateTooltipPosition();
+                        observer.disconnect();
+                        return;
+                    }
+
+                    prevRect = currentRect;
+                    requestAnimationFrame(checkPosition);
+                };
+
+                let prevRect = stepElement.getBoundingClientRect();
+                requestAnimationFrame(checkPosition);
+            });
+
+            observer.observe(document.body, {
+                attributes: true,
+                childList: true,
+                subtree: true
+            });
+
+            // Cập nhật vị trí ban đầu
+            updateTooltipPosition();
+        };
+
+        // Bắt đầu quá trình với độ trễ nhỏ để đảm bảo DOM đã cập nhật
+        requestAnimationFrame(() => {
+            requestAnimationFrame(scrollAndPosition);
         });
 
-        // Đợi scroll hoàn tất (khoảng 500ms - có thể điều chỉnh)
-        setTimeout(() => {
-            // Lấy vị trí sau khi scroll
-            const elementRect = stepElement.getBoundingClientRect();
+        // Thêm event listeners để xử lý khi scroll hoặc resize
+        const handleScrollResize = () => {
+            requestAnimationFrame(updateTooltipPosition);
+        };
 
-            // Tính toán vị trí tooltip (ví dụ: phía trên element)
-            const tooltipTop = elementRect.top - tooltip.offsetHeight - 10;
-            const tooltipLeft = elementRect.left + (elementRect.width / 2) - (tooltip.offsetWidth / 2);
+        window.addEventListener('scroll', handleScrollResize, { passive: true });
+        window.addEventListener('resize', handleScrollResize, { passive: true });
 
-            // Đảm bảo tooltip không bị che
-            const adjustedTop = Math.max(10, tooltipTop);
-            const adjustedLeft = Math.max(10, Math.min(
-                tooltipLeft,
-                window.innerWidth - tooltip.offsetWidth - 10
-            ));
-
-            // Đặt vị trí và hiển thị tooltip
-            tooltip.style.top = `${adjustedTop}px`;
-            tooltip.style.left = `${adjustedLeft}px`;
-            tooltip.classList.remove('hidden');
-            tooltip.classList.add('block');
-        }, 500); // Thời gian chờ scroll hoàn tất
+        // Cleanup function để remove event listeners
+        return () => {
+            window.removeEventListener('scroll', handleScrollResize);
+            window.removeEventListener('resize', handleScrollResize);
+        };
     }, [steps]);
+
     const nextStep = useCallback(() => {
         const next = currentStep + 1;
 
@@ -938,7 +1064,8 @@ const GoalSpendingPage = () => {
         document.querySelectorAll('.guide-highlight').forEach(el => {
             el.classList.remove('guide-highlight');
         });
-    }, []);
+        onSkipFirstLoginAsync().then(_ => { })
+    }, [profileState]);
 
     // Initialize guide on first render
     useEffect(() => {
@@ -986,7 +1113,28 @@ const GoalSpendingPage = () => {
                 Bạn đang có <span className="highlight-amount">{formatCurrencyVND(currentAmount)}</span> tiết kiệm - Cố lên nhé!
             </p>
         );
-    }
+    };
+
+    useEffect(() => {
+        if (profileState.firstLogin) {
+            onGuideLine();
+        }
+    }, [profileState]);
+
+    const onSkipFirstLoginAsync = async () => {
+        if (profileState.firstLogin) {
+            try {
+                await authService.SkipFirstLogin(
+                    setLoading
+                ).then((res) => {
+
+                })
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+    };
     return (
         <LayoutClient isScroll={isGuideVisible}>
             <div className="personal-finance-container">
@@ -1112,10 +1260,10 @@ const GoalSpendingPage = () => {
                         </Col>
                         <Col xs={24} sm={24} md={14} lg={16} xxl={18}>
                             <div className="target">
-                                <Row gutter={[20, 20]} >
+                                <Row gutter={[20, 20]}>
                                     <Col span={24}>
                                         <div className="flex justify-between w-full gap-2 flex-wrap">
-                                            <h2 className="text-xl font-semibold text-left text-gray-800">Danh sách mục tiêu</h2>
+                                            <h2 className="text-xl font-semibold text-left text-gray-800" id="step-5">Danh sách mục tiêu</h2>
                                             {
                                                 newlistGoal.length
                                                     ?
@@ -1148,7 +1296,9 @@ const GoalSpendingPage = () => {
                                                             &&
                                                             <div className="advisal-tooltip">Tiết kiệm rồi, tiếp theo là gì?</div>
                                                         }
-                                                        <div className="flex flex-col gap-2">
+                                                        <div className="flex flex-col gap-2"
+                                                            id={goal.startDate ? "" : "step-6"}
+                                                        >
                                                             <div className="flex gap-2 items-start justify-between flex-wrap">
                                                                 <p className="text-[20px] font-semibold text-truncate-2">{goal.name}</p>
                                                                 {
@@ -1206,15 +1356,25 @@ const GoalSpendingPage = () => {
                                                             <div className="suggestion-box" style={{
                                                                 borderColor: goal.color.line,
                                                                 backgroundColor: `${goal.color.line}15`
-                                                            }}>
+
+                                                            }}
+                                                            >
                                                                 <SavingsCongratulation currentAmount={goal.currentAmount} />
-                                                                <div className="suggestion-options">
+                                                                <div className="suggestion-options" id="step-7">
                                                                     <p>Bạn muốn:</p>
                                                                     <div className="options-grid">
-                                                                        <a href={ROUTE_PATH.ADVISOR_INVEST} className="option-btn invest-btn">
+                                                                        <a
+                                                                            href={ROUTE_PATH.ADVISOR_INVEST}
+                                                                            className="option-btn invest-btn"
+                                                                            id="step-8"
+                                                                        >
                                                                             Đầu tư sinh lời
                                                                         </a>
-                                                                        <a href={ROUTE_PATH.ADVISOR_ENTERTAINMENT} className="option-btn reward-btn">
+                                                                        <a
+                                                                            href={ROUTE_PATH.ADVISOR_ENTERTAINMENT}
+                                                                            className="option-btn reward-btn"
+                                                                            id="step-9"
+                                                                        >
                                                                             Chi tiêu cho bản thân
                                                                         </a>
                                                                     </div>
@@ -1228,22 +1388,20 @@ const GoalSpendingPage = () => {
                                     })}
                                 </Row>
                                 <div className="flex justify-center gap-2 flex-wrap">
-                                    <div id="step-2">
-                                        <ButtonDesign
-                                            classColor={'green'}
-                                            onClick={onOpenModalCreate}
-                                            title={'Thêm mục tiêu'}
-                                            width={200}
-                                        />
-                                    </div>
-                                    <div id="step-3">
-                                        <ButtonDesign
-                                            classColor={'transparent'}
-                                            onClick={onOpenModalAllocation}
-                                            title={'Phân bổ mục tiêu'}
-                                            width={200}
-                                        />
-                                    </div>
+                                    <ButtonDesign
+                                        classColor={'green'}
+                                        onClick={onOpenModalCreate}
+                                        title={'Thêm mục tiêu'}
+                                        width={200}
+                                        id="step-2"
+                                    />
+                                    <ButtonDesign
+                                        classColor={'transparent'}
+                                        onClick={onOpenModalAllocation}
+                                        title={'Phân bổ mục tiêu'}
+                                        width={200}
+                                        id="step-3"
+                                    />
                                 </div>
                             </div>
                         </Col>

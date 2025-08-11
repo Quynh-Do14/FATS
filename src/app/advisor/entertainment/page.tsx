@@ -7,6 +7,10 @@ import "@/assets/styles/page/advisor.css"
 import advisorService from '@/infrastructure/repositories/advisor/advisor.service'
 import LayoutClientNoFooter from '@/infrastructure/common/Layouts/Client-Layout-NoFooter'
 import Constants from '@/core/common/constants'
+import { Tooltip } from 'antd'
+import Link from 'next/link'
+import { ROUTE_PATH } from '@/core/common/appRouter'
+import ReactMarkdown from "react-markdown";
 
 interface ScheduleItem {
     time: string;
@@ -167,6 +171,16 @@ const AdvisorPage = () => {
                                 <span className="status-text">Online</span>
                             </div>
                         </div>
+                        <Tooltip title="Sử dụng AI tư vấn đầu tư Finora">
+                            <Link href={ROUTE_PATH.ADVISOR_INVEST}>
+                                <i className="fa fa-refresh text-[#999] text-[20px] cursor-pointer rotate" aria-hidden="true"></i>
+                            </Link>
+                        </Tooltip>
+                        <div className="type-chat">
+                            <Link href={ROUTE_PATH.ADVISOR_INVEST}>
+                                <p>Sử dụng AI tư vấn giải trí Finora</p>
+                            </Link>
+                        </div>
                     </div>
                     <div className="chat-box" ref={chatBoxRef}>
                         {dataChatBox.map((message, index) => (
@@ -259,7 +273,7 @@ const AdvisorPage = () => {
                                                 message.type === "otherMessage"
                                                     ?
                                                     <div className="ai-chat">
-                                                        {message.otherMessage?.otherMessage}
+                                                        <ReactMarkdown>{message.otherMessage?.otherMessage}</ReactMarkdown>
                                                     </div>
                                                     :
                                                     null
@@ -332,7 +346,7 @@ const AdvisorPage = () => {
                     </div>
                 </div>
             </div>
-        </LayoutClientNoFooter>
+        </LayoutClientNoFooter >
     )
 }
 

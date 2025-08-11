@@ -7,6 +7,7 @@ type Props = {
     title: string,
     width?: number
     disabled?: boolean
+    id?: string
 }
 export const ButtonHref = (props: Props) => {
     const {
@@ -15,10 +16,12 @@ export const ButtonHref = (props: Props) => {
         icon,
         title,
         width = false,
-        disabled = false
+        disabled = false,
+        id
     } = props;
     return (
         <Link
+            id={id}
             href={href}
             className={`btn-send ${classColor}`}
             style={{

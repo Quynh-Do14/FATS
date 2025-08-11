@@ -3,7 +3,6 @@ import BannerCommon from '@/infrastructure/common/components/banner/BannerCommon
 import LayoutClient from '@/infrastructure/common/Layouts/Client-Layout'
 import React, { useEffect, useState } from 'react'
 import banner2 from "@/assets/images/banner/banner2.png"
-import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '@/assets/styles/page/watch.css';

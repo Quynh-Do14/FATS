@@ -6,6 +6,7 @@ type Props = {
     title: string,
     width?: number
     disabled?: boolean
+    id?: string
 }
 export const ButtonDesign = (props: Props) => {
     const {
@@ -14,10 +15,12 @@ export const ButtonDesign = (props: Props) => {
         icon,
         title,
         width = false,
-        disabled = false
+        disabled = false,
+        id
     } = props;
     return (
         <button
+            id={id}
             className={`btn-design ${classColor}`}
             style={{
                 width: width ? width : "100%"

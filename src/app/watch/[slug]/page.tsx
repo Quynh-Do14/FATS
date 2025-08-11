@@ -42,8 +42,6 @@ const SlugWatch = async ({ params }: Props) => {
         videoId = extractTikTokVideoId(detail.urlVideo);
     }
 
-    console.log("detail", detail);
-
     return (
         <div className="slug-watch-container">
             <div className="padding-common">

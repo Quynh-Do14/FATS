@@ -11,6 +11,7 @@ export class Endpoint {
         static Verify = "/auth/verify"
         static ForgotPassword = "/auth/forgot-password"
         static ResetPassword = "/auth/reset-password"
+        static SkipFirstLogin = "/auth/skip-first-login"
 
     }
     static Goal = class {

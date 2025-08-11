@@ -32,7 +32,7 @@ const OverviewPersonalComponent = (props: Props) => {
 
     return (
         <div className="overview box-common">
-            <p className="title-box">Tổng quan </p>
+            <p className="title-box" id='step-10'>Tổng quan </p>
             <div className={`${dailyTotal >= 0 ? "green-bg" : "red-bg"} info`} >
                 <div className="flex items-center justify-between">
                     <div>
