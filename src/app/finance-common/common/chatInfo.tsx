@@ -58,14 +58,14 @@ const ChatBotInfo = (props: Props) => {
                     <ButtonHref
                         classColor={'green'}
                         href={ROUTE_PATH.SELECT_CHAT_BOT}
-                        title={'Thay đổi BotAI'}
+                        title={'Tính cách Lucy'}
                         width={140}
                     />
                     <ButtonSend
                         id="step-4"
                         classColor={'green'}
                         onClick={handleCartClick}
-                        title={'Chat với Moola'}
+                        title={'Chat với Lucy'}
                         width={140}
                     />
                     <ChatBoxCommon

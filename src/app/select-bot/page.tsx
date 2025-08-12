@@ -43,7 +43,7 @@ const SelectBotPage = () => {
                 <BubbleCommon />
                 <div className="padding-common">
                     <div className='bg-[#FFFFFF60] rounded-[8px] px-10 py-8'>
-                        <h2 className="header">Bạn muốn Moola có tính cách như thế nào?</h2>
+                        <h2 className="header">Bạn muốn Lucy có tính cách như thế nào?</h2>
                         <Row gutter={[20, 20]} className="options" justify={"center"}>
                             {
                                 Constants.BotChatList.List.map((item, index) => {

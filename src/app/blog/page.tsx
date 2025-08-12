@@ -23,15 +23,17 @@ const BlogPage = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [pageSize, setPageSize] = useState<number>(10);
   const [categoryId, setCategoryId] = useState<string>("");
+  const [blogType, setBlogType] = useState<string>("");
 
   const categoryBlogState = useRecoilValue(CategoryBlogState).data;
 
-  const onGetListAsync = async ({ name = "", page = currentPage, size = pageSize, categoryId = "" }) => {
+  const onGetListAsync = async ({ name = "", page = currentPage, size = pageSize, categoryId = "", blogType = "" }) => {
     const param = {
       page: page - 1,
       size: size,
       keyword: name,
-      categoryId: categoryId
+      categoryId: categoryId,
+      blogType: blogType,
     }
     try {
       await blogService.GetBlog(
@@ -47,32 +49,34 @@ const BlogPage = () => {
     }
   }
 
-  const onSearch = async (name = "", page = 1, size = 10, categoryId = "") => {
-    await onGetListAsync({ name: name, page: page, size: size, categoryId: categoryId });
+  const onSearch = async (name = "", page = 1, size = 10, categoryId = "", blogType = "") => {
+    await onGetListAsync({ name: name, page: page, size: size, categoryId: categoryId, blogType: blogType });
   };
 
   const onChangeSearchText = (e: any) => {
     setSearchText(e.target.value);
     clearTimeout(timeout);
     timeout = setTimeout(() => {
-      onSearch(e.target.value, currentPage, pageSize, categoryId).then((_) => { });
+      onSearch(e.target.value, currentPage, pageSize, categoryId, blogType).then((_) => { });
     }, Constants.DEBOUNCE_SEARCH);
   };
 
   const onChangePage = async (value: any) => {
     setCurrentPage(value)
-    await onSearch(searchText, value, pageSize, categoryId).then(_ => { });
+    await onSearch(searchText, value, pageSize, categoryId, blogType).then(_ => { });
   };
 
   const onPageSizeChanged = async (value: any) => {
     setPageSize(value)
     setCurrentPage(1)
-    await onSearch(searchText, 1, value, categoryId).then(_ => { });
+    await onSearch(searchText, 1, value, categoryId, blogType).then(_ => { });
   };
 
-  const onSelectCategory = async (value: string) => {
-    setCategoryId(value)
-    await onSearch(searchText, 1, pageSize, value).then(_ => { });
+  const onSelectCategory = async (item: any) => {
+    setCategoryId(item.id)
+    const blogType = item.id == 10000000 ? "COMPANY" : "NORMAL"
+    setBlogType(blogType)
+    await onSearch(searchText, 1, pageSize, item.id, blogType).then(_ => { });
   };
 
   useEffect(() => {
@@ -192,7 +196,7 @@ const BlogPage = () => {
                         <li key={index}>
                           <a
                             className={`category-item cursor-pointer ${categoryId === item.id ? 'active' : ''}`}
-                            onClick={() => onSelectCategory(item.id)}
+                            onClick={() => onSelectCategory(item)}
                           >
                             {item.name}
                           </a>

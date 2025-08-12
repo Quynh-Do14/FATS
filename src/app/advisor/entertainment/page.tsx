@@ -57,6 +57,10 @@ interface Message {
     };
 }
 
+interface Position {
+    latitude: number
+    longitude: number
+}
 const AdvisorPage = () => {
     const chatBoxRef = useRef<HTMLDivElement>(null);
     const [isAtBottom, setIsAtBottom] = useState<boolean>(true);
@@ -67,6 +71,11 @@ const AdvisorPage = () => {
     const [loadingBot, setLoadingBot] = useState(false);
     const [genaralQuestion, setGenaralQuestion] = useState<string[]>([]);
     const [isModalError, setIsModalError] = useState<boolean>(false);
+    const [location, setLocation] = useState<Position>();
+    const [error, setError] = useState<string>("");
+    const [permissionStatus, setPermissionStatus] = useState<'checking' | 'granted' | 'denied' | 'prompt'>('checking');
+    const [isRequestingLocation, setIsRequestingLocation] = useState<boolean>(false);
+
     const router = useRouter()
     const onGetChatBoxAsync = async () => {
         try {
@@ -86,6 +95,64 @@ const AdvisorPage = () => {
         onGetChatBoxAsync().then(_ => { });
     }, []);
 
+    useEffect(() => {
+        const checkPermission = async () => {
+            try {
+                // Kiểm tra Permissions API trước
+                if (navigator.permissions) {
+                    const status = await navigator.permissions.query({ name: 'geolocation' });
+                    setPermissionStatus(status.state);
+
+                    status.onchange = () => {
+                        setPermissionStatus(status.state);
+                    };
+                } else {
+                    // Fallback nếu trình duyệt không hỗ trợ Permissions API
+                    setPermissionStatus('prompt');
+                }
+            } catch (err) {
+                console.error("Permission check error:", err);
+                setPermissionStatus('prompt');
+            }
+        };
+
+        checkPermission();
+    }, []);
+
+    const requestLocation = () => {
+        setIsRequestingLocation(true);
+        setError('');
+
+        if (!navigator.geolocation) {
+            setError('Trình duyệt không hỗ trợ Geolocation');
+            setIsRequestingLocation(false);
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLocation({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                });
+                setPermissionStatus('granted');
+                setIsRequestingLocation(false);
+            },
+            (err) => {
+                setError(err.message);
+                if (err.code === err.PERMISSION_DENIED) {
+                    setPermissionStatus('denied');
+                }
+                setIsRequestingLocation(false);
+            },
+            {
+                timeout: 10000, // 10 giây timeout
+                enableHighAccuracy: true
+            }
+        );
+    };
+
+
     const handleSendMessage = async (option: string) => {
         const question = option ? option : messages
         setTimeout(() => {
@@ -95,7 +162,9 @@ const AdvisorPage = () => {
         try {
             await advisorService.AddAdvisorEntertainment(
                 {
-                    question: question
+                    question: question,
+                    latitude: location?.latitude || "",
+                    longitude: location?.longitude || ""
                 },
                 async () => {
                     setMessagesLoading("");
@@ -117,8 +186,8 @@ const AdvisorPage = () => {
         setIsModalError(false);
         router.push(ROUTE_PATH.WATCH)
     };
-    const onSelectOption = (option: any) => {
-        if (option.value) {
+    const onSelectOption = (option: any, condition: boolean) => {
+        if (!condition) {
             handleSendMessage(option.text);
             setMessagesLoading(option.text);
         }
@@ -175,25 +244,78 @@ const AdvisorPage = () => {
             <div className="advisor-container">
                 <div className="padding-common">
                     <div className="header">
-                        <img src={gptIcon.src} alt="" />
-                        <div className="status-container">
-                            <div className="title">Vibie Tư Vấn Giải Trí</div>
-                            <div className="status-line">
-                                <span className="dot" />
-                                <span className="status-text">Online</span>
+                        <div className='flex items-center gap-5'>
+                            <img src={gptIcon.src} alt="" />
+                            <div className="status-container">
+                                <div className="title">Tư Vấn Giải Trí - Phoebie Biết Tuốt</div>
+                                <div className="status-line">
+                                    <span className="dot" />
+                                    <span className="status-text">Online</span>
+                                </div>
+                            </div>
+                            <Tooltip title="Sử dụng AI tư vấn đầu tư Finora">
+                                <Link href={ROUTE_PATH.ADVISOR_INVEST}>
+                                    <i className="fa fa-refresh text-[#999] text-[20px] cursor-pointer rotate" aria-hidden="true"></i>
+                                </Link>
+                            </Tooltip>
+                            <div className="type-chat">
+                                <Link href={ROUTE_PATH.ADVISOR_INVEST}>
+                                    <p>Sử dụng AI tư vấn đầu tư Joey</p>
+                                </Link>
                             </div>
                         </div>
-                        <Tooltip title="Sử dụng AI tư vấn đầu tư Finora">
-                            <Link href={ROUTE_PATH.ADVISOR_INVEST}>
-                                <i className="fa fa-refresh text-[#999] text-[20px] cursor-pointer rotate" aria-hidden="true"></i>
-                            </Link>
-                        </Tooltip>
-                        <div className="type-chat">
-                            <Link href={ROUTE_PATH.ADVISOR_INVEST}>
-                                <p>Sử dụng AI tư vấn đầu tư Finora</p>
-                            </Link>
+
+                        <div className='location-container'>
+                            {permissionStatus === 'denied' ? (
+                                <div className="location-icon-button">
+                                    <Tooltip title="Cấp quyền truy cập vị trí">
+                                        <button
+                                            onClick={requestLocation}
+                                            disabled={isRequestingLocation}
+                                            className="location-permission-btn"
+                                        >
+                                            {isRequestingLocation ? (
+                                                <i className="fas fa-spinner fa-spin"></i>
+                                            ) : (
+                                                <i className="fas fa-circle-exclamation text-warning"></i>
+                                            )}
+                                        </button>
+                                    </Tooltip>
+                                    <div className="chat-tooltip">
+                                        Vibie sẽ tư vấn chính xác hơn nếu như có được vị trí của bạn
+                                    </div>
+                                </div>
+                            ) : permissionStatus === "granted" ? (
+                                <div className="location-icon-button">
+                                    <Tooltip title="Vị trí của bạn đã được chia sẻ">
+                                        <i className="fas fa-location-dot text-primary"></i>
+                                    </Tooltip>
+                                </div>
+                            ) : permissionStatus === "prompt" ? (
+                                <div className="location-icon-button">
+                                    <Tooltip title="Chia sẻ vị trí của bạn">
+                                        <button
+                                            onClick={requestLocation}
+                                            disabled={isRequestingLocation}
+                                            className="location-permission-btn"
+                                        >
+                                            {isRequestingLocation ? (
+                                                <i className="fas fa-spinner fa-spin"></i>
+                                            ) : (
+                                                <i className="fas fa-location-arrow"></i>
+                                            )}
+                                        </button>
+                                    </Tooltip>
+                                </div>
+                            ) : (
+                                <div className="location-icon-button">
+                                    <i className="fas fa-spinner fa-spin"></i>
+                                </div>
+                            )}
                         </div>
+
                     </div>
+
                     <div className="chat-box" ref={chatBoxRef}>
                         {dataChatBox.map((message, index) => (
                             <div key={index} className="flex flex-col gap-2">
@@ -215,14 +337,21 @@ const AdvisorPage = () => {
                                                 <div className='option'>
                                                     <ul>
                                                         {
-                                                            message.questionData?.options?.map((option, index) => (
-                                                                <li
-                                                                    key={index}
-                                                                    onClick={() => onSelectOption(option)}
-                                                                >
-                                                                    {option.text}
-                                                                </li>
-                                                            ))
+                                                            message.questionData?.options?.map((option, index) => {
+                                                                const length: number = message.questionData?.options?.length ?? 0;
+                                                                const condition: boolean = index >= length - 1 ? true : false
+                                                                console.log("length", length);
+                                                                console.log("condition", condition);
+
+                                                                return (
+                                                                    <li
+                                                                        key={index}
+                                                                        onClick={() => onSelectOption(option, condition)}
+                                                                    >
+                                                                        {option.text}
+                                                                    </li>
+                                                                )
+                                                            })
                                                         }
                                                     </ul>
 
@@ -331,19 +460,23 @@ const AdvisorPage = () => {
                     )}
 
                     <div className='general-question'>
-                        <ul>
-                            {
-                                genaralQuestion.map((item, index) => {
-                                    return (
-                                        <li key={index}
-                                            onClick={() => onSelectGeneralQuestion(item)}>
-                                            {item}
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
+                        {
+                            dataChatBox.length === 0 &&
+                            <ul>
+                                {
+                                    genaralQuestion.map((item, index) => {
+                                        return (
+                                            <li key={index}
+                                                onClick={() => onSelectGeneralQuestion(item)}>
+                                                {item}
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        }
                     </div>
+
                     <div className="input-chat">
                         <input
                             type="text"

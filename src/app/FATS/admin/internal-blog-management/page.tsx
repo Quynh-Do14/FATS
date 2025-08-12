@@ -39,6 +39,7 @@ const ListBlogManagement = () => {
             page: page - 1,
             size: size,
             keyword: name,
+            categoryId: 10000000,
             blogType: "COMPANY"
         }
         try {

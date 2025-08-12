@@ -117,10 +117,10 @@ const AdvisorPage = () => {
         router.push(ROUTE_PATH.WATCH)
     };
 
-    const onSelectOption = (option: any) => {
-        if (option.value) {
-            handleSendMessage(option.value);
-            setMessagesLoading(option.value);
+    const onSelectOption = (option: any, condition: boolean) => {
+        if (!condition) {
+            handleSendMessage(option.text);
+            setMessagesLoading(option.text);
         }
     };
 
@@ -175,23 +175,26 @@ const AdvisorPage = () => {
             <div className="advisor-container">
                 <div className="padding-common">
                     <div className="header">
-                        <img src={gptIcon.src} alt="" />
-                        <div className="status-container">
-                            <div className="title">Finora Tư Vấn Đầu tư</div>
-                            <div className="status-line">
-                                <span className="dot" />
-                                <span className="status-text">Online</span>
+                        <div className='flex items-center gap-5'>
+
+                            <img src={gptIcon.src} alt="" />
+                            <div className="status-container">
+                                <div className="title">Tư Vấn Đầu tư - Joey Thông Thái</div>
+                                <div className="status-line">
+                                    <span className="dot" />
+                                    <span className="status-text">Online</span>
+                                </div>
                             </div>
-                        </div>
-                        <Tooltip title="Sử dụng AI tư vấn giải trí Vibie">
-                            <Link href={ROUTE_PATH.ADVISOR_ENTERTAINMENT}>
-                                <i className="fa fa-refresh text-[#999] text-[20px] cursor-pointer rotate" aria-hidden="true"></i>
-                            </Link>
-                        </Tooltip>
-                        <div className="type-chat">
-                            <Link href={ROUTE_PATH.ADVISOR_ENTERTAINMENT}>
-                                <p>Sử dụng AI tư vấn đầu tư Vibie</p>
-                            </Link>
+                            <Tooltip title="Sử dụng AI tư vấn giải trí Vibie">
+                                <Link href={ROUTE_PATH.ADVISOR_ENTERTAINMENT}>
+                                    <i className="fa fa-refresh text-[#999] text-[20px] cursor-pointer rotate" aria-hidden="true"></i>
+                                </Link>
+                            </Tooltip>
+                            <div className="type-chat">
+                                <Link href={ROUTE_PATH.ADVISOR_ENTERTAINMENT}>
+                                    <p>Sử dụng AI tư vấn đầu tư Phoebie</p>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="chat-box" ref={chatBoxRef}>
@@ -215,14 +218,20 @@ const AdvisorPage = () => {
                                                 <div className='option'>
                                                     <ul>
                                                         {
-                                                            message.questionData?.options?.map((option, index) => (
-                                                                <li key={index}
-                                                                    onClick={() => onSelectOption(option)}
-                                                                >{option.text}</li>
-                                                            ))
+                                                            message.questionData?.options?.map((option, index) => {
+                                                                const length: number = message.questionData?.options?.length ?? 0 - 1;
+                                                                const condition: boolean = index >= length - 1 ? true : false
+                                                                return (
+                                                                    <li
+                                                                        key={index}
+                                                                        onClick={() => onSelectOption(option, condition)}
+                                                                    >
+                                                                        {option.text}
+                                                                    </li>
+                                                                )
+                                                            })
                                                         }
                                                     </ul>
-
                                                 </div>
                                             </div>
                                             :
@@ -326,19 +335,23 @@ const AdvisorPage = () => {
                             <i className="fa fa-arrow-down" aria-hidden="true"></i>
                         </button>
                     )}
+
                     <div className='general-question'>
-                        <ul>
-                            {
-                                genaralQuestion.map((item, index) => {
-                                    return (
-                                        <li key={index}
-                                            onClick={() => onSelectGeneralQuestion(item)}>
-                                            {item}
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
+                        {
+                            dataChatBox.length === 0 &&
+                            <ul>
+                                {
+                                    genaralQuestion.map((item, index) => {
+                                        return (
+                                            <li key={index}
+                                                onClick={() => onSelectGeneralQuestion(item)}>
+                                                {item}
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        }
                     </div>
                     <div className="input-chat">
                         <input

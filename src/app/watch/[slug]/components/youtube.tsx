@@ -191,7 +191,7 @@ const YoutubeVideo = (props: Props) => {
     }, [playerState]);
 
     useEffect(() => {
-        if (timeCounter >= 15) {
+        if (timeCounter >= 35) {
             setShowRewardButton(true);
         }
         else {
@@ -241,7 +241,7 @@ const YoutubeVideo = (props: Props) => {
                     </div>
 
                     <div id="progressText" className="text-white/80 text-lg mb-6">
-                        Vui lòng xem video trong <span id="remainingTime" className="font-semibold text-yellow-400">15 giây</span> để nhận thưởng
+                        Vui lòng xem video trong <span id="remainingTime" className="font-semibold text-yellow-400">35 giây</span> để nhận thưởng
                     </div>
                 </div>
 

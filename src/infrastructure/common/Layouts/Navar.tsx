@@ -260,7 +260,7 @@ const NavbarComponent = (props: Props) => {
                                         <span className="icon">
                                             <i className="fa fa-retweet" aria-hidden="true"></i>
                                         </span>
-                                        <span>Thay đổi ChatAI</span>
+                                        <span>Thay đổi tính cách Lucy</span>
                                     </li>
                                 </a>
                                 <a href={ROUTE_PATH.ATTENDANCE}>

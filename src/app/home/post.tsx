@@ -9,6 +9,7 @@ import { configImageURL, convertDateOnlyShow, convertSlug } from '@/infrastructu
 import { ROUTE_PATH } from '@/core/common/appRouter';
 import Link from 'next/link';
 import Image from 'next/image';
+import InternalPostComponent from './internalPost';
 
 const PostComponent = () => {
     const [mainBlogs, setMainBlog] = useState<Array<any>>([]);
@@ -16,6 +17,7 @@ const PostComponent = () => {
     const onGetListAsync = async () => {
         const param = {
             size: 6,
+            blogType: "NORMAL",
         }
         try {
             await blogService.GetBlog(
@@ -36,7 +38,7 @@ const PostComponent = () => {
 
     const settings = {
         dots: false,
-        infinite: true,
+        infinite: mainBlogs.length >= 3,
         speed: 3000,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -74,6 +76,10 @@ const PostComponent = () => {
                 title={'Kho kiến thức Tài Chính'}
                 color={'black'}
             />
+            <div className="title">
+                <h2>Thông tin nội bộ</h2>
+            </div>
+            <InternalPostComponent />
             <div className="title">
                 <h2>Có Thể Bạn Chưa Biết</h2>
             </div>

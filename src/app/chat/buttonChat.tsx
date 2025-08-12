@@ -43,7 +43,7 @@ const ChatButton = (props: Props) => {
                     <i className="fa fa-commenting" aria-hidden="true"></i>
                 </div>
             </div>
-            <div className="chat-tooltip">Trợ lý tài chính Moola</div>
+            <div className="chat-tooltip">Trợ lý tài chính Lucy tỉ mỉ</div>
             <ChatBoxCommon
                 titleChat={titleChat}
                 isOpen={isOpenChatBox}

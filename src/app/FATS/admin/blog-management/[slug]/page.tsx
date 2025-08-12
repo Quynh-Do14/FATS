@@ -85,7 +85,7 @@ const SlugBlogManagement = ({ params }: Props) => {
                 shortDescription: detail.shortDescription,
                 content: detail.content,
                 categoryId: detail?.category?.id,
-
+                blogType: "NORMAL",
             });
         };
     }, [detail]);

@@ -51,9 +51,10 @@
 .advisor-container .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
   height: 60px;
-  padding: 8px 12px;
+  padding: 8px 0px;
   box-shadow: 5px 5px 10px -10px #f2f2f2;
   border-bottom: 1px solid #f2f2f2;
 }
@@ -102,6 +103,120 @@
   color: #99cc99;
 }
 
+.advisor-container .header .location-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.advisor-container .header .location-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+/* Tooltip */
+.advisor-container .header .chat-tooltip {
+  position: absolute;
+  bottom: -100px; /* Di chuyển xuống dưới header */
+  right: -8px;
+  margin: 0 auto;
+  width: 220px; /* Cố định chiều rộng */
+  z-index: 12;
+  background: linear-gradient(135deg, #fff9e6 0%, #ffecb3 100%);
+  color: #5a3e1b;
+  padding: 15px;
+  border-radius: 8px; /* Bo góc nhỏ hơn */
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  box-shadow: 0 4px 15px rgba(255, 197, 0, 0.25);
+  pointer-events: none;
+  animation: quoteAppear 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  border: 1px solid #ffd54f;
+  font-style: italic; /* Kiểu chữ trích dẫn */
+}
+
+/* Animation mới */
+@keyframes quoteAppear {
+  0%,
+  70%,
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10%,
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chỉnh sửa mũi tên */
+.advisor-container .header .chat-tooltip::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ffecb3;
+}
+
+/* Hiệu ứng phụ trợ */
+.advisor-container .header .chat-tooltip::before {
+  content: '"';
+  position: absolute;
+  font-size: 40px;
+  color: rgba(255, 213, 79, 0.2);
+  font-family: serif;
+  top: 5px;
+  left: 10px;
+}
+
+/* Thêm dấu ngoặc kép đóng */
+.advisor-container .header .chat-tooltip::after {
+  content: '"';
+  position: absolute;
+  font-size: 40px;
+  color: rgba(255, 213, 79, 0.2);
+  font-family: serif;
+  bottom: -15px;
+  right: 10px;
+}
+/* Tooltip */
+
+.advisor-container .header .text-warning {
+  color: #ffc107; /* Màu vàng cảnh báo */
+}
+
+.advisor-container .header .text-primary {
+  color: #4e73df; /* Màu xanh dương */
+}
+
+.advisor-container .header .fa-location-dot {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .advisor-container .chat-box {
   padding: 15px;
   overflow-y: auto;
@@ -462,6 +577,7 @@
 .advisor-container .general-question {
   width: 100%;
   padding: 4px 22px;
+  height: 44px;
 }
 
 .advisor-container .general-question ul {

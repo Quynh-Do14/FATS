@@ -59,6 +59,7 @@ const AddBlogManagement = () => {
                     shortDescription: dataRequest.shortDescription,
                     content: dataRequest.content,
                     categoryId: dataRequest.categoryId,
+                    blogType: "NORMAL",
                 },
                     onBack,
                     setLoading

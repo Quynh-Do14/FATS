@@ -107,7 +107,7 @@ const SlugBlogManagement = ({ params }: Props) => {
                 title: dataRequest.title,
                 shortDescription: dataRequest.shortDescription,
                 content: dataRequest.content,
-                categoryId: categoryBlogState[0].id,
+                categoryId: 10000000,
                 blogType: "COMPANY",
             }
         }
