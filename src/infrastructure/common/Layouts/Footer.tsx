@@ -20,16 +20,16 @@ const FooterClient = () => {
                             <p>Kết nối với chúng tôi</p>
                             <div className="link">
                                 <div className="link-icon">
-                                    <a href="" target='_blank'><img src={fb.src} alt="" /></a>
+                                    <a href="https://www.facebook.com/FATSAIQuanLyTaiChinh" target='_blank'><img src={fb.src} alt="" /></a>
                                 </div>
                                 <div className="link-icon">
-                                    <a href="" target='_blank'><img src={ig.src} alt="" /></a>
+                                    <a href="https://www.instagram.com/fats_ai/" target='_blank'><img src={ig.src} alt="" /></a>
                                 </div>
                                 <div className="link-icon">
-                                    <a href="" target='_blank'><img src={ytb.src} alt="" /></a>
+                                    <a href="https://www.youtube.com/@FATS-AI" target='_blank'><img src={ytb.src} alt="" /></a>
                                 </div>
                                 <div className="link-icon">
-                                    <a href="" target='_blank'><img src={tw.src} alt="" /></a>
+                                    <a href="https://x.com/PhucNguyen90116" target='_blank'><img src={tw.src} alt="" /></a>
                                 </div>
                             </div>
                         </div>
