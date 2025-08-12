@@ -24,6 +24,11 @@ export default class Constants {
                 icon: "fa fa-newspaper" // Icon bài viết
             },
             {
+                label: "Quản lý tin tức nội bộ",
+                link: ROUTE_PATH.INTERNAL_BLOG_MANAGEMENT,
+                icon: "fa fa-file-text-o" // Icon bài viết
+            },
+            {
                 label: "Quản lý video",
                 link: ROUTE_PATH.VIDEO_MANAGEMENT,
                 icon: "fa fa-file-video-o" // Icon bài viết

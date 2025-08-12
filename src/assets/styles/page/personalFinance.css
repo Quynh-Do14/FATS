@@ -819,6 +819,9 @@
     transform: scale(1);
   }
 }
+.navigation-buttons-mobile {
+  display: none;
+}
 
 @media (max-width: 640px) {
   .onboarding-container {
@@ -847,6 +850,7 @@
 
   .onboarding-container .navigation-buttons {
     flex-direction: column;
+    display: none;
   }
 
   .onboarding-container .btn {
@@ -855,6 +859,11 @@
   }
   .onboarding-container .btn-skip {
     padding: 8px 24px;
+  }
+  .navigation-buttons-mobile {
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
   }
 }
 

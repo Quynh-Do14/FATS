@@ -58,6 +58,9 @@ export const ROUTE_PATH = {
     BLOG_MANAGEMENT: `${ADMIN_PREFIX}/blog-management`,
     ADD_BLOG_MANAGEMENT: `${ADMIN_PREFIX}/blog-management/add`,
 
+    INTERNAL_BLOG_MANAGEMENT: `${ADMIN_PREFIX}/internal-blog-management`,
+    ADD_INTERNAL_BLOG_MANAGEMENT: `${ADMIN_PREFIX}/internal-blog-management/add`,
+
     BANNER_MANAGEMENT: `${ADMIN_PREFIX}/banner`,
     ADD_BANNER_MANAGEMENT: `${ADMIN_PREFIX}/banner/add`,
 

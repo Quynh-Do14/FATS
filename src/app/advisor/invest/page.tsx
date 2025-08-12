@@ -13,6 +13,7 @@ import Link from 'next/link'
 import ReactMarkdown from "react-markdown";
 import { useRouter } from 'next/navigation'
 import DialogNotificationCommon from '@/infrastructure/common/components/modal/dialogNotification'
+import DialogNotificationCommon2 from '@/infrastructure/common/components/modal/dialogNotification2'
 interface ScheduleItem {
     time: string;
     activity: string;
@@ -353,12 +354,13 @@ const AdvisorPage = () => {
                     </div>
                 </div>
             </div>
-            <DialogNotificationCommon
+            <DialogNotificationCommon2
                 visible={isModalError}
                 title={'Bạn đã hết xu'}
                 message={'Bạn cần có ít nhất 5 xu để sử dụng tính năng này'}
                 titleCancel={'Lấy thêm xu'}
-                handleCancel={onCloseModalError}
+                handleCancel={() => setIsModalError(false)}
+                onOk={onCloseModalError}
             />
         </LayoutClientNoFooter>
     )

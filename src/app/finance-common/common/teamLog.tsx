@@ -4,7 +4,6 @@ import inConfirmIcon from '@/assets/images/inconfirm.png';
 import teamLogService from '@/infrastructure/repositories/team/teamLog.service';
 import DialogConfirmCommon from '@/infrastructure/common/components/modal/dialogConfirm';
 import { Tooltip } from 'antd';
-import DialogNotificationCommon from '@/infrastructure/common/components/modal/dialogNotification';
 
 type Props = {
     dataTable: any[]

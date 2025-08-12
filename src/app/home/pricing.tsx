@@ -140,7 +140,7 @@ const PricingComponent = () => {
                                     plan.price == false
                                         ?
                                         <p className="text-[24px] font-semibold">
-                                            14 ngày dùng thử tính năng FATS premium
+                                            23h+ dùng thử tính năng FATS premium
                                         </p>
                                         :
                                         <div className="text-[24px] font-semibold">

@@ -39,8 +39,7 @@ const ListBlogManagement = () => {
             page: page - 1,
             size: size,
             keyword: name,
-            show: show,
-            blogType: "NORMAL"
+            blogType: "COMPANY"
         }
         try {
             await blogService.GetBlogAdmin(
@@ -118,9 +117,9 @@ const ListBlogManagement = () => {
 
     return (
         <AdminLayout
-            title={'Danh sách tin tức'}
-            breadcrumb={'Tin tức'}
-            redirect={ROUTE_PATH.BLOG_MANAGEMENT}
+            title={'Danh sách tin tức nội bộ'}
+            breadcrumb={'Tin tức nội bộ'}
+            redirect={ROUTE_PATH.INTERNAL_BLOG_MANAGEMENT}
         >
             <div className={styles.management_container}>
                 <div className={styles.content}>
@@ -133,7 +132,7 @@ const ListBlogManagement = () => {
                         />
                         <ButtonDesign
                             classColor={'green'}
-                            onClick={() => router.push(ROUTE_PATH.ADD_BLOG_MANAGEMENT)}
+                            onClick={() => router.push(ROUTE_PATH.ADD_INTERNAL_BLOG_MANAGEMENT)}
                             title={'Thêm mới'}
                             width={130}
                         />
@@ -204,7 +203,7 @@ const ListBlogManagement = () => {
                                 width={"60px"}
                                 render={(action, record: any) => (
                                     <ActionCommon
-                                        onClickDetail={() => router.push(`${ROUTE_PATH.BLOG_MANAGEMENT}/${record.id}`)}
+                                        onClickDetail={() => router.push(`${ROUTE_PATH.INTERNAL_BLOG_MANAGEMENT}/${record.id}`)}
                                         onClickDelete={() => onOpenModalDelete(record.id)}
                                     />
                                 )}
@@ -222,9 +221,9 @@ const ListBlogManagement = () => {
                         />
                     </div>
                     <DialogConfirmCommon
-                        message={"Bạn có muốn xóa tin tức này ra khỏi hệ thống"}
+                        message={"Bạn có muốn xóa tin tức nội bộ này ra khỏi hệ thống"}
                         titleCancel={"Bỏ qua"}
-                        titleOk={"Xóa tin tức"}
+                        titleOk={"Xóa tin tức nội bộ"}
                         visible={isDeleteModal}
                         handleCancel={onCloseModalDelete}
                         handleOk={onDeleteAsync}

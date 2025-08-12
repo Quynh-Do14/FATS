@@ -1182,6 +1182,36 @@ const GoalSpendingPage = () => {
                                 Bỏ qua
                             </button>
                         </div>
+                        <div className="navigation-buttons-mobile">
+                            <button
+                                className="btn btn-secondary"
+                                onClick={previousStep}
+                                disabled={currentStep === 0}
+                                aria-label="Quay lại"
+                            >
+                                <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                            </button>
+
+                            <button
+                                className="btn btn-primary"
+                                onClick={nextStep}
+                                aria-label={currentStep === steps.length - 1 ? 'Hoàn thành' : 'Tiếp theo'}
+                            >
+                                {currentStep === steps.length - 1 ? (
+                                    <i className="fa fa-check" aria-hidden="true"></i>
+                                ) : (
+                                    <i className="fa fa-arrow-right" aria-hidden="true"></i>
+                                )}
+                            </button>
+
+                            <button
+                                className="btn btn-skip"
+                                onClick={finishGuide}
+                                aria-label="Bỏ qua"
+                            >
+                                <i className="fa fa-forward" aria-hidden="true"></i>
+                            </button>
+                        </div>
                     </div>
                 )}
                 <BannerCommon

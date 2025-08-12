@@ -13,6 +13,7 @@ import { ROUTE_PATH } from '@/core/common/appRouter'
 import ReactMarkdown from "react-markdown";
 import DialogNotificationCommon from '@/infrastructure/common/components/modal/dialogNotification'
 import { useRouter } from 'next/navigation'
+import DialogNotificationCommon2 from '@/infrastructure/common/components/modal/dialogNotification2'
 
 interface ScheduleItem {
     time: string;
@@ -118,8 +119,8 @@ const AdvisorPage = () => {
     };
     const onSelectOption = (option: any) => {
         if (option.value) {
-            handleSendMessage(option.value);
-            setMessagesLoading(option.value);
+            handleSendMessage(option.text);
+            setMessagesLoading(option.text);
         }
     };
 
@@ -189,7 +190,7 @@ const AdvisorPage = () => {
                         </Tooltip>
                         <div className="type-chat">
                             <Link href={ROUTE_PATH.ADVISOR_INVEST}>
-                                <p>Sử dụng AI tư vấn giải trí Finora</p>
+                                <p>Sử dụng AI tư vấn đầu tư Finora</p>
                             </Link>
                         </div>
                     </div>
@@ -357,12 +358,13 @@ const AdvisorPage = () => {
                     </div>
                 </div>
             </div>
-            <DialogNotificationCommon
+            <DialogNotificationCommon2
                 visible={isModalError}
                 title={'Bạn đã hết xu'}
                 message={'Bạn cần có ít nhất 5 xu để sử dụng tính năng này'}
                 titleCancel={'Lấy thêm xu'}
-                handleCancel={onCloseModalError}
+                handleCancel={() => setIsModalError(false)}
+                onOk={onCloseModalError}
             />
         </LayoutClientNoFooter >
     )

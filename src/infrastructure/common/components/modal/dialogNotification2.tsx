@@ -6,11 +6,12 @@ type Props = {
     message: string,
     titleCancel: string,
     handleCancel: () => void,
+    onOk: () => void,
     visible: boolean,
     isLoading?: boolean,
 }
-const DialogNotificationCommon = (props: Props) => {
-    const { title, message, titleCancel, handleCancel, visible, isLoading = false } = props;
+const DialogNotificationCommon2 = (props: Props) => {
+    const { title, message, titleCancel, handleCancel, onOk, visible, isLoading = false } = props;
 
     return (
         <div>
@@ -29,7 +30,7 @@ const DialogNotificationCommon = (props: Props) => {
                     <ButtonDesign
                         disabled={isLoading}
                         classColor={'green'}
-                        onClick={handleCancel}
+                        onClick={onOk}
                         title={titleCancel}
                         width={200}
                     />
@@ -38,4 +39,4 @@ const DialogNotificationCommon = (props: Props) => {
         </div>
     )
 }
-export default DialogNotificationCommon;
+export default DialogNotificationCommon2;
