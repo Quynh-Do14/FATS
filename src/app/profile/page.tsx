@@ -6,7 +6,7 @@ import { isTokenStoraged } from '@/infrastructure/utils/storage';
 import { useRecoilState } from 'recoil';
 import { ProfileState } from '@/core/atoms/profile/profileState';
 import authService from '@/infrastructure/repositories/auth/service/auth.service';
-import { configImageURL } from '@/infrastructure/helper/helper';
+import { configImageURL, convertDateOnlyShow } from '@/infrastructure/helper/helper';
 import { WarningMessage } from '@/infrastructure/common/components/toast/notificationToast';
 import { FullPageLoading } from '@/infrastructure/common/components/controls/loading';
 import { Col, Row } from 'antd';
@@ -311,7 +311,7 @@ const ProfilePage = () => {
                                                     &&
                                                     <tr>
                                                         <td>Ngày hết hạn</td>
-                                                        <td>{detailProfile.expiryDate}</td>
+                                                        <td>{convertDateOnlyShow(detailProfile.expiryDate)}</td>
                                                     </tr>
                                                 }
                                                 <tr>

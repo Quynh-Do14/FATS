@@ -180,6 +180,16 @@
   color: #155724;
 }
 
+.profile-page .content .package-badge.premium {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.profile-page .content .package-badge.plus {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
 .profile-page .content .status-active {
   color: #28a745;
   font-weight: 600;
